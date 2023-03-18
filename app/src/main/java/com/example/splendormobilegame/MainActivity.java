@@ -3,6 +3,7 @@ package com.example.splendormobilegame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +15,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //Make app fullscreen + delete toolbar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         //Bind layout with class
         binding = ActivityMainActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         //Setup buttons
         setupButtons();
-
-        super.onCreate(savedInstanceState);
     }
 
     private void setupButtons() {
