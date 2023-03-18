@@ -1,0 +1,16 @@
+<resources>
+    <!--MainActivity-->
+    <string name="app_name">SplendorMobileGame</string>
+    <string name="create_room">Create Room</string>
+    <string name="join_room">Join Room</string>
+    <string name="exit">Exit</string>
+    <!--CreateRoomActivity-->
+    <string name="room_name">Enter room name</string>
+    <string name="room_password">Enter room password</string>
+    <!--JoinRoomActivity-->
+    <!--WaitingRoomActivity-->
+    <string name="start_game">Start Game</string>
+    <string name="wait_players">Waiting for other players...</string>
+    <string name="players_warning">You need to wait for other players to start the game</string>
+
+</resources>
