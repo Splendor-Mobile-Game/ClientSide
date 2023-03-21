@@ -39,4 +39,5 @@
             android:parentActivityName=".JoinRoomActivity"
             android:screenOrientation="landscape" />
 </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
