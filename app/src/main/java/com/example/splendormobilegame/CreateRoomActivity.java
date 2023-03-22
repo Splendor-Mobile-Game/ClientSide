@@ -22,8 +22,9 @@ public class CreateRoomActivity extends AppCompatActivity {
         binding = ActivityCreateRoomActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
         setupButtons();
+        //Example message
+        //WebSocket.webSocketClient.send("{\"messageContextId\":\"80bdc250-5365-4caf-8dd9-a33e709a0116\",\"type\":\"CREATE_ROOM\",\"data\":{\"userDTO\":{\"uuid\":\"f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454\",\"name\":\"James\"},\"roomDTO\":{\"name\":\"TajnyPokoj\",\"password\":\"kjashjkasd\"}}}");
 
     }
 
