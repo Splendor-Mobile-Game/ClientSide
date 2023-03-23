@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,9 @@ public class CreateRoomActivity extends AppCompatActivity {
         binding.createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = binding.enterNameEditText.getText().toString();
+                String password = binding.enterPasswordEditText.getText().toString();
+                //TODO create message to server that starts the room
                 Intent myIntent = new Intent(CreateRoomActivity.this, WaitingRoomActivity.class);
                 CreateRoomActivity.this.startActivity(myIntent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
