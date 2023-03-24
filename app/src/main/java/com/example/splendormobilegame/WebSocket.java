@@ -13,10 +13,11 @@ import tech.gusavila92.websocketclient.WebSocketClient;
 
 public class WebSocket extends Activity {
     public static WebSocketClient webSocketClient;
-    public static String message = "Null";
+    public static String message = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("WebSocket", "Session is starting");
         createWebSocketClient();
     }
 
@@ -24,7 +25,7 @@ public class WebSocket extends Activity {
         URI uri;
         try {
             // Connect to server
-            uri = new URI("ws://20.199.10.79:8887");
+            uri = new URI("ws://10.0.2.2:8887");
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
