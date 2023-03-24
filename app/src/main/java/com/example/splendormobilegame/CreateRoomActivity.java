@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityCreateRoomActivityBinding;
 
+import tech.gusavila92.websocketclient.WebSocketClient;
+
 public class CreateRoomActivity extends AppCompatActivity {
     private ActivityCreateRoomActivityBinding binding;
 
@@ -26,14 +28,19 @@ public class CreateRoomActivity extends AppCompatActivity {
         setupButtons();
 
     }
+    private boolean checkResponse(boolean response){
+      if(response){
+          Intent myIntent = new Intent(CreateRoomActivity.this, WaitingRoomActivity.class);
+          CreateRoomActivity.this.startActivity(myIntent);
+          overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+      }
+      return false;
+    }
 
     private void setupButtons() {
         binding.createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(CreateRoomActivity.this, WaitingRoomActivity.class);
-                CreateRoomActivity.this.startActivity(myIntent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
