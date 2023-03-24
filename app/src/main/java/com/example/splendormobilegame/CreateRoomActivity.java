@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class CreateRoomActivity extends AppCompatActivity {
         setContentView(view);
 
         setupButtons();
+        //Example message
+        //WebSocket.webSocketClient.send("{\"messageContextId\":\"80bdc250-5365-4caf-8dd9-a33e709a0116\",\"type\":\"CREATE_ROOM\",\"data\":{\"userDTO\":{\"uuid\":\"f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454\",\"name\":\"James\"},\"roomDTO\":{\"name\":\"TajnyPokoj\",\"password\":\"kjashjkasd\"}}}");
 
     }
     private boolean checkResponse(boolean response){
@@ -41,6 +44,12 @@ public class CreateRoomActivity extends AppCompatActivity {
         binding.createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = binding.enterNameEditText.getText().toString();
+                String password = binding.enterPasswordEditText.getText().toString();
+                //TODO create message to server that starts the room
+                Intent myIntent = new Intent(CreateRoomActivity.this, WaitingRoomActivity.class);
+                CreateRoomActivity.this.startActivity(myIntent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
