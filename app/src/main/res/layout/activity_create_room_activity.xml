@@ -8,25 +8,42 @@
 
     <EditText
         android:id="@+id/enterNameEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:inputType="text"
+        android:layout_marginTop="4dp"
         android:hint="@string/room_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"
+        android:inputType="text"
+        android:maxLength="20"
+        app:layout_constraintEnd_toEndOf="@+id/enterPasswordEditText"
+        app:layout_constraintStart_toStartOf="@+id/enterPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/enterNameTextView" />
 
     <EditText
         android:id="@+id/enterPasswordEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/room_password"
+        android:textSize="20sp"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/enterNameEditText"
-        app:layout_constraintStart_toStartOf="@+id/enterNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/enterNameEditText" />
+        android:maxLength="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterPasswordTextView" />
+
+    <EditText
+        android:id="@+id/enterNicknameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="@string/room_nickname"
+        android:textSize="20sp"
+        android:inputType="text"
+        android:maxLength="20"
+        app:layout_constraintEnd_toEndOf="@+id/enterPasswordEditText"
+        app:layout_constraintStart_toStartOf="@+id/enterPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/enterNicknameTextView" />
 
     <Button
         android:id="@+id/createRoomButton"
@@ -37,4 +54,38 @@
         android:text="@string/create_room"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/enterNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/room_name2"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="@+id/enterNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/enterNicknameEditText" />
+
+    <TextView
+        android:id="@+id/enterPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/room_password2"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/enterPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/enterNameEditText" />
+
+    <TextView
+        android:id="@+id/enterNicknameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/room_nickname2"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/enterNicknameEditText"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

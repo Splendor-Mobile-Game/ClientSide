@@ -5,8 +5,12 @@
     <string name="join_room">Join Room</string>
     <string name="exit">Exit</string>
     <!--CreateRoomActivity-->
+    <string name="room_nickname">Enter your nickname</string>
+    <string name="room_nickname2">Enter your nickname:</string>
     <string name="room_name">Enter room name</string>
-    <string name="room_password">Enter room password</string>
+    <string name="room_password">Enter room password:</string>
+    <string name="room_name2">Enter room name</string>
+    <string name="room_password2">Enter room password:</string>
     <!--JoinRoomActivity-->
     <!--WaitingRoomActivity-->
     <string name="start_game">Start Game</string>
