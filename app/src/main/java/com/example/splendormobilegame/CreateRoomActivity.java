@@ -32,6 +32,11 @@ public class CreateRoomActivity extends AppCompatActivity {
 
     }
 
+    private boolean validateResponse() {
+        //TODO implement response logic
+        return false;
+    }
+
     private void setupButtons() {
         binding.createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +44,13 @@ public class CreateRoomActivity extends AppCompatActivity {
                 String name = binding.enterNameEditText.getText().toString();
                 String password = binding.enterPasswordEditText.getText().toString();
                 String nickname = binding.enterNicknameEditText.getText().toString();
+                if (validateResponse()) {
+                    Intent myIntent = new Intent(CreateRoomActivity.this, WaitingRoomActivity.class);
+                    CreateRoomActivity.this.startActivity(myIntent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                } else {
+                    Toast.makeText(CreateRoomActivity.this,R.string.create_error,Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
