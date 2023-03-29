@@ -14,6 +14,7 @@ import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
+import json
 
 import tech.gusavila92.websocketclient.WebSocketClient;
 
@@ -40,9 +41,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private void createWebSocketClient() {
         URI uri;
+        with open('config.json','r') as f:
+        config = json.load(f)
+        ip_address = config['server']['ip_address']
         try {
             // Connect to server
-            uri = new URI("ws://20.199.10.79:8887");
+            uri = new URI(ip_address);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
