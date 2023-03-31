@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toStartOf="@+id/startGameButton" />
 
     <TextView
-        android:id="@+id/nameOfRoomTextView"
+        android:id="@+id/roomTextView"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginStart="272dp"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/playersTextView" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/nameOfRoomTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="272dp"
@@ -102,6 +102,6 @@
         android:textColor="@color/light_gray"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameOfRoomTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
