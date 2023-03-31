@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/waitingPlayersRecyklerView"
+        android:id="@+id/waitingPlayersRecyclerView"
         android:layout_width="168dp"
         android:layout_height="87dp"
         android:layout_marginTop="20dp"
