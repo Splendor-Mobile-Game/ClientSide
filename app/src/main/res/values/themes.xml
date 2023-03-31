@@ -13,4 +13,21 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="SecondaryButtonContainer" parent="@style/Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
+
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
+
+        <item name="backgroundTint">@color/poppy</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="tint">@color/marian</item>
+        <item name="iconTint">@color/marian</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+
+    </style>
+    <style name="ShapeAppearanceOverlay.App.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>

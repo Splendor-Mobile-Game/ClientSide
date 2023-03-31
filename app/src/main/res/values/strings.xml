@@ -18,6 +18,11 @@
     <string name="start_game">Start Game</string>
     <string name="wait_players">Waiting for other players...</string>
     <string name="players_warning">You need to wait for other players to start the game</string>
+    <string name="leave_room">Leave</string>
+    <string name="name_of_room">Room</string>
+    <string name="rooms_code">Code</string>
+    <string name="current_players">Players</string>
     <!--Shared preferences-->
     <string name="preference_file_key" translatable="false">SPLENDOR_PREFERENCES</string>
+
 </resources>

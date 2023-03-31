@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue">
 
     <TextView
         android:id="@+id/waitPlayersTextView"
@@ -11,19 +14,100 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/wait_players"
-        android:textColor="@color/black"
+        android:fontFamily="@font/bonanova_regular"
+        android:textColor="@color/light_yellow"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/startGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        style="@style/SecondaryButtonContainer"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="132dp"
+
+
+        android:layout_marginBottom="60dp"
         android:text="@string/start_game"
+        android:textColor="@color/light_gray"
+        android:fontFamily="@font/lora_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/leaveGameButton"
+
+        style="@style/SecondaryButtonContainer"
+
+        android:layout_width="84dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/leave_room"
+        android:fontFamily="@font/lora_semibold"
+        android:textColor="@color/light_yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        app:layout_constraintEnd_toStartOf="@+id/startGameButton"
+
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lora_semibold"
+        android:text="@string/name_of_room"
+        android:textColor="@color/light_yellow"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waitPlayersTextView"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lora_semibold"
+        android:text="@string/current_players"
+        android:textColor="@color/light_yellow"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/waitPlayersTextView"
+        app:layout_constraintVertical_bias="0.026" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="168dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lora_regular"
+        android:text="TextView"
+        android:textColor="@color/light_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
