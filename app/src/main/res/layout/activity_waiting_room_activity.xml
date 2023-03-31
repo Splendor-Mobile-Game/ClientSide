@@ -24,12 +24,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/startGameButton"
-        style="@style/SecondaryButtonContainer"
+        style="@style/ButtonStyle"
         android:layout_width="168dp"
         android:layout_height="48dp"
         android:layout_marginEnd="132dp"
-
-
         android:layout_marginBottom="60dp"
         android:text="@string/start_game"
         android:textColor="@color/light_gray"
@@ -39,9 +37,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/leaveGameButton"
-
-        style="@style/SecondaryButtonContainer"
-
+        style="@style/ButtonStyle"
         android:layout_width="84dp"
         android:layout_height="48dp"
         android:layout_marginEnd="36dp"
@@ -51,14 +47,10 @@
         android:textColor="@color/light_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-
-        app:layout_constraintEnd_toStartOf="@+id/startGameButton"
-
-        />
+        app:layout_constraintEnd_toStartOf="@+id/startGameButton" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nameOfRoomTextView"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginStart="272dp"
@@ -73,29 +65,31 @@
         app:layout_constraintVertical_bias="0.027" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/playersTextView"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="216dp"
         android:fontFamily="@font/lora_semibold"
         android:text="@string/current_players"
         android:textColor="@color/light_yellow"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.174"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toEndOf="@+id/nameOfRoomTextView"
         app:layout_constraintTop_toBottomOf="@+id/waitPlayersTextView"
         app:layout_constraintVertical_bias="0.026" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/waitingPlayersRecyklerView"
         android:layout_width="168dp"
         android:layout_height="87dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="132dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/playersTextView" />
 
     <TextView
         android:id="@+id/textView4"
@@ -108,6 +102,6 @@
         android:textColor="@color/light_gray"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameOfRoomTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

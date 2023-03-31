@@ -13,7 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="SecondaryButtonContainer" parent="@style/Widget.MaterialComponents.Button">
+    <style name="ButtonStyle" parent="@style/Widget.MaterialComponents.Button">
         <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
 
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
