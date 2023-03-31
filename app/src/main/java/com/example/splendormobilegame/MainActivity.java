@@ -45,15 +45,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private void createWebSocketClient() {
         URI uri;
-        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String appConfigPath = rootPath + "config.properties";
-        Properties appProps = new Properties();
-        try {
-           appProps.load(new FileInputStream(appConfigPath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        String ip = appProps.getProperty("server.ip");
+        Config config = new Config();
+ 
+        String ip = config.getServerIp();
         try {
             // Connect to server
             uri = new URI(ip);
