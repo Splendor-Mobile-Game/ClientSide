@@ -13,15 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="CardPileStyle3" parent="@style/Widget.MaterialComponents.CardView">
-    <item name="cardBackgroundColor">@color/marianBlue</item>
-        <item name="cornerFamily">cut</item>
-        <item name="cornerSize">16dp</item>
-    </style>
-    <style name="CardPileStyle2" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/yasmine</item>
-        <item name="cornerFamily">cut</item>
-        <item name="cornerSize">16dp</item>
+    <style name="LightTextView" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 </resources>
