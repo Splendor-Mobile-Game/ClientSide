@@ -42,17 +42,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/lora_regular</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white_smoke</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:padding">8dp</item>
+
     </style>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_height">42dp</item>
         <item name="boxBackgroundColor">@color/dark_blue</item>
-        <item name="boxCornerRadiusTopStart">20dp</item>
-        <item name="boxCornerRadiusTopEnd">20dp</item>
-        <item name="boxCornerRadiusBottomStart">20dp</item>
-        <item name="boxCornerRadiusBottomEnd">20dp</item>
+        <item name="boxCornerRadiusTopStart">13dp</item>
+        <item name="boxCornerRadiusTopEnd">13dp</item>
+        <item name="boxCornerRadiusBottomStart">13dp</item>
+        <item name="boxCornerRadiusBottomEnd">13dp</item>
         <item name="boxStrokeColor">@color/yasmine</item>
-        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="hintAnimationEnabled">false</item>
+        a<item name="hintEnabled">false</item>
+
     </style>
 
 </resources>
