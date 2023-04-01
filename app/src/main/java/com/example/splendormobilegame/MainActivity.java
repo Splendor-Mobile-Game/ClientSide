@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.splendormobilegame.config.Config;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 
 import java.io.Serializable;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private void createWebSocketClient() {
         URI uri;
-        Config config = new Config();
+        Config config = new Config(this);
  
         String ip = config.getServerIp();
         try {
