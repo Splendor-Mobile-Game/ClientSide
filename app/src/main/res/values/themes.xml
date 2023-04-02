@@ -30,4 +30,15 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
+    <style name="BlueBackgroundButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
+        <item name="backgroundTint">@color/dark_blue</item>
+        <item name="android:textColor">@color/light_yellow</item>
+        <item name="tint">@color/dark_blue</item>
+        <item name="iconTint">@color/dark_blue</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+
+</style>
 </resources>
