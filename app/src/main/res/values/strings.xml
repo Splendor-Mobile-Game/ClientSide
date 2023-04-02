@@ -4,6 +4,7 @@
     <string name="create_room">Create Room</string>
     <string name="join_room">Join Room</string>
     <string name="exit">Exit</string>
+    <string name="logo_description">Logo</string>
     <!--CreateRoomActivity-->
     <string name="room_nickname">Enter your nickname</string>
     <string name="room_nickname2">Enter your nickname:</string>
