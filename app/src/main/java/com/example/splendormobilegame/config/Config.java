@@ -22,7 +22,7 @@ public class Config implements IConfig {
     private void loadFile() throws InvalidConfigException {
         Properties properties = new Properties();
         try {
-            InputStream inputStream = context.getAssets().open("conig.properties");
+            InputStream inputStream = context.getAssets().open("config.properties");
             properties.load(inputStream);
         } catch (Exception e) {
             throw new InvalidConfigException("Couldn't load config.properties file");
