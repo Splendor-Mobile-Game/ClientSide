@@ -10,16 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.config.Config;
+import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 import tech.gusavila92.websocketclient.WebSocketClient;
 
@@ -47,12 +43,20 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private void createWebSocketClient() {
         URI uri;
         Config config = new Config(this);
- 
-        String ip = config.getServerIp();
+
         try {
             // Connect to server
+            String ip = config.getServerIp();
             uri = new URI(ip);
-        } catch (URISyntaxException e) {
+
+        }
+        catch (InvalidConfigException e )
+        {
+            e.printStackTrace();
+            return;
+
+        }
+        catch (URISyntaxException e ) {
             e.printStackTrace();
             return;
         }
