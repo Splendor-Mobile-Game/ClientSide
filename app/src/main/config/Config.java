@@ -4,19 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+
 public class Config implements IConfig {
 
    private String serverip;
 
 
-    private void loadFile() throws IOException {
+    private void loadFile() throws InvalidCfgException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("app/config.properties"));
         this.serverip = appProps.getProperty("server.ip");
     }
 
     @Override
-    public String getServerip(){
+    public String getServerip() throws InvalidConfigException{
 
         return this.serverip;
     }
