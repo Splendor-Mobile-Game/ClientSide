@@ -2,18 +2,25 @@
     <!--MainActivity-->
     <string name="app_name">SplendorMobileGame</string>
     <string name="create_room">Create Room</string>
-    <string name="join_room">Join Room</string>
+    <string name="join_room">Join</string>
     <string name="exit">Exit</string>
+    <string name="logo_description">Logo</string>
     <!--CreateRoomActivity-->
     <string name="room_nickname">Enter your nickname</string>
     <string name="room_nickname2">Enter your nickname:</string>
     <string name="room_name">Enter room name</string>
-    <string name="room_password">Enter room password:</string>
+    <string name="room_password">Enter room password</string>
     <string name="room_name2">Enter room name</string>
     <string name="room_password2">Enter room password:</string>
     <string name="create_error">Room could not be created</string>
     <!--JoinRoomActivity-->
+    <string name="joinRoom">Join Room</string>
     <string name="join_error">Room does not exists or could not be joined</string>
+    <string name="enter_room_nickname">nickname</string>
+    <string name="enter_room_code">room\'s code</string>
+    <string name="enter_room_password">room\'s password</string>
+    <string name="code_error_msg">Wrong room\'s code!</string>
+    <string name="password_error_msg">Wrong room\'s password!</string>
     <!--WaitingRoomActivity-->
     <string name="start_game">Start Game</string>
     <string name="wait_players">Waiting for other players...</string>

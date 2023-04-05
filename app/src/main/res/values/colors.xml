@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,17 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_smoke">#FFEFF1ED</color>
     <color name="marian">#023E8A</color>
     <color name="dark_blue">#03045E</color>
-    <color name="maroon">#B60020</color>
-    <color name="light_gray">#EFF1ED</color>
-    <color name="light_yellow">#FDF0D5</color>
-    <color name="yellow">#FFC300</color>
-    <color name="poppy">#FFDA2C38</color>
     <color name="green">#FF00AB82</color>
     <color name="blue">#FF1E88E5</color>
     <color name="whiteSmoke">#FFEFF1ED</color>
     <color name="backGroundColor">#FF03045E</color>
     <color name="marianBlue">#1E88E5</color>
+    <color name="poppy">#DA2C38</color>
+    <color name="maroon">#800132</color>
+    <color name="light_gray">#EFF1ED</color>
+    <color name="light_yellow">#FDF0D5</color>
+    <color name="yellow">#FFC300</color>
+    <color name="gray">#BDBDBD</color>
     <color name="yasmine">#FFE45C</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFE45C</color>
 </resources>
