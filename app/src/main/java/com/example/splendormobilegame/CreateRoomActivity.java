@@ -34,7 +34,6 @@ public class CreateRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
         binding = ActivityCreateRoomActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);

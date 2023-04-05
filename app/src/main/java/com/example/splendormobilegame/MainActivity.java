@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         //Make app fullscreen + delete toolbar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
         //Bind layout with class
         binding = ActivityMainActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();

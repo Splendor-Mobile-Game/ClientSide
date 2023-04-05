@@ -1,6 +1,925 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gameActivityConstraintLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/backGroundColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pointsCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/sideBarButton"
+        app:layout_constraintEnd_toStartOf="@+id/blueTokenButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pointsConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backGroundColor">
+
+            <ImageView
+                android:id="@+id/redPointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2RedPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2RedPointsTV"
+                app:srcCompat="@drawable/diamond_shape_red" />
+
+            <TextView
+                android:id="@+id/Player1RedPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="12dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/redPointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/Player1NameTV" />
+
+            <ImageView
+                android:id="@+id/bluePointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3BluePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3BluePointsTV"
+                app:srcCompat="@drawable/diamond_shape_blue" />
+
+            <ImageView
+                android:id="@+id/greenPointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerGreenPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerGreenPointsTV"
+                app:srcCompat="@drawable/diamond_shape_green" />
+
+            <TextView
+                android:id="@+id/Player1BluePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/bluePointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+
+            <ImageView
+                android:id="@+id/PointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2PointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2PointsTV"
+                app:srcCompat="@drawable/circle_shape_yellow" />
+
+            <TextView
+                android:id="@+id/Player2BlackPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/blackPointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/Player2WhitePointsTV" />
+
+            <TextView
+                android:id="@+id/Player3GreenPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/greenPointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+
+            <TextView
+                android:id="@+id/mainPlayerYellowPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/yellowPointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBlackPointsTV" />
+
+            <TextView
+                android:id="@+id/Player2YellowPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/yellowPointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/Player2BlackPointsTV" />
+
+            <ImageView
+                android:id="@+id/greenPointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3GreenPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3GreenPointsTV"
+                app:srcCompat="@drawable/diamond_shape_green" />
+
+            <ImageView
+                android:id="@+id/yellowPointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerYellowPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerYellowPointsTV"
+                app:srcCompat="@drawable/diamond_shape_yellow" />
+
+            <ImageView
+                android:id="@+id/whitePointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerWhitePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerWhitePointsTV"
+                app:srcCompat="@drawable/diamond_shape_white" />
+
+            <TextView
+                android:id="@+id/mainPlayerNameTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/pointsConstraintLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Player3WhitePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/whitePointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerGreenPointsTV" />
+
+            <ImageView
+                android:id="@+id/bluePointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1BluePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1BluePointsTV"
+                app:srcCompat="@drawable/diamond_shape_blue" />
+
+            <ImageView
+                android:id="@+id/redPointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2RedPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2RedPointsTV"
+                app:srcCompat="@drawable/diamond_shape_red" />
+
+            <TextView
+                android:id="@+id/Player2WhitePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/greenPointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/Player2GreenPointsTV" />
+
+            <ImageView
+                android:id="@+id/whitePointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1WhitePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1WhitePointsTV"
+                app:srcCompat="@drawable/diamond_shape_white" />
+
+            <TextView
+                android:id="@+id/Player3NameTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerNameTV"
+                app:layout_constraintEnd_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerNameTV" />
+
+            <ImageView
+                android:id="@+id/redPointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerRedPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3RedPointsTV"
+                app:srcCompat="@drawable/diamond_shape_red" />
+
+            <ImageView
+                android:id="@+id/greenPointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1GreenPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1GreenPointsTV"
+                app:srcCompat="@drawable/diamond_shape_green" />
+
+            <ImageView
+                android:id="@+id/yellowPointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1YellowPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1YellowPointsTV"
+                app:srcCompat="@drawable/diamond_shape_yellow" />
+
+            <TextView
+                android:id="@+id/Player2NameTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3NameTV"
+                app:layout_constraintEnd_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3NameTV" />
+
+            <TextView
+                android:id="@+id/Player3BlackPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/blackPointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerWhitePointsTV" />
+
+            <TextView
+                android:id="@+id/mainPlayerBluePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/redPointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+
+            <TextView
+                android:id="@+id/mainPlayerPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/PointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerYellowPointsTV" />
+
+            <ImageView
+                android:id="@+id/bluePointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerBluePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerBluePointsTV"
+                app:srcCompat="@drawable/diamond_shape_blue" />
+
+            <TextView
+                android:id="@+id/mainPlayerBlackPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/blackPointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerWhitePointsTV" />
+
+            <ImageView
+                android:id="@+id/greenPointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2GreenPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2GreenPointsTV"
+                app:srcCompat="@drawable/diamond_shape_green" />
+
+            <TextView
+                android:id="@+id/Player1WhitePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/whitePointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/Player2GreenPointsTV" />
+
+            <ImageView
+                android:id="@+id/PointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1PointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1PointsTV"
+                app:srcCompat="@drawable/circle_shape_yellow" />
+
+            <ImageView
+                android:id="@+id/blackPointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3BlackPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3BlackPointsTV"
+                app:srcCompat="@drawable/diamond_shape_black" />
+
+            <TextView
+                android:id="@+id/Player2PointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/PointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/Player2YellowPointsTV" />
+
+            <TextView
+                android:id="@+id/mainPlayerGreenPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/greenPointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+
+            <TextView
+                android:id="@+id/Player2GreenPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/greenPointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+
+            <ImageView
+                android:id="@+id/blackPointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1BlackPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1BlackPointsTV"
+                app:srcCompat="@drawable/diamond_shape_black" />
+
+            <ImageView
+                android:id="@+id/yellowPointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2YellowPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2YellowPointsTV"
+                app:srcCompat="@drawable/diamond_shape_yellow" />
+
+            <ImageView
+                android:id="@+id/blackPointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2BlackPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2BlackPointsTV"
+                app:srcCompat="@drawable/diamond_shape_black" />
+
+            <TextView
+                android:id="@+id/Player3PointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/PointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerYellowPointsTV" />
+
+            <TextView
+                android:id="@+id/Player3YellowPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/yellowPointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBlackPointsTV" />
+
+            <TextView
+                android:id="@+id/mainPlayerWhitePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/whitePointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerGreenPointsTV" />
+
+            <TextView
+                android:id="@+id/Player1GreenPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/greenPointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+
+            <ImageView
+                android:id="@+id/yellowPointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3YellowPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3YellowPointsTV"
+                app:srcCompat="@drawable/diamond_shape_yellow" />
+
+            <ImageView
+                android:id="@+id/bluePointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2BluePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2BluePointsTV"
+                app:srcCompat="@drawable/diamond_shape_blue" />
+
+            <ImageView
+                android:id="@+id/PointsImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerPointsTV"
+                app:srcCompat="@drawable/circle_shape_yellow" />
+
+            <TextView
+                android:id="@+id/mainPlayerRedPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="12dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/redPointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerNameTV" />
+
+            <TextView
+                android:id="@+id/Player3RedPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="12dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/redPointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/Player3NameTV" />
+
+            <TextView
+                android:id="@+id/Player1NameTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2NameTV"
+                app:layout_constraintEnd_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player2NameTV" />
+
+            <TextView
+                android:id="@+id/Player1YellowPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/yellowPointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/Player2BlackPointsTV" />
+
+            <TextView
+                android:id="@+id/Player1BlackPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/blackPointsImageView3"
+                app:layout_constraintTop_toBottomOf="@+id/Player2WhitePointsTV" />
+
+            <TextView
+                android:id="@+id/Player2RedPointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="12dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/redPointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/Player2NameTV" />
+
+            <ImageView
+                android:id="@+id/whitePointsImageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3WhitePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3WhitePointsTV"
+                app:srcCompat="@drawable/diamond_shape_white" />
+
+            <ImageView
+                android:id="@+id/whitePointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player1WhitePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player1WhitePointsTV"
+                app:srcCompat="@drawable/diamond_shape_white" />
+
+            <TextView
+                android:id="@+id/Player3BluePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/bluePointsImageView1"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+
+            <ImageView
+                android:id="@+id/PointsImageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/Player3PointsTV"
+                app:layout_constraintStart_toStartOf="@+id/Player3NameTV"
+                app:layout_constraintTop_toTopOf="@+id/Player3PointsTV"
+                app:srcCompat="@drawable/circle_shape_yellow" />
+
+            <TextView
+                android:id="@+id/Player1PointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                app:layout_constraintStart_toEndOf="@+id/PointsImageView"
+                app:layout_constraintTop_toBottomOf="@+id/Player2YellowPointsTV" />
+
+            <ImageView
+                android:id="@+id/blackPointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerBlackPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerBlackPointsTV"
+                app:srcCompat="@drawable/diamond_shape_black" />
+
+            <TextView
+                android:id="@+id/Player2BluePointsTV"
+                style="@style/LightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:text="10(10)"
+                app:layout_constraintStart_toEndOf="@+id/bluePointsImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+
+            <ImageView
+                android:id="@+id/redPointsImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/mainPlayerRedPointsTV"
+                app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
+                app:layout_constraintTop_toTopOf="@+id/mainPlayerRedPointsTV"
+                app:srcCompat="@drawable/diamond_shape_red" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Aristocrat3CardView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Aristocrat5CardView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Aristocrat1CardView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Aristocrat2CardView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Aristocrat4CardView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/CardPile3CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat1CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Aristocrat1CardView"
+        app:layout_constraintTop_toTopOf="@+id/Aristocrat1CardView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card31CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat2CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Aristocrat2CardView"
+        app:layout_constraintTop_toTopOf="@+id/Aristocrat2CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/CardPile2CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CardPile3CardView"
+        app:layout_constraintEnd_toStartOf="@+id/CardPile3CardView"
+        app:layout_constraintTop_toTopOf="@+id/CardPile3CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card21CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card31CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card31CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card31CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/CardPile1CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CardPile2CardView"
+        app:layout_constraintEnd_toStartOf="@+id/CardPile2CardView"
+        app:layout_constraintTop_toTopOf="@+id/CardPile2CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card11CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card21CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card21CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card21CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card32CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat3CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Aristocrat3CardView"
+        app:layout_constraintTop_toTopOf="@+id/Aristocrat3CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card22CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card32CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card32CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card32CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card12CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card22CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card22CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card22CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card33CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat4CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Aristocrat4CardView"
+        app:layout_constraintTop_toTopOf="@+id/Aristocrat4CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card23CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card33CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card33CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card33CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card13CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card23CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card23CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card23CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card34CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat5CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Aristocrat5CardView"
+        app:layout_constraintTop_toTopOf="@+id/Aristocrat5CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card24CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card34CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card34CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card34CardView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Card14CardView"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Card24CardView"
+        app:layout_constraintEnd_toStartOf="@+id/Card24CardView"
+        app:layout_constraintTop_toTopOf="@+id/Card24CardView" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/yellowTokenButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CardPile1CardView"
+        app:layout_constraintEnd_toStartOf="@+id/CardPile1CardView"
+        app:layout_constraintTop_toTopOf="@+id/CardPile1CardView" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/whiteTokenButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/yellowTokenButton"
+        app:layout_constraintStart_toStartOf="@+id/yellowTokenButton"
+        app:layout_constraintTop_toBottomOf="@+id/yellowTokenButton" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/blueTokenButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/whiteTokenButton"
+        app:layout_constraintStart_toStartOf="@+id/whiteTokenButton"
+        app:layout_constraintTop_toBottomOf="@+id/whiteTokenButton" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/greenTokenButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/blueTokenButton"
+        app:layout_constraintStart_toStartOf="@+id/blueTokenButton"
+        app:layout_constraintTop_toBottomOf="@+id/blueTokenButton" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/redTokenButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/greenTokenButton"
+        app:layout_constraintStart_toStartOf="@+id/greenTokenButton"
+        app:layout_constraintTop_toBottomOf="@+id/greenTokenButton" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/blackTokenButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/redTokenButton"
+        app:layout_constraintStart_toStartOf="@+id/redTokenButton"
+        app:layout_constraintTop_toBottomOf="@+id/redTokenButton" />
+
+    <Button
+        android:id="@+id/sideBarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/otherPlayerCardView"
+        android:visibility="gone"
+        android:layout_width="290dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/sideBarButton"
+        app:layout_constraintEnd_toStartOf="@+id/blueTokenButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/otherPlayerConstraintLayout"
+            android:background="@color/backGroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/OtherPlayer1PileCardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toEndOf="@+id/OtherPlayer2PileCardView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/OtherPlayer2PileCardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/OtherPlayer3PileCardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/OtherPlayer2PileCardView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
