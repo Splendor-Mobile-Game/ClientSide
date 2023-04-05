@@ -7,12 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="marian">#023E8A</color>
+    <color name="dark_blue">#03045E</color>
+    <color name="maroon">#B60020</color>
+    <color name="light_gray">#EFF1ED</color>
+    <color name="light_yellow">#FDF0D5</color>
+    <color name="yellow">#FFC300</color>
     <color name="poppy">#FFDA2C38</color>
     <color name="green">#FF00AB82</color>
     <color name="blue">#FF1E88E5</color>
     <color name="whiteSmoke">#FFEFF1ED</color>
     <color name="backGroundColor">#FF03045E</color>
-    <!--GameActivityColors-->
     <color name="marianBlue">#1E88E5</color>
     <color name="yasmine">#FFE45C</color>
 </resources>
