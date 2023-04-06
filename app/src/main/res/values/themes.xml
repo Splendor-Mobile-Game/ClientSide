@@ -32,7 +32,7 @@
     </style>
     <style name="LightTextView" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textColor">#ffffff</item>
-
+    </style>
 
     <style name="TitleStyle" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:fontFamily">@font/bonanova_regular</item>
