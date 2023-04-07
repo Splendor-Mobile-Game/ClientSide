@@ -1,6 +1,5 @@
 package com.example.splendormobilegame;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,20 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityCreateRoomActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
-import com.example.splendormobilegame.websocket.UserReaction;
+
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.CreateRoom;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import java.util.UUID;
 
-import tech.gusavila92.websocketclient.WebSocketClient;
 
 public class CreateRoomActivity extends AppCompatActivity {
     private ActivityCreateRoomActivityBinding binding;
@@ -47,10 +40,13 @@ public class CreateRoomActivity extends AppCompatActivity {
 
     }
 
-    private boolean validateResponse() {
-        //TODO implement response logic
+    private boolean validateInput() {
+        // TODO
         return true;
     }
+
+
+
 
     private void setupButtons() {
         binding.createRoomButton.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +55,9 @@ public class CreateRoomActivity extends AppCompatActivity {
                 String name = binding.enterNameEditText.getText().toString();
                 String password = binding.enterPasswordEditText.getText().toString();
                 String nickname = binding.enterNicknameEditText.getText().toString();
+                // TODO implement emojis in nicknames
 
-                if (validateResponse()) {
+                if (validateInput()) {
                     CreateRoom.RoomDTO room = new CreateRoom.RoomDTO(name, password);
                     CreateRoom.UserDTO user = new CreateRoom.UserDTO(UUID.randomUUID(), nickname);
                     CreateRoom.DataDTO data = new CreateRoom.DataDTO(room, user);

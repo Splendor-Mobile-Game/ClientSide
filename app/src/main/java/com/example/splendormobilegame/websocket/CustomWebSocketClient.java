@@ -2,6 +2,7 @@ package com.example.splendormobilegame.websocket;
 
 import android.util.Log;
 
+import com.example.splendormobilegame.model.Model;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
@@ -17,16 +18,14 @@ public class CustomWebSocketClient extends WebSocketClient {
 
     private static CustomWebSocketClient instance;
     Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses;
-    Model model;
 
-    private CustomWebSocketClient(URI uri, Model model, Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses) {
+    private CustomWebSocketClient(URI uri, Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses) {
         super(uri);
-        this.model = model;
         this.clientReactionsClasses = clientReactionsClasses;
     }
 
-    public static void initialize(URI uri, Model model, Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses) {
-        CustomWebSocketClient.instance = new CustomWebSocketClient(uri, model, clientReactionsClasses);
+    public static void initialize(URI uri, Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses) {
+        CustomWebSocketClient.instance = new CustomWebSocketClient(uri, clientReactionsClasses);
         CustomWebSocketClient.instance.setConnectTimeout(10000);
         CustomWebSocketClient.instance.setReadTimeout(60000);
         CustomWebSocketClient.instance.enableAutomaticReconnection(5000);
@@ -52,7 +51,7 @@ public class CustomWebSocketClient extends WebSocketClient {
         ServerMessage serverMessage = new ServerMessage(s);
 
         Class<? extends UserReaction> reactionClass = clientReactionsClasses.get(serverMessage.getType());
-        UserReaction reactionInstance = (UserReaction) Reflection.createInstanceOfClass(reactionClass, serverMessage, model);
+        UserReaction reactionInstance = (UserReaction) Reflection.createInstanceOfClass(reactionClass, serverMessage);
 
         UserMessage userMessage = reactionInstance.react();
 
