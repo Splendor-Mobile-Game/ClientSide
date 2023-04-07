@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -13,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
-import com.example.splendormobilegame.websocket.Model;
+import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 
@@ -23,8 +22,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import tech.gusavila92.websocketclient.WebSocketClient;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
     private ActivityMainActivityBinding binding;
@@ -52,10 +49,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         Map<ServerMessageType, Class<? extends UserReaction>> reactions = new HashMap<>();
         reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, com.example.splendormobilegame.websocket.reactions.CreateRoomResponse.class);
-        Model model = new Model();
 
         try {
-            CustomWebSocketClient.initialize(new URI("ws://10.0.2.2:8887"), model, reactions);
+            CustomWebSocketClient.initialize(new URI("ws://10.0.2.2:8887"), reactions);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -86,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         binding.joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, JoinRoomActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, GameActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
