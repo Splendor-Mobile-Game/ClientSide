@@ -12,12 +12,11 @@
         style="@style/BlueBackgroundButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="@string/create_room"
-        app:layout_constraintEnd_toStartOf="@+id/joinGameButton"
-        app:layout_constraintTop_toTopOf="@+id/joinGameButton"
         android:fontFamily="@font/lora_regular"
-        android:textSize="24sp"/>
+        android:text="@string/create_room"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/joinGameButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/joinGameButton"
@@ -25,11 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:layout_marginEnd="220dp"
         android:fontFamily="@font/lora_regular"
         android:text="@string/join_room"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/createGameButton"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.google.android.material.button.MaterialButton
@@ -37,12 +35,11 @@
         style="@style/BlueBackgroundButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/exit"
-        app:layout_constraintStart_toEndOf="@+id/joinGameButton"
-        app:layout_constraintTop_toTopOf="@+id/joinGameButton"
         android:fontFamily="@font/lora_regular"
-        android:textSize="24sp"/>
+        android:text="@string/exit"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/joinGameButton"
+        app:layout_constraintTop_toTopOf="@+id/joinGameButton" />
 
     <ImageView
         android:id="@+id/imageView"
