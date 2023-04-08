@@ -6,8 +6,8 @@ import java.util.UUID;
 public class Noble {
 
     //Noble -> Arystokrata, Magnat
-    private final UUID uuid;
 
+    private final UUID uuid;
     private final int emeraldCost; // Green
     private final int sapphireCost;  // Blue
     private final int rubyCost;  // Red

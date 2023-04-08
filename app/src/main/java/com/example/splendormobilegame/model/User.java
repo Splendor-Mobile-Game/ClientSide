@@ -14,7 +14,7 @@ public class User {
 
     private UUID uuid;
 
-    private HashMap<TokenType, Integer> tokens;
+    private final HashMap<TokenType, Integer> tokens;
 
     private ArrayList<Card> cards;
 
@@ -27,6 +27,13 @@ public class User {
         this.tokens = new HashMap<>();
         this.cards  = new ArrayList<>();
         this.nobles = new ArrayList<>();
+
+        tokens.put(TokenType.DIAMOND, 0);
+        tokens.put(TokenType.EMERALD, 0);
+        tokens.put(TokenType.GOLD_JOKER, 0);
+        tokens.put(TokenType.ONYX, 0);
+        tokens.put(TokenType.RUBY, 0);
+        tokens.put(TokenType.SAPPHIRE, 0);
     }
 
 
@@ -42,18 +49,45 @@ public class User {
         this.uuid = uuid;
     }
 
+    public void addTokens(TokenType tokenType, int amount) {
+        if (tokens.get(tokenType) == null) return;
+        int val = tokens.get(tokenType);
+        tokens.replace(tokenType, val + amount);
+    }
 
-    // TODO
-    // addToken, removeToken
-    // addCard, removeCard
-    // addNoble, removeNoble
+    public void removeTokens(TokenType tokenType, int amount) {
+        if (tokens.get(tokenType) == null) return;
+        int val = tokens.get(tokenType);
+        if (amount > val) return; // Not enough tokens in user's inventory
+        tokens.replace(tokenType, val - amount);
+    }
+
+
+    public void addCard(Card card) {
+        if (cards.contains(card)) return;
+        cards.add(card);
+    }
+
+    public void removeCard(Card card) {
+        if (!cards.contains(card)) return;
+        cards.remove(card);
+    }
+
+
+    public void addNoble(Noble noble) {
+        if (nobles.contains(noble)) return;
+        nobles.add(noble);
+    }
+
+    public void removeNoble(Noble noble) {
+        if (!nobles.contains(noble)) return;
+        nobles.remove(noble);
+    }
+
+
 
     public HashMap<TokenType, Integer> getTokens() {
         return tokens;
-    }
-
-    public void setTokens(HashMap<TokenType, Integer> tokens) {
-        this.tokens = tokens;
     }
 
     public ArrayList<Card> getCards() {
@@ -73,11 +107,13 @@ public class User {
     }
 
 
-    // TODO get count of all user's tokens
     public int getAllTokensCount() {
-        return 0;
-    }
+        int suma = 0;
+        for (int val : tokens.values())
+            suma += val;
 
+        return suma;
+    }
 
 
     @Override
