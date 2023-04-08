@@ -14,7 +14,7 @@ public class User {
 
     private UUID uuid;
 
-    private HashMap<TokenType, Integer> tokens;
+    private final HashMap<TokenType, Integer> tokens;
 
     private ArrayList<Card> cards;
 
@@ -49,13 +49,13 @@ public class User {
         this.uuid = uuid;
     }
 
-    public void addToken(TokenType tokenType, int amount) {
+    public void addTokens(TokenType tokenType, int amount) {
         if (tokens.get(tokenType) == null) return;
         int val = tokens.get(tokenType);
         tokens.replace(tokenType, val + amount);
     }
 
-    public void removeToken(TokenType tokenType, int amount) {
+    public void removeTokens(TokenType tokenType, int amount) {
         if (tokens.get(tokenType) == null) return;
         int val = tokens.get(tokenType);
         if (amount > val) return; // Not enough tokens in user's inventory
@@ -88,10 +88,6 @@ public class User {
 
     public HashMap<TokenType, Integer> getTokens() {
         return tokens;
-    }
-
-    public void setTokens(HashMap<TokenType, Integer> tokens) {
-        this.tokens = tokens;
     }
 
     public ArrayList<Card> getCards() {

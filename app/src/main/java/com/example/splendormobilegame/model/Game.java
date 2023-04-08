@@ -29,21 +29,18 @@ public class Game {
 
 
 
-    public void removeTokens(User user, TokenType tokenType, int amount) {
+    public void removeTokens(TokenType tokenType, int amount, User user) {
         if (tokensOnTable.get(tokenType) == null) return;
         int onTable = tokensOnTable.get(tokenType);
         if (amount > onTable) return; // Not enough tokens on table
 
         tokensOnTable.replace(tokenType, onTable - amount);
-        // TODO add tokens to user property. This function is removing token from table, so it is supposed to add tokens to user's property
     }
 
 
-    public void addTokens(User user, TokenType tokenType, int amount) {
+    public void addTokens(TokenType tokenType, int amount, User user) {
         int onTable = tokensOnTable.get(tokenType);
-
         tokensOnTable.replace(tokenType, onTable + amount);
-        // TODO remove tokens from user property. This function is adding token to table, so it is supposed to remove tokens from user's property
     }
 
 
@@ -81,6 +78,16 @@ public class Game {
         if (!noblesOnTable.contains(noble)) return;
         noblesOnTable.remove(noble);
         user.addNoble(noble);
+    }
+
+    public void transferTokensToUser(TokenType tokenType, int amount, User user) {
+        removeTokens(tokenType, amount, user);
+        user.addTokens(tokenType, amount);
+    }
+
+    public void transferTokensFromUser(TokenType tokenType, int amount, User user) {
+        addTokens(tokenType, amount, user);
+        user.removeTokens(tokenType, amount);
     }
 
     public User getWhosTurn() {
