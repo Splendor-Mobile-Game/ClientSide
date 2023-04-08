@@ -14,6 +14,9 @@ import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.websocket.UserReaction;
+import com.example.splendormobilegame.websocket.reactions.CreateRoomResponse;
+import com.example.splendormobilegame.websocket.reactions.JoinRoomResponse;
+import com.example.splendormobilegame.websocket.reactions.LeaveRoomResponse;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 
 import java.io.Serializable;
@@ -46,12 +49,22 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         //Join Server
         //WebSocket.createWebSocketClient();
         createUserUUID();
+        Model.setUserUuid(UUID.fromString(userUUID));
 
         Map<ServerMessageType, Class<? extends UserReaction>> reactions = new HashMap<>();
-        reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, com.example.splendormobilegame.websocket.reactions.CreateRoomResponse.class);
+        reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, CreateRoomResponse.class);
+        reactions.put(ServerMessageType.JOIN_ROOM_RESPONSE, JoinRoomResponse.class);
+        reactions.put(ServerMessageType.LEAVE_ROOM_RESPONSE, LeaveRoomResponse.class);
 
         try {
-            CustomWebSocketClient.initialize(new URI("ws://10.0.2.2:8887"), reactions);
+            // TODO: All values there should be got from config
+            CustomWebSocketClient.initialize(
+                    new URI("ws://10.0.2.2:8887"),
+                    reactions,
+                    30000,
+                    60000,
+                    5000
+            );
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -82,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         binding.joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, GameActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, JoinRoomActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

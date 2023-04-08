@@ -1,11 +1,7 @@
 package com.example.splendormobilegame.model;
 
-import com.github.splendor_mobile_game.database.Database;
-import com.github.splendor_mobile_game.websocket.utils.Log;
-
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Random;
 import java.util.UUID;
 
 public class Room {
@@ -81,11 +77,10 @@ public class Room {
 
 
     public User getUserByUuid(UUID uuid) {
-        for (User user : users) {
-            if (user.getUuid().equals(uuid))
-                return user;
-        }
-        return null;
+        return this.users.stream()
+            .filter(user -> user.getUuid().equals(uuid))
+            .findFirst()
+            .orElse(null);
     }
 
 
@@ -102,6 +97,5 @@ public class Room {
     public int hashCode() {
         return Objects.hash(uuid, name, enterCode);
     }
-
 
 }

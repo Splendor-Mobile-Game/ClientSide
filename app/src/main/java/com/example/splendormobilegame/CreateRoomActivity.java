@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityCreateRoomActivityBinding;
+import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
@@ -32,8 +33,7 @@ public class CreateRoomActivity extends AppCompatActivity {
         setContentView(view);
 
         setupButtons();
-
-
+        Model.setActivity(this);
 
         //Example message
         //WebSocket.webSocketClient.send("{\"messageContextId\":\"80bdc250-5365-4caf-8dd9-a33e709a0116\",\"type\":\"CREATE_ROOM\",\"data\":{\"userDTO\":{\"uuid\":\"f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454\",\"name\":\"James\"},\"roomDTO\":{\"name\":\"TajnyPokoj\",\"password\":\"kjashjkasd\"}}}");
@@ -59,7 +59,7 @@ public class CreateRoomActivity extends AppCompatActivity {
 
                 if (validateInput()) {
                     CreateRoom.RoomDTO room = new CreateRoom.RoomDTO(name, password);
-                    CreateRoom.UserDTO user = new CreateRoom.UserDTO(UUID.randomUUID(), nickname);
+                    CreateRoom.UserDTO user = new CreateRoom.UserDTO(Model.getUserUuid(), nickname);
                     CreateRoom.DataDTO data = new CreateRoom.DataDTO(room, user);
                     UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.CREATE_ROOM, data);
 

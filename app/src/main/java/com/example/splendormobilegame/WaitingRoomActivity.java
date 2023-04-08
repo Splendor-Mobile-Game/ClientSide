@@ -10,9 +10,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityWaitingRoomActivityBinding;
+import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.model.User;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.github.splendor_mobile_game.websocket.communication.UserMessage;
+import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.LeaveRoom;
+
+import java.util.UUID;
 
 public class WaitingRoomActivity extends AppCompatActivity {
-    private ActivityWaitingRoomActivityBinding binding;
+    public ActivityWaitingRoomActivityBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +31,20 @@ public class WaitingRoomActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         setupButtons();
+        Model.setActivity(this);
+
+        binding.nameOfRoomTextView.setText(Model.getRoom().getName());
+        binding.enterCode.setText(Model.getRoom().getEnterCode());
+
+        // DEBUG PURPOSES START
+        String users = "";
+        for (User u: Model.getRoom().getUsers()) {
+            users += u.getName() + "\n";
+        }
+
+        binding.debugUsers.setText(users);
+        // DEBUG PURPOSES END
+
     }
 
     private void setupButtons() {
@@ -32,5 +54,26 @@ public class WaitingRoomActivity extends AppCompatActivity {
                 Toast.makeText(WaitingRoomActivity.this,R.string.players_warning,Toast.LENGTH_SHORT).show();
             }
         });
+
+        binding.leaveGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(Model.getRoom().getUuid());
+                LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(Model.getUserUuid());
+                LeaveRoom.DataDTO dataDTO = new LeaveRoom.DataDTO(roomDTO, userDTO);
+
+                UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.LEAVE_ROOM, dataDTO);
+                CustomWebSocketClient.getInstance().send(userMessage);
+
+                // Don't bother with what server thinks, we want to leave
+                Model.setRoom(null);
+                Intent myIntent = new Intent(WaitingRoomActivity.this, MainActivity.class);
+                WaitingRoomActivity.this.startActivity(myIntent);
+
+                Toast.makeText(WaitingRoomActivity.this,R.string.players_warning,Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
