@@ -29,7 +29,7 @@ public class Game {
 
 
 
-    public void removeTokens(TokenType tokenType, int amount, User user) {
+    public void removeTokens(TokenType tokenType, int amount) {
         if (tokensOnTable.get(tokenType) == null) return;
         int onTable = tokensOnTable.get(tokenType);
         if (amount > onTable) return; // Not enough tokens on table
@@ -38,7 +38,7 @@ public class Game {
     }
 
 
-    public void addTokens(TokenType tokenType, int amount, User user) {
+    public void addTokens(TokenType tokenType, int amount) {
         int onTable = tokensOnTable.get(tokenType);
         tokensOnTable.replace(tokenType, onTable + amount);
     }
@@ -81,12 +81,12 @@ public class Game {
     }
 
     public void transferTokensToUser(TokenType tokenType, int amount, User user) {
-        removeTokens(tokenType, amount, user);
+        removeTokens(tokenType, amount);
         user.addTokens(tokenType, amount);
     }
 
     public void transferTokensFromUser(TokenType tokenType, int amount, User user) {
-        addTokens(tokenType, amount, user);
+        addTokens(tokenType, amount);
         user.removeTokens(tokenType, amount);
     }
 
