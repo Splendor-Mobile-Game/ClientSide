@@ -16,7 +16,6 @@ public class Room {
     private final String enterCode;
     private User owner;
     private ArrayList<User> users = new ArrayList<>();
-
     private Game game;
 
 
@@ -82,7 +81,10 @@ public class Room {
 
 
     public User getUserByUuid(UUID uuid) {
-        // TODO
+        for (User user : users) {
+            if (user.getUuid().equals(uuid))
+                return user;
+        }
         return null;
     }
 
