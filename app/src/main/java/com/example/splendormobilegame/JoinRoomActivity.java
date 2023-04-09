@@ -1,15 +1,20 @@
 package com.example.splendormobilegame;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityJoinRoomActivityBinding;
+import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.github.splendor_mobile_game.websocket.communication.UserMessage;
+import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.JoinRoom;
+
+import java.util.UUID;
 
 public class JoinRoomActivity extends AppCompatActivity {
     private ActivityJoinRoomActivityBinding binding;
@@ -24,27 +29,26 @@ public class JoinRoomActivity extends AppCompatActivity {
         setContentView(view);
 
         setupButtons();
+        Model.setActivity(this);
     }
 
-    private boolean validateResponse() {
-        //TODO implement response logic
-        return false;
-    }
 
     private void setupButtons() {
         binding.joinRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = binding.enterNameEditText.getText().toString();
-                String password = binding.enterPasswordEditText.getText().toString();
                 String nickname = binding.enterNicknameEditText.getText().toString();
-                if (validateResponse()) {
-                    Intent myIntent = new Intent(JoinRoomActivity.this, WaitingRoomActivity.class);
-                    JoinRoomActivity.this.startActivity(myIntent);
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                } else {
-                    Toast.makeText(JoinRoomActivity.this,R.string.join_error,Toast.LENGTH_SHORT).show();
-                }
+                String enterCode = binding.enterCodeEditText.getText().toString();
+                String password = binding.enterPasswordEditText.getText().toString();
+
+                Model.setEnteredRoomCode(enterCode);
+
+                JoinRoom.RoomDTO roomDTO = new JoinRoom.RoomDTO(enterCode, password);
+                JoinRoom.UserDTO userDTO = new JoinRoom.UserDTO(Model.getUserUuid(), nickname);
+                JoinRoom.DataDTO dataDTO = new JoinRoom.DataDTO(roomDTO, userDTO);
+
+                UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.JOIN_ROOM, dataDTO);
+                CustomWebSocketClient.getInstance().send(userMessage);
             }
         });
     }

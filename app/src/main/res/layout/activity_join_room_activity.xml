@@ -80,9 +80,9 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/enterNameEditText"
+                android:id="@+id/enterCodeEditText"
                 style="@style/InputEditTextStyle"
-                android:hint="@string/enter_room_name"
+                android:hint="@string/enter_room_code"
                 android:inputType="text"
                 android:maxLength="20" />
         </com.google.android.material.textfield.TextInputLayout>

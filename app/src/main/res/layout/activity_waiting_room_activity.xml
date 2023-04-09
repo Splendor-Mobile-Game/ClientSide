@@ -98,7 +98,33 @@
         android:layout_marginStart="272dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/lora_regular"
-        android:text="TextView"
+        android:text="Nazwa pokoju"
+        android:textColor="@color/light_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
+
+    <TextView
+        android:id="@+id/enterCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/lora_regular"
+        android:text="enterCode (please, stylize it)"
+        android:textColor="@color/light_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
+
+    <TextView
+        android:id="@+id/debug_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/lora_regular"
+        android:text="Players List (Debug, you can remove it)"
         android:textColor="@color/light_gray"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
