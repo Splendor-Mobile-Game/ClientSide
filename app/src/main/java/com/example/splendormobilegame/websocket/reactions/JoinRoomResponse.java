@@ -32,7 +32,7 @@ public class JoinRoomResponse extends UserReaction {
             Room room = new Room(responseData.room.uuid, responseData.room.name, Model.getEnteredRoomCode(), new User(owner.uuid, owner.name));
 
             // DEBUG PURPOSES START
-            String message = "";
+            String message = "Users:\n" + owner.name + "\n";
             for (int i = 1; i < responseData.users.size(); i++) {
                 room.addUser(new User(responseData.users.get(i).uuid, responseData.users.get(i).name));
                 message += responseData.users.get(i).name + "\n";
