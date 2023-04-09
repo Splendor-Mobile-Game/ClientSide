@@ -78,13 +78,13 @@ public class JoinRoomResponse extends UserReaction {
 
     @Override
     public UserMessage onFailure(ErrorResponse errorResponse) {
-        Utils.showToast("Cannot join to the room, your fault: " + errorResponse.data.error);
+        Utils.showToast("Cannot join to the room: " + errorResponse.data.error);
         return null;
     }
 
     @Override
     public UserMessage onError(ErrorResponse errorResponse) {
-        Utils.showToast("Cannot join to the room, server's fault: " + errorResponse.data.error);
+        Utils.showToast("Cannot join to the room: " + errorResponse.data.error);
         return null;
     }
 

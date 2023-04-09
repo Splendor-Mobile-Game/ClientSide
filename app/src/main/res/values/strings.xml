@@ -20,6 +20,7 @@
     <string name="join_error">Room does not exists or could not be joined</string>
     <string name="enter_room_nickname">nickname</string>
     <string name="enter_room_name">room\'s name</string>
+    <string name="enter_room_code">room\'s enter code</string>
     <string name="enter_room_password">room\'s password</string>
     <string name="room_name_error_msg">Wrong room\'s name!</string>
     <string name="password_error_msg">Wrong room\'s password!</string>

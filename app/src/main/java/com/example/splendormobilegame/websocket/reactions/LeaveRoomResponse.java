@@ -50,13 +50,13 @@ public class LeaveRoomResponse extends UserReaction {
 
     @Override
     public UserMessage onFailure(ErrorResponse errorResponse) {
-        Utils.showToast("Server said FAILURE when you wanted to leave the room: " + errorResponse.data.error);
+        Utils.showToast("Error while leaving the room: " + errorResponse.data.error);
         return null;
     }
 
     @Override
     public UserMessage onError(ErrorResponse errorResponse) {
-        Utils.showToast("Server said ERROR when you wanted to leave the room: " + errorResponse.data.error);
+        Utils.showToast("Error while leaving the room: " + errorResponse.data.error);
         return null;
     }
 
