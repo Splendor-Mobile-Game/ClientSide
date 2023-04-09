@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.databinding.ActivityWaitingRoomActivityBinding;
 import com.example.splendormobilegame.model.Model;
@@ -17,11 +20,14 @@ import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.LeaveRoom;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class WaitingRoomActivity extends AppCompatActivity {
     public ActivityWaitingRoomActivityBinding binding;
-
+    private RecyclerView mRecyclerView;
+    public static WaitingRoomActivityAdapter mAdapter;
+    private ArrayList<String> usersList = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +46,14 @@ public class WaitingRoomActivity extends AppCompatActivity {
         String users = "";
         for (User u: Model.getRoom().getUsers()) {
             users += u.getName() + "\n";
+            usersList.add(u.getName());
         }
-
+        mRecyclerView = binding.waitingPlayersRecyclerView;
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new WaitingRoomActivityAdapter(usersList);
         binding.debugUsers.setText(users);
+        mRecyclerView.setAdapter(mAdapter);
         // DEBUG PURPOSES END
 
     }
