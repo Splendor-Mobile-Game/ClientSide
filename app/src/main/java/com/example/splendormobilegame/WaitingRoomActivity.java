@@ -81,8 +81,6 @@ public class WaitingRoomActivity extends AppCompatActivity {
                 Model.setRoom(null);
                 Intent myIntent = new Intent(WaitingRoomActivity.this, MainActivity.class);
                 WaitingRoomActivity.this.startActivity(myIntent);
-
-                Toast.makeText(WaitingRoomActivity.this,R.string.players_warning,Toast.LENGTH_SHORT).show();
             }
         });
 

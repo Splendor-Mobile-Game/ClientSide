@@ -38,7 +38,7 @@ public class JoinRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String nickname = binding.enterNicknameEditText.getText().toString();
-                String enterCode = binding.enterNameEditText.getText().toString();
+                String enterCode = binding.enterCodeEditText.getText().toString();
                 String password = binding.enterPasswordEditText.getText().toString();
 
                 Model.setEnteredRoomCode(enterCode);

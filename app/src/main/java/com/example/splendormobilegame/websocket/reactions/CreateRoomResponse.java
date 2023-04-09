@@ -38,13 +38,14 @@ public class CreateRoomResponse extends UserReaction {
 
     @Override
     public UserMessage onFailure(ErrorResponse errorResponse) {
-        Utils.showToast("Cannot create room, your fault: " + errorResponse.data.error);
+        Utils.showToast("Cannot create room: " + errorResponse.data.error);
         return null;
     }
 
     @Override
     public UserMessage onError(ErrorResponse errorResponse) {
-        Utils.showToast("Cannot create room, server's fault: " + errorResponse.data.error);
+        Utils.showToast("Cannot create room: " + errorResponse.data.error);
         return null;
     }
+
 }

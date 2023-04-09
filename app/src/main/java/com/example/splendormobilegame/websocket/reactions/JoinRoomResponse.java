@@ -35,7 +35,7 @@ public class JoinRoomResponse extends UserReaction {
             Room room = new Room(responseData.room.uuid, responseData.room.name, Model.getEnteredRoomCode(), new User(owner.uuid, owner.name));
 
             // DEBUG PURPOSES START
-            String message = "";
+            String message = "Users:\n" + owner.name + "\n";
             for (int i = 1; i < responseData.users.size(); i++) {
                 room.addUser(new User(responseData.users.get(i).uuid, responseData.users.get(i).name));
                 message += responseData.users.get(i).name + "\n";
@@ -85,13 +85,13 @@ public class JoinRoomResponse extends UserReaction {
 
     @Override
     public UserMessage onFailure(ErrorResponse errorResponse) {
-        Utils.showToast("Cannot join to the room, your fault: " + errorResponse.data.error);
+        Utils.showToast("Cannot join to the room: " + errorResponse.data.error);
         return null;
     }
 
     @Override
     public UserMessage onError(ErrorResponse errorResponse) {
-        Utils.showToast("Cannot join to the room, server's fault: " + errorResponse.data.error);
+        Utils.showToast("Cannot join to the room: " + errorResponse.data.error);
         return null;
     }
 
