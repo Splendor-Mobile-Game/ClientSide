@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         binding.joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, GameActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, JoinRoomActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
