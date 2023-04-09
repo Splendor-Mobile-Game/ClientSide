@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.splendormobilegame.WaitingRoomActivity;
+import com.example.splendormobilegame.WaitingRoomActivityAdapter;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Room;
 import com.example.splendormobilegame.model.User;
@@ -12,6 +13,8 @@ import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.JoinRoom;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
+
+import java.util.ArrayList;
 
 public class JoinRoomResponse extends UserReaction {
 
@@ -62,9 +65,13 @@ public class JoinRoomResponse extends UserReaction {
                 public void run() {
                     WaitingRoomActivity activity = (WaitingRoomActivity) Model.getActivity();
                     String users = "";
+                    ArrayList<String> usersList = new ArrayList<>();
                     for (User u: Model.getRoom().getUsers()) {
                         users += u.getName() + "\n";
+                        usersList.add(u.getName());
                     }
+                    WaitingRoomActivityAdapter.usersList=usersList;
+                    WaitingRoomActivity.mAdapter.notifyDataSetChanged();
                     activity.binding.debugUsers.setText(users);
                 }
             });
