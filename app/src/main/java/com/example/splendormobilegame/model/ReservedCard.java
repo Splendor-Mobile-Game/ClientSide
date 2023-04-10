@@ -10,8 +10,8 @@ public class ReservedCard {
 
 
     public ReservedCard(Card card, User user, boolean visible) {
-        this.card    = card;
-        this.user    = user;
+        this.card = card;
+        this.user = user;
         this.visible = visible;
     }
 
@@ -30,7 +30,6 @@ public class ReservedCard {
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
-
 
 
     @Override

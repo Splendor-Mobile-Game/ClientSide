@@ -20,13 +20,13 @@ public class WaitingRoomActivityAdapter extends RecyclerView.Adapter<WaitingRoom
     @NonNull
     @Override
     public WaitingRoomActivityAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.waiting_room_recycler_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.waiting_room_recycler_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull WaitingRoomActivityAdapter.ViewHolder holder, int position) {
-    holder.userName.setText(usersList.get(position));
+        holder.userName.setText(usersList.get(position));
     }
 
     @Override
@@ -36,6 +36,7 @@ public class WaitingRoomActivityAdapter extends RecyclerView.Adapter<WaitingRoom
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView userName;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.userNameTextView);

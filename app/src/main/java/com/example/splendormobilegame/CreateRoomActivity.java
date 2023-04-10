@@ -46,8 +46,6 @@ public class CreateRoomActivity extends AppCompatActivity {
     }
 
 
-
-
     private void setupButtons() {
         binding.createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +68,7 @@ public class CreateRoomActivity extends AppCompatActivity {
 //                    CreateRoomActivity.this.startActivity(myIntent);
 //                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 } else {
-                    Toast.makeText(CreateRoomActivity.this,R.string.create_error,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRoomActivity.this, R.string.create_error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

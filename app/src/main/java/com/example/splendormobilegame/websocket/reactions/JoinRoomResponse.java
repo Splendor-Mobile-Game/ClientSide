@@ -57,26 +57,21 @@ public class JoinRoomResponse extends UserReaction {
         } else {
             // Case when we are in the waiting room already
 
-            JoinRoom.UserDataResponse newUser = responseData.users.get(responseData.users.size()-1);
+            JoinRoom.UserDataResponse newUser = responseData.users.get(responseData.users.size() - 1);
             Model.getRoom().addUser(new User(newUser.uuid, newUser.name));
 
-            // DEBUG PURPOSES START
+            //Update recyclerView WaitingRoom
             Model.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     WaitingRoomActivity activity = (WaitingRoomActivity) Model.getActivity();
-                    String users = "";
                     ArrayList<String> usersList = new ArrayList<>();
-                    for (User u: Model.getRoom().getUsers()) {
-                        users += u.getName() + "\n";
+                    for (User u : Model.getRoom().getUsers()) {
                         usersList.add(u.getName());
                     }
-                    WaitingRoomActivityAdapter.usersList=usersList;
-                    WaitingRoomActivity.mAdapter.notifyDataSetChanged();
-                    activity.binding.debugUsers.setText(users);
+                    WaitingRoomActivityAdapter.usersList = usersList;
+                    activity.mAdapter.notifyDataSetChanged();
                 }
             });
-            // DEBUG PURPOSES END
-
             Utils.showToast("User: " + newUser.name + " has joined to the room.");
 
             return null;

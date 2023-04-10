@@ -18,15 +18,12 @@ public class Game {
     private User whosTurn;
 
 
-
-
     public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable) {
         this.tokensOnTable = tokensOnTable;
         this.noblesOnTable = noblesOnTable;
-        this.cardsOnTable  = cardsOnTable;
+        this.cardsOnTable = cardsOnTable;
         this.reservedCards = new ArrayList<>();
     }
-
 
 
     public void removeTokens(TokenType tokenType, int amount) {
@@ -97,7 +94,6 @@ public class Game {
     public void setWhosTurn(User whosTurn) {
         this.whosTurn = whosTurn;
     }
-
 
 
 }

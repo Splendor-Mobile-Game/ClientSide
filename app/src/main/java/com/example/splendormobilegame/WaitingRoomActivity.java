@@ -26,8 +26,9 @@ import java.util.UUID;
 public class WaitingRoomActivity extends AppCompatActivity {
     public ActivityWaitingRoomActivityBinding binding;
     private RecyclerView mRecyclerView;
-    public static WaitingRoomActivityAdapter mAdapter;
+    public WaitingRoomActivityAdapter mAdapter;
     private ArrayList<String> usersList = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,19 +43,15 @@ public class WaitingRoomActivity extends AppCompatActivity {
         binding.nameOfRoomTextView.setText(Model.getRoom().getName());
         binding.enterCode.setText(Model.getRoom().getEnterCode());
 
-        // DEBUG PURPOSES START
-        String users = "";
-        for (User u: Model.getRoom().getUsers()) {
-            users += u.getName() + "\n";
+        //RecyclerView for user names
+        for (User u : Model.getRoom().getUsers()) {
             usersList.add(u.getName());
         }
         mRecyclerView = binding.waitingPlayersRecyclerView;
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new WaitingRoomActivityAdapter(usersList);
-        binding.debugUsers.setText(users);
         mRecyclerView.setAdapter(mAdapter);
-        // DEBUG PURPOSES END
 
     }
 
@@ -62,7 +59,7 @@ public class WaitingRoomActivity extends AppCompatActivity {
         binding.startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(WaitingRoomActivity.this,R.string.players_warning,Toast.LENGTH_SHORT).show();
+                Toast.makeText(WaitingRoomActivity.this, R.string.players_warning, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,4 +82,5 @@ public class WaitingRoomActivity extends AppCompatActivity {
         });
 
     }
+
 }

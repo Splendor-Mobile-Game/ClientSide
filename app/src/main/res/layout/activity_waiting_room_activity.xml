@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/wait_players"
         android:fontFamily="@font/bonanova_regular"
+        android:text="@string/wait_players"
         android:textColor="@color/light_yellow"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,9 +29,9 @@
         android:layout_height="48dp"
         android:layout_marginEnd="132dp"
         android:layout_marginBottom="60dp"
+        android:fontFamily="@font/lora_semibold"
         android:text="@string/start_game"
         android:textColor="@color/light_gray"
-        android:fontFamily="@font/lora_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -42,8 +42,8 @@
         android:layout_height="48dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="60dp"
-        android:text="@string/leave_room"
         android:fontFamily="@font/lora_semibold"
+        android:text="@string/leave_room"
         android:textColor="@color/light_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,17 +117,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
 
-    <TextView
-        android:id="@+id/debug_users"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="104dp"
-        android:fontFamily="@font/lora_regular"
-        android:text="Players List (Debug, you can remove it)"
-        android:textColor="@color/light_gray"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
