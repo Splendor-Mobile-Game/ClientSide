@@ -11,10 +11,11 @@
         android:id="@+id/pointsCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/sideBarButton"
+        app:layout_constraintBottom_toTopOf="@+id/playerOptionCardView"
         app:layout_constraintEnd_toStartOf="@+id/blueTokenButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -639,7 +640,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView" />
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView" >
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pic10" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/Aristocrat5CardView"
@@ -648,7 +656,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView" />
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView" >
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pic8" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/Aristocrat1CardView"
@@ -657,7 +672,14 @@
         android:layout_marginTop="23dp"
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pic1" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/Aristocrat2CardView"
@@ -666,7 +688,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView" />
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pic2" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/Aristocrat4CardView"
@@ -675,7 +704,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView" />
+        app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView" >
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pic7" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/CardPile3CardView"
@@ -812,59 +848,114 @@
         app:layout_constraintEnd_toStartOf="@+id/Card24CardView"
         app:layout_constraintTop_toTopOf="@+id/Card24CardView" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/yellowTokenButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="20dp"
+        style="@style/pointsButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="3"
+        app:strokeColor="@color/yasmine"
         app:layout_constraintBottom_toBottomOf="@+id/CardPile1CardView"
         app:layout_constraintEnd_toStartOf="@+id/CardPile1CardView"
-        app:layout_constraintTop_toTopOf="@+id/CardPile1CardView" />
+        app:layout_constraintTop_toTopOf="@+id/CardPile1CardView"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/whiteTokenButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        style="@style/pointsButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="3"
         app:layout_constraintEnd_toEndOf="@+id/yellowTokenButton"
         app:layout_constraintStart_toStartOf="@+id/yellowTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/yellowTokenButton" />
+        app:layout_constraintTop_toBottomOf="@+id/yellowTokenButton"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+        app:strokeColor="@color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/blueTokenButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        style="@style/pointsButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="3"
         app:layout_constraintEnd_toEndOf="@+id/whiteTokenButton"
         app:layout_constraintStart_toStartOf="@+id/whiteTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/whiteTokenButton" />
+        app:layout_constraintTop_toBottomOf="@+id/whiteTokenButton"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+        app:strokeColor="@color/blue" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/greenTokenButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        style="@style/pointsButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="3"
         app:layout_constraintEnd_toEndOf="@+id/blueTokenButton"
         app:layout_constraintStart_toStartOf="@+id/blueTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/blueTokenButton" />
+        app:layout_constraintTop_toBottomOf="@+id/blueTokenButton"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+        app:strokeColor="@color/green" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/redTokenButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        style="@style/pointsButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="3"
         app:layout_constraintEnd_toEndOf="@+id/greenTokenButton"
         app:layout_constraintStart_toStartOf="@+id/greenTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/greenTokenButton" />
+        app:layout_constraintTop_toBottomOf="@+id/greenTokenButton"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+        app:strokeColor="@color/poppy" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/blackTokenButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        style="@style/pointsButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="3"
         app:layout_constraintEnd_toEndOf="@+id/redTokenButton"
         app:layout_constraintStart_toStartOf="@+id/redTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/redTokenButton" />
+        app:layout_constraintTop_toBottomOf="@+id/redTokenButton"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+        app:strokeColor="@color/black" />
 
     <Button
         android:id="@+id/sideBarButton"
@@ -920,6 +1011,53 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/playerOptionCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/sideBarButton"
+        app:layout_constraintEnd_toStartOf="@+id/blackTokenButton"
+        app:layout_constraintStart_toEndOf="@+id/sideBarButton"
+        app:layout_constraintTop_toTopOf="@+id/redTokenButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backGroundColor">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reserveCardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reserve_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buyCardButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buyCardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/buy_card"
+                app:layout_constraintEnd_toEndOf="@+id/reserveCardButton"
+                app:layout_constraintStart_toStartOf="@+id/reserveCardButton"
+                app:layout_constraintTop_toBottomOf="@+id/takePointsButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/takePointsButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/take_points"
+                app:layout_constraintEnd_toEndOf="@+id/reserveCardButton"
+                app:layout_constraintStart_toStartOf="@+id/reserveCardButton"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

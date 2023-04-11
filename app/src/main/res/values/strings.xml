@@ -32,6 +32,10 @@
     <string name="name_of_room">Room</string>
     <string name="rooms_code">Code</string>
     <string name="current_players">Players</string>
+    <!--GameActivity-->
+    <string name="reserve_card">Reserve card</string>
+    <string name="buy_card">Buy card</string>
+    <string name="take_points">Take points</string>
     <!--Shared preferences-->
     <string name="preference_file_key" translatable="false">SPLENDOR_PREFERENCES</string>
 
