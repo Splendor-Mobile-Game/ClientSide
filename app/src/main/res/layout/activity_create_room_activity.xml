@@ -90,7 +90,7 @@
             android:layout_height="16dp"
             android:layout_gravity="bottom|end"
             android:src="@drawable/flourish_upward"
-            android:translationY="-3dp"/>
+            android:translationY="-3dp" />
 
         <ImageView
             android:layout_width="24dp"

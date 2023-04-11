@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.databinding.ActivityWaitingRoomActivityBinding;
 import com.example.splendormobilegame.model.Model;
@@ -17,10 +20,14 @@ import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.LeaveRoom;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class WaitingRoomActivity extends AppCompatActivity {
     public ActivityWaitingRoomActivityBinding binding;
+    private RecyclerView mRecyclerView;
+    public WaitingRoomActivityAdapter mAdapter;
+    private ArrayList<String> usersList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,14 +43,15 @@ public class WaitingRoomActivity extends AppCompatActivity {
         binding.nameOfRoomTextView.setText(Model.getRoom().getName());
         binding.enterCode.setText(Model.getRoom().getEnterCode());
 
-        // DEBUG PURPOSES START
-        String users = "";
-        for (User u: Model.getRoom().getUsers()) {
-            users += u.getName() + "\n";
+        //RecyclerView for user names
+        for (User u : Model.getRoom().getUsers()) {
+            usersList.add(u.getName());
         }
-
-        binding.debugUsers.setText(users);
-        // DEBUG PURPOSES END
+        mRecyclerView = binding.waitingPlayersRecyclerView;
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new WaitingRoomActivityAdapter(usersList);
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
@@ -51,7 +59,7 @@ public class WaitingRoomActivity extends AppCompatActivity {
         binding.startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(WaitingRoomActivity.this,R.string.players_warning,Toast.LENGTH_SHORT).show();
+                Toast.makeText(WaitingRoomActivity.this, R.string.players_warning, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,4 +82,5 @@ public class WaitingRoomActivity extends AppCompatActivity {
         });
 
     }
+
 }

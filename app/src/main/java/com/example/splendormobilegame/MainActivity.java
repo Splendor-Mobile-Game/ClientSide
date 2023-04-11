@@ -72,15 +72,16 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         this.client = CustomWebSocketClient.getInstance();
     }
 
-    private void createUserUUID(){
+    private void createUserUUID() {
         sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        userUUID = sharedPreferences.getString("userUUID","");
-        if(userUUID.isEmpty()){
+        userUUID = sharedPreferences.getString("userUUID", "");
+        if (userUUID.isEmpty()) {
             userUUID = UUID.randomUUID().toString();
-            sharedPreferences.edit().putString("userUUID",userUUID).apply();
+            sharedPreferences.edit().putString("userUUID", userUUID).apply();
         }
     }
+
     private void setupButtons() {
         binding.createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override

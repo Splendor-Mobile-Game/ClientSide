@@ -12,7 +12,9 @@ public abstract class UserReaction {
     }
 
     public abstract UserMessage react();
+
     public abstract UserMessage onFailure(ErrorResponse errorResponse);
+
     public abstract UserMessage onError(ErrorResponse errorResponse);
 
 }

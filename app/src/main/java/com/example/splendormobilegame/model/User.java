@@ -22,10 +22,10 @@ public class User {
 
 
     public User(UUID uuid, String name) {
-        this.uuid   = uuid;
-        this.name   = name;
+        this.uuid = uuid;
+        this.name = name;
         this.tokens = new HashMap<>();
-        this.cards  = new ArrayList<>();
+        this.cards = new ArrayList<>();
         this.nobles = new ArrayList<>();
 
         tokens.put(TokenType.DIAMOND, 0);
@@ -83,7 +83,6 @@ public class User {
         if (!nobles.contains(noble)) return;
         nobles.remove(noble);
     }
-
 
 
     public HashMap<TokenType, Integer> getTokens() {

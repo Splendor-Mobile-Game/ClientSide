@@ -125,7 +125,7 @@ public class CustomWebSocketClient extends WebSocketClient {
         Log.i("WebSocket", "Closed ");
         System.out.println("onCloseReceived");
     }
-    
+
     public void send(UserMessage userMessage) {
         String json = this.gson.toJson(userMessage);
         this.send(json);

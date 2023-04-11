@@ -24,18 +24,18 @@ public class Card {
 
 
     public Card(CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token) {
-        this.uuid         = UUID.randomUUID();
-        this.cardTier     = cardTier;
-        this.points       = points;
-        this.emeraldCost  = emeraldCost;
+        this.uuid = UUID.randomUUID();
+        this.cardTier = cardTier;
+        this.points = points;
+        this.emeraldCost = emeraldCost;
         this.sapphireCost = sapphireCost;
-        this.rubyCost     = rubyCost;
-        this.diamondCost  = diamondCost;
-        this.onyxCost     = onyxCost;
-        this.bonusToken   = token;
+        this.rubyCost = rubyCost;
+        this.diamondCost = diamondCost;
+        this.onyxCost = onyxCost;
+        this.bonusToken = token;
     }
 
-    public UUID getUuid(){
+    public UUID getUuid() {
         return uuid;
     }
 
@@ -76,7 +76,7 @@ public class Card {
     @NonNull
     @Override
     public String toString() {
-        return String.format("%s %d %d %d %d %d %d %s", cardTier.toString(), points, emeraldCost, sapphireCost,  rubyCost,  diamondCost,  onyxCost,  bonusToken.toString());
+        return String.format("%s %d %d %d %d %d %d %s", cardTier.toString(), points, emeraldCost, sapphireCost, rubyCost, diamondCost, onyxCost, bonusToken.toString());
     }
 
 

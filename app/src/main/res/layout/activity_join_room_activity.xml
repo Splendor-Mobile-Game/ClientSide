@@ -49,14 +49,14 @@
             android:layout_height="16dp"
             android:layout_gravity="bottom|end"
             android:src="@drawable/flourish_upward"
-            android:translationY="-3dp"/>
+            android:translationY="-3dp" />
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="16dp"
             android:layout_gravity="top|start"
             android:rotation="180"
-            android:src="@drawable/flourish_upward"/>
+            android:src="@drawable/flourish_upward" />
 
 
     </FrameLayout>
@@ -92,7 +92,7 @@
             android:layout_height="16dp"
             android:layout_gravity="bottom|end"
             android:src="@drawable/flourish_upward"
-            android:translationY="-3dp"/>
+            android:translationY="-3dp" />
 
         <ImageView
             android:layout_width="24dp"
@@ -132,7 +132,7 @@
             android:layout_height="16dp"
             android:layout_gravity="bottom|end"
             android:src="@drawable/flourish_upward"
-            android:translationY="-3dp"/>
+            android:translationY="-3dp" />
 
         <ImageView
             android:layout_width="24dp"
@@ -158,8 +158,6 @@
         app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

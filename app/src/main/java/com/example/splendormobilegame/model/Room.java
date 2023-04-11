@@ -16,10 +16,10 @@ public class Room {
 
 
     public Room(UUID uuid, String name, String enterCode, User owner) {
-        this.uuid      = uuid;
-        this.name      = name;
+        this.uuid = uuid;
+        this.name = name;
         this.enterCode = enterCode;
-        this.owner     = owner;
+        this.owner = owner;
 
         this.users.add(owner);
     }
@@ -78,11 +78,10 @@ public class Room {
 
     public User getUserByUuid(UUID uuid) {
         return this.users.stream()
-            .filter(user -> user.getUuid().equals(uuid))
-            .findFirst()
-            .orElse(null);
+                .filter(user -> user.getUuid().equals(uuid))
+                .findFirst()
+                .orElse(null);
     }
-
 
 
     @Override

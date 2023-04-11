@@ -15,14 +15,13 @@ public class Noble {
     private final int onyxCost;  // Black
 
 
-
     public Noble(int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost) {
-        this.uuid         = UUID.randomUUID();
-        this.emeraldCost  = emeraldCost;
+        this.uuid = UUID.randomUUID();
+        this.emeraldCost = emeraldCost;
         this.sapphireCost = sapphireCost;
-        this.rubyCost     = rubyCost;
-        this.diamondCost  = diamondCost;
-        this.onyxCost     = onyxCost;
+        this.rubyCost = rubyCost;
+        this.diamondCost = diamondCost;
+        this.onyxCost = onyxCost;
     }
 
     public UUID getUuid() {
