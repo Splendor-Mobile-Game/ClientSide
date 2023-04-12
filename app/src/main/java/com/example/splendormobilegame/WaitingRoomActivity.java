@@ -80,7 +80,22 @@ public class WaitingRoomActivity extends AppCompatActivity {
                 WaitingRoomActivity.this.startActivity(myIntent);
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
+
+        LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(Model.getRoom().getUuid());
+        LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(Model.getUserUuid());
+        LeaveRoom.DataDTO dataDTO = new LeaveRoom.DataDTO(roomDTO, userDTO);
+
+        UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.LEAVE_ROOM, dataDTO);
+        CustomWebSocketClient.getInstance().send(userMessage);
+
+        // Don't bother with what server thinks, we want to leave
+        Model.setRoom(null);
+        Intent myIntent = new Intent(WaitingRoomActivity.this, MainActivity.class);
+        WaitingRoomActivity.this.startActivity(myIntent);
     }
 
 }
