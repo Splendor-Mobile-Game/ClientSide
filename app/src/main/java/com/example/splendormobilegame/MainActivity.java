@@ -43,18 +43,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private void createWebSocketClient() {
         URI uri;
         Config config = new Config(this);
-
         try {
-            // Connect to server
             String ip = config.getServerIp();
             uri = new URI(ip);
-
         }
+        //Exceptions
         catch (InvalidConfigException e )
         {
             e.printStackTrace();
             return;
-
         }
         catch (URISyntaxException e ) {
             e.printStackTrace();
