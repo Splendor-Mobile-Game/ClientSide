@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -40,20 +41,21 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Make app fullscreen + delete toolbar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
         //Bind layout with class
         binding = ActivityMainActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         //Setup buttons
         setupButtons();
-        //Join Server
-        createWebSocketClient();
-        createUserUUID();
 
+
+        createUserUUID();
         Model.setUserUuid(UUID.fromString(userUUID));
+        
         Map<ServerMessageType, Class<? extends UserReaction>> reactions = new HashMap<>();
         reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, CreateRoomResponse.class);
         reactions.put(ServerMessageType.JOIN_ROOM_RESPONSE, JoinRoomResponse.class);
@@ -77,6 +79,22 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         catch (URISyntaxException e ) {
             throw new RuntimeException(e);
         }
+
+        
+        this.client = CustomWebSocketClient.getInstance();
+        try {
+            // TODO: All values there should be got from config
+            CustomWebSocketClient.initialize(
+                    new URI("ws://10.0.2.2:8887"),
+                    reactions,
+                    30000,
+                    60000,
+                    5000
+            );
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
         this.client = CustomWebSocketClient.getInstance();
     }
 

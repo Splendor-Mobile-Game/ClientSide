@@ -3,16 +3,161 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/availableGamesRecyclerView"
-        android:layout_width="729dp"
-        android:layout_height="409dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+
+    <TextView
+        android:id="@+id/joinRoomTextView"
+        style="@style/TitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/joinRoom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/joinRoomTextView"
+        app:layout_constraintStart_toStartOf="@+id/joinRoomTextView"
+        app:layout_constraintTop_toBottomOf="@+id/joinRoomTextView">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="274dp">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterNicknameEditText"
+                style="@style/InputEditTextStyle"
+                android:hint="@string/enter_room_nickname"
+                android:inputType="text"
+                android:maxLength="20" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/flourish_upward"
+            android:translationY="-3dp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|start"
+            android:rotation="180"
+            android:src="@drawable/flourish_upward" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterCodeEditText"
+                style="@style/InputEditTextStyle"
+                android:hint="@string/enter_room_code"
+                android:inputType="text"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/flourish_upward"
+            android:translationY="-3dp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|start"
+            android:rotation="180"
+            android:src="@drawable/flourish_upward" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout4"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="274dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterPasswordEditText"
+                style="@style/InputEditTextStyle"
+                android:hint="@string/enter_room_password"
+                android:inputType="textPassword"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/flourish_upward"
+            android:translationY="-3dp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|start"
+            android:rotation="180"
+            android:src="@drawable/flourish_upward" />
+
+
+    </FrameLayout>
+
+
+    <Button
+        android:id="@+id/joinRoomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/maroon"
+        android:fontFamily="@font/lora_regular"
+        android:text="@string/join_room"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

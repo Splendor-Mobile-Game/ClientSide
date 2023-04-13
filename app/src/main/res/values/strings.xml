@@ -2,15 +2,41 @@
     <!--MainActivity-->
     <string name="app_name">SplendorMobileGame</string>
     <string name="create_room">Create Room</string>
-    <string name="join_room">Join Room</string>
+    <string name="join_room">Join</string>
     <string name="exit">Exit</string>
+    <string name="logo_description">Logo</string>
     <!--CreateRoomActivity-->
+    <string name="createRoom">Create game</string>
+    <string name="room_nickname">Enter your nickname</string>
+    <string name="room_nickname2">Enter your nickname:</string>
     <string name="room_name">Enter room name</string>
     <string name="room_password">Enter room password</string>
+    <string name="room_name2">Enter room name</string>
+    <string name="room_password2">Enter room password:</string>
+    <string name="create_error">Room could not be created</string>
+    <string name="create_button">Create</string>
     <!--JoinRoomActivity-->
+    <string name="joinRoom">Join Room</string>
+    <string name="join_error">Room does not exists or could not be joined</string>
+    <string name="enter_room_nickname">nickname</string>
+    <string name="enter_room_name">room\'s name</string>
+    <string name="enter_room_code">room\'s enter code</string>
+    <string name="enter_room_password">room\'s password</string>
+    <string name="room_name_error_msg">Wrong room\'s name!</string>
+    <string name="password_error_msg">Wrong room\'s password!</string>
     <!--WaitingRoomActivity-->
     <string name="start_game">Start Game</string>
     <string name="wait_players">Waiting for other players...</string>
     <string name="players_warning">You need to wait for other players to start the game</string>
+    <string name="leave_room">Leave</string>
+    <string name="name_of_room">Room</string>
+    <string name="rooms_code">Code</string>
+    <string name="current_players">Players</string>
+    <!--GameActivity-->
+    <string name="reserve_card">Reserve card</string>
+    <string name="buy_card">Buy card</string>
+    <string name="take_points">Take points</string>
+    <!--Shared preferences-->
+    <string name="preference_file_key" translatable="false">SPLENDOR_PREFERENCES</string>
 
 </resources>

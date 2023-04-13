@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SplendorMobileGame" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.SplendorMobileGame" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,4 +13,77 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="pointsButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/whiteSmoke</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="strokeWidth">5dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
+
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
+
+        <item name="backgroundTint">@color/poppy</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="tint">@color/marian</item>
+        <item name="iconTint">@color/marian</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+
+    </style>
+    <style name="ShapeAppearanceOverlay.App.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="LightTextView" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TitleStyle" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:fontFamily">@font/bonanova_regular</item>
+        <item name="android:textColor">@color/light_yellow</item>
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="InputEditTextStyle" parent="TextAppearance.AppCompat" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/lora_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white_smoke</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">42dp</item>
+        <item name="boxBackgroundColor">@color/dark_blue</item>
+        <item name="boxCornerRadiusTopStart">13dp</item>
+        <item name="boxCornerRadiusTopEnd">13dp</item>
+        <item name="boxCornerRadiusBottomStart">13dp</item>
+        <item name="boxCornerRadiusBottomEnd">13dp</item>
+        <item name="boxStrokeColor">@color/yasmine</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="hintAnimationEnabled">false</item>
+        a<item name="hintEnabled">false</item>
+    </style>
+
+
+    <style name="BlueBackgroundButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
+        <item name="backgroundTint">@color/dark_blue</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="tint">@color/marian</item>
+        <item name="iconTint">@color/marian</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
 </resources>

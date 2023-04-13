@@ -4,37 +4,157 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/dark_blue">
 
-    <EditText
-        android:id="@+id/enterNameEditText"
+    <TextView
+        android:id="@+id/createRoomTextView"
+        style="@style/TitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:inputType="text"
-        android:hint="@string/room_name"
+        android:layout_marginTop="40dp"
+        android:text="@string/createRoom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/enterPasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/createRoomTextView"
+        app:layout_constraintStart_toStartOf="@+id/createRoomTextView"
+        app:layout_constraintTop_toBottomOf="@+id/createRoomTextView">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="274dp">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterNicknameEditText"
+                style="@style/InputEditTextStyle"
+                android:hint="@string/enter_room_nickname"
+                android:inputType="text"
+                android:maxLength="20" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/flourish_upward"
+            android:translationY="-3dp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|start"
+            android:rotation="180"
+            android:src="@drawable/flourish_upward" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
         android:layout_marginTop="16dp"
-        android:hint="@string/room_password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/enterNameEditText"
-        app:layout_constraintStart_toStartOf="@+id/enterNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/enterNameEditText" />
+
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterNameEditText"
+                style="@style/InputEditTextStyle"
+                android:hint="@string/enter_room_name"
+                android:inputType="text"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/flourish_upward"
+            android:translationY="-3dp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|start"
+            android:rotation="180"
+            android:src="@drawable/flourish_upward" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout4"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="274dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/enterPasswordEditText"
+                style="@style/InputEditTextStyle"
+                android:hint="@string/enter_room_password"
+                android:inputType="textPassword"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/flourish_upward"
+            android:translationY="-3dp" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|start"
+            android:rotation="180"
+            android:src="@drawable/flourish_upward" />
+
+
+    </FrameLayout>
 
     <Button
         android:id="@+id/createRoomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/create_room"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/maroon"
+        android:fontFamily="@font/lora_regular"
+        android:text="@string/create_button"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
