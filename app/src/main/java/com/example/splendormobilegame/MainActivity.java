@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.splendormobilegame.config.Config;
+import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.model.Model;
@@ -38,24 +41,47 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Make app fullscreen + delete toolbar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
         //Bind layout with class
         binding = ActivityMainActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         //Setup buttons
         setupButtons();
-        //Join Server
-        //WebSocket.createWebSocketClient();
+
+
         createUserUUID();
         Model.setUserUuid(UUID.fromString(userUUID));
-
+        
         Map<ServerMessageType, Class<? extends UserReaction>> reactions = new HashMap<>();
         reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, CreateRoomResponse.class);
         reactions.put(ServerMessageType.JOIN_ROOM_RESPONSE, JoinRoomResponse.class);
         reactions.put(ServerMessageType.LEAVE_ROOM_RESPONSE, LeaveRoomResponse.class);
 
+        //taking parameters form config.properties
+        Config config = new Config(this);
+        try {
+            String ip = config.getServerIp();
+            int connectionTimeout = config.getConnectionTimeoutMs();
+            int readTimeout = config.getReadTimeoutMs();
+            int automaticReconnection = config.getAutomaticReconnectionMs();
+            //Initializing websocket
+            CustomWebSocketClient.initialize(new URI(ip), reactions, connectionTimeout, readTimeout, automaticReconnection);
+        }
+        //Exceptions
+        catch (InvalidConfigException e )
+        {
+            throw new RuntimeException(e);
+        }
+        catch (URISyntaxException e ) {
+            throw new RuntimeException(e);
+        }
+
+        
+        this.client = CustomWebSocketClient.getInstance();
         try {
             // TODO: All values there should be got from config
             CustomWebSocketClient.initialize(
@@ -110,8 +136,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
             }
         });
-
-
     }
 
 }
