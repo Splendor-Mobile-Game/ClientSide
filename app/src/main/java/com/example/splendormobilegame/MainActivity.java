@@ -1,8 +1,9 @@
 package com.example.splendormobilegame;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -12,16 +13,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.splendormobilegame.config.Config;
 import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.websocket.UserReaction;
+import com.example.splendormobilegame.websocket.reactions.CreateRoomResponse;
+import com.example.splendormobilegame.websocket.reactions.JoinRoomResponse;
+import com.example.splendormobilegame.websocket.reactions.LeaveRoomResponse;
+import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import tech.gusavila92.websocketclient.WebSocketClient;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
     private ActivityMainActivityBinding binding;
-    private WebSocketClient webSocketClient;
+    protected SharedPreferences sharedPreferences;
+    private String userUUID;
+
+    CustomWebSocketClient client;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,78 +51,43 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         setupButtons();
         //Join Server
         createWebSocketClient();
-    }
+        createUserUUID();
 
-    private void createWebSocketClient() {
-        URI uri;
+        Model.setUserUuid(UUID.fromString(userUUID));
+        Map<ServerMessageType, Class<? extends UserReaction>> reactions = new HashMap<>();
+        reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, CreateRoomResponse.class);
+        reactions.put(ServerMessageType.JOIN_ROOM_RESPONSE, JoinRoomResponse.class);
+        reactions.put(ServerMessageType.LEAVE_ROOM_RESPONSE, LeaveRoomResponse.class);
+
+        //taking parameters form config.properties
         Config config = new Config(this);
         try {
             String ip = config.getServerIp();
-            uri = new URI(ip);
+            int connectionTimeout = config.getConnectionTimeoutMs();
+            int readTimeout = config.getReadTimeoutMs();
+            int automaticReconnection = config.getAutomaticReconnectionMs();
+            //Initializing websocket
+            CustomWebSocketClient.initialize(new URI(ip), reactions, connectionTimeout, readTimeout, automaticReconnection);
         }
         //Exceptions
         catch (InvalidConfigException e )
         {
-            e.printStackTrace();
-            return;
+            throw new RuntimeException(e);
         }
         catch (URISyntaxException e ) {
-            e.printStackTrace();
-            return;
+            throw new RuntimeException(e);
         }
+        this.client = CustomWebSocketClient.getInstance();
+    }
 
-        webSocketClient = new WebSocketClient(uri) {
-            @Override
-            public void onOpen() {
-                Log.i("WebSocket", "Session is starting");
-                //Example message
-                webSocketClient.send("{\"messageContextId\":\"80bdc250-5365-4caf-8dd9-a33e709a0116\",\"type\":\"CreateRoom\",\"data\":{\"userDTO\":{\"id\":\"f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454\",\"name\":\"James\"},\"roomDTO\":{\"name\":\"TajnyPokoj\",\"password\":\"kjashjkasd\"}}}");
-            }
-
-            @Override
-            public void onTextReceived(String s) {
-                Log.i("WebSocket", "Message received");
-                final String message = s;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            binding.gameTitleTextView.setText(message);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onBinaryReceived(byte[] data) {
-            }
-
-            @Override
-            public void onPingReceived(byte[] data) {
-            }
-
-            @Override
-            public void onPongReceived(byte[] data) {
-            }
-
-            @Override
-            public void onException(Exception e) {
-                System.out.println(e.getMessage());
-            }
-
-            @Override
-            public void onCloseReceived() {
-                Log.i("WebSocket", "Closed ");
-                System.out.println("onCloseReceived");
-            }
-        };
-
-        webSocketClient.setConnectTimeout(10000);
-        webSocketClient.setReadTimeout(60000);
-        webSocketClient.enableAutomaticReconnection(5000);
-        webSocketClient.connect();
+    private void createUserUUID() {
+        sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        userUUID = sharedPreferences.getString("userUUID", "");
+        if (userUUID.isEmpty()) {
+            userUUID = UUID.randomUUID().toString();
+            sharedPreferences.edit().putString("userUUID", userUUID).apply();
+        }
     }
 
     private void setupButtons() {
@@ -140,8 +118,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
             }
         });
-
-
     }
 
 }
