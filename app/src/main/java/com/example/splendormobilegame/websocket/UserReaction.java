@@ -5,13 +5,12 @@ import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
 public abstract class UserReaction {
-    protected ServerMessage serverMessage;
 
-    public UserReaction(ServerMessage serverMessage) {
-        this.serverMessage = serverMessage;
+    public UserReaction() {
+
     }
 
-    public abstract UserMessage react();
+    public abstract UserMessage react(ServerMessage serverMessage);
 
     public abstract UserMessage onFailure(ErrorResponse errorResponse);
 
