@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -16,17 +15,10 @@ import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.model.Model;
-import com.example.splendormobilegame.websocket.UserReaction;
-import com.example.splendormobilegame.websocket.reactions.CreateRoomResponse;
-import com.example.splendormobilegame.websocket.reactions.JoinRoomResponse;
-import com.example.splendormobilegame.websocket.reactions.LeaveRoomResponse;
-import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
@@ -55,11 +47,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         createUserUUID();
         Model.setUserUuid(UUID.fromString(userUUID));
-        
-        Map<ServerMessageType, Class<? extends UserReaction>> reactions = new HashMap<>();
-        reactions.put(ServerMessageType.CREATE_ROOM_RESPONSE, CreateRoomResponse.class);
-        reactions.put(ServerMessageType.JOIN_ROOM_RESPONSE, JoinRoomResponse.class);
-        reactions.put(ServerMessageType.LEAVE_ROOM_RESPONSE, LeaveRoomResponse.class);
 
         //taking parameters form config.properties
         Config config = new Config(this);
@@ -69,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             int readTimeout = config.getReadTimeoutMs();
             int automaticReconnection = config.getAutomaticReconnectionMs();
             //Initializing websocket
-            CustomWebSocketClient.initialize(new URI(ip), reactions, connectionTimeout, readTimeout, automaticReconnection);
+            CustomWebSocketClient.initialize(new URI(ip), connectionTimeout, readTimeout, automaticReconnection);
         }
         //Exceptions
         catch (InvalidConfigException e )
@@ -80,22 +67,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             throw new RuntimeException(e);
         }
 
-        
-        this.client = CustomWebSocketClient.getInstance();
-        try {
-            // TODO: All values there should be got from config
-            CustomWebSocketClient.initialize(
-                    new URI("ws://10.0.2.2:8887"),
-                    reactions,
-                    30000,
-                    60000,
-                    5000
-            );
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-        this.client = CustomWebSocketClient.getInstance();
     }
 
     private void createUserUUID() {

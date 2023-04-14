@@ -9,7 +9,6 @@ public class Model {
 
     private static UUID userUuid;
     private static Room room;
-    private static Activity activity;
 
     // Currently when user is joining the room and they pass good code we need to store it and show in the room, because server does not send this code to us then
     private static String enteredRoomCode;
@@ -30,15 +29,6 @@ public class Model {
     public static void setRoom(Room room) {
         Model.room = room;
     }
-
-    public static Activity getActivity() {
-        return activity;
-    }
-
-    public static void setActivity(Activity activity) {
-        Model.activity = activity;
-    }
-
 
     public static String getEnteredRoomCode() {
         return enteredRoomCode;

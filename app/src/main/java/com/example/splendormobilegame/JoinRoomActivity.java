@@ -1,6 +1,8 @@
 package com.example.splendormobilegame;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -9,15 +11,70 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.databinding.ActivityJoinRoomActivityBinding;
 import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.model.Room;
+import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.example.splendormobilegame.websocket.UserReaction;
+import com.example.splendormobilegame.websocket.ReactionUtils;
+import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
+import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.JoinRoom;
+import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
 import java.util.UUID;
 
 public class JoinRoomActivity extends AppCompatActivity {
     private ActivityJoinRoomActivityBinding binding;
+    private JoinRoomResponse joinRoomResponseReaction;
+
+    public class JoinRoomResponse extends UserReaction {
+
+        @Override
+        public UserMessage react(ServerMessage serverMessage) {
+            Log.i("UserReaction", "Entered JoinRoomResponse react method");
+
+            JoinRoom.ResponseData responseData = (JoinRoom.ResponseData) ReactionUtils.getResponseData(serverMessage, JoinRoom.ResponseData.class);
+
+            JoinRoom.UserDataResponse owner = responseData.users.get(0);
+            Room room = new Room(responseData.room.uuid, responseData.room.name, Model.getEnteredRoomCode(), new User(owner.uuid, owner.name));
+
+            // DEBUG PURPOSES START
+            String message = "Users:\n" + owner.name + "\n";
+            for (int i = 1; i < responseData.users.size(); i++) {
+                room.addUser(new User(responseData.users.get(i).uuid, responseData.users.get(i).name));
+                message += responseData.users.get(i).name + "\n";
+            }
+            // DEBUG PURPOSES END
+
+            Model.setRoom(room);
+
+            Intent myIntent = new Intent(JoinRoomActivity.this, WaitingRoomActivity.class);
+            JoinRoomActivity.this.startActivity(myIntent);
+
+            // DEBUG PURPOSES START
+            ReactionUtils.showToast(JoinRoomActivity.this, message);
+            // DEBUG PURPOSES END
+
+            // Return null if you don't want to send anything to the server
+            return null;
+
+        }
+
+        @Override
+        public UserMessage onFailure(ErrorResponse errorResponse) {
+            ReactionUtils.showToast(JoinRoomActivity.this, "Cannot join to the room: " + errorResponse.data.error);
+            return null;
+        }
+
+        @Override
+        public UserMessage onError(ErrorResponse errorResponse) {
+            ReactionUtils.showToast(JoinRoomActivity.this, "Cannot join to the room: " + errorResponse.data.error);
+            return null;
+        }
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +86,11 @@ public class JoinRoomActivity extends AppCompatActivity {
         setContentView(view);
 
         setupButtons();
-        Model.setActivity(this);
+
+        // Set reaction
+        this.joinRoomResponseReaction = new JoinRoomActivity.JoinRoomResponse();
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(ServerMessageType.JOIN_ROOM_RESPONSE, this.joinRoomResponseReaction);
+
     }
 
 

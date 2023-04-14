@@ -6,10 +6,10 @@ import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 import com.github.splendor_mobile_game.websocket.utils.json.exceptions.JsonParserException;
-import com.github.splendor_mobile_game.websocket.utils.reflection.Reflection;
 import com.google.gson.Gson;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 
 import tech.gusavila92.websocketclient.WebSocketClient;
@@ -17,32 +17,30 @@ import tech.gusavila92.websocketclient.WebSocketClient;
 public class CustomWebSocketClient extends WebSocketClient {
 
     private static CustomWebSocketClient instance;
-    private final Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses;
+    private final Map<ServerMessageType, UserReaction> clientReactions;
     private final Gson gson;
 
     public CustomWebSocketClient(
             URI uri,
-            Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses,
             int connectionTimeoutMs,
             int readTimeoutMs,
             int automaticReconnectionMs
     ) {
         super(uri);
-        this.clientReactionsClasses = clientReactionsClasses;
         setConnectTimeout(connectionTimeoutMs);
         setReadTimeout(readTimeoutMs);
         enableAutomaticReconnection(automaticReconnectionMs);
         this.gson = new Gson();
+        clientReactions = new HashMap<>();
     }
 
     public static void initialize(
             URI uri,
-            Map<ServerMessageType, Class<? extends UserReaction>> clientReactionsClasses,
             int connectionTimeoutMs,
             int readTimeoutMs,
             int automaticReconnectionMs
     ) {
-        instance = new CustomWebSocketClient(uri, clientReactionsClasses, connectionTimeoutMs, readTimeoutMs, automaticReconnectionMs);
+        instance = new CustomWebSocketClient(uri, connectionTimeoutMs, readTimeoutMs, automaticReconnectionMs);
         instance.connect();
     }
 
@@ -71,13 +69,17 @@ public class CustomWebSocketClient extends WebSocketClient {
             return;
         }
 
-        Class<? extends UserReaction> reactionClass = clientReactionsClasses.get(serverMessageType);
-        UserReaction reactionInstance = (UserReaction) Reflection.createInstanceOfClass(reactionClass, serverMessage);
+        UserReaction reactionInstance = this.clientReactions.get(serverMessageType);
+
+        if (reactionInstance == null) {
+            Log.e("ReceivedMessage", "Message of type `" + serverMessageType + "` has been received," +
+                    " but no instance has been assign to react to it!");
+        }
 
         UserMessage userMessage = null;
         switch (serverMessage.getResult()) {
             case OK:
-                userMessage = reactionInstance.react();
+                userMessage = reactionInstance.react(serverMessage);
                 break;
             case FAILURE:
                 try {
@@ -129,5 +131,9 @@ public class CustomWebSocketClient extends WebSocketClient {
     public void send(UserMessage userMessage) {
         String json = this.gson.toJson(userMessage);
         this.send(json);
+    }
+
+    public void assignReactionToMessageType(ServerMessageType serverMessageType, UserReaction userReaction) {
+        this.clientReactions.put(serverMessageType, userReaction);
     }
 }
