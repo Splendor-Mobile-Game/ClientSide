@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SplendorMobileGame</string>
+    <string name="create_room">Stwórz pokój</string>
+    <string name="join_room">Dołącz</string>
+    <string name="exit">Wyjdź</string>
+    <string name="createRoom">Stwórz pokój</string>
+    <string name="room_nickname">Wpisz swoje pseudonim</string>
+    <string name="room_nickname2">Wpisz swoje pseudonim:</string>
+    <string name="room_name">Wpisz nazwę pokoju</string>
+    <string name="room_password">Wpisz hasło pokoju</string>
+    <string name="room_name2">Wpisz nazwę pokoju:</string>
+    <string name="room_password2">Wpisz hasło pokoju:</string>
+    <string name="create_error">Pokój nie mógł zostać stworzony</string>
+    <string name="create_button">Stwórz</string>
+    <string name="joinRoom">Dołącz</string>
+    <string name="join_error">Pokój nie istnieje lub nie mogłeś zostać dołączony</string>
+    <string name="enter_room_nickname">pseudonim</string>
+    <string name="enter_room_name">nazwa pokoju</string>
+    <string name="enter_room_code">numer pokoju</string>
+    <string name="enter_room_password">hasło pokoju</string>
+    <string name="room_name_error_msg">Podano złą nazwę pokoju</string>
+    <string name="password_error_msg">Podano złe hasło</string>
+    <string name="start_game">Zacznij grę</string>
+    <string name="wait_players">Czekanie na innych graczy...</string>
+    <string name="players_warning">Musisz poczekać, aż inni gracze rozpoczną grę</string>
+    <string name="leave_room">Wyjdź</string>
+    <string name="name_of_room">Pokój</string>
+    <string name="rooms_code">Kod</string>
+    <string name="current_players">Gracze</string>
+    <string name="reserve_card">Zarezerwuj kartę</string>
+    <string name="buy_card">Kup kartę</string>
+    <string name="take_points">Weź tokeny</string>
+</resources>

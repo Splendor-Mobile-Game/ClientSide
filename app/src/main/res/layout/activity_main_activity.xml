@@ -51,4 +51,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/polishFlagImageView"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/plflag" />
+
+    <ImageView
+        android:id="@+id/englishFlagImageView"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/polishFlagImageView"
+        app:srcCompat="@drawable/ukflag" />
 </androidx.constraintlayout.widget.ConstraintLayout>
