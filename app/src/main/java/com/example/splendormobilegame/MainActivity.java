@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
+        sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         //Bind layout with class
         binding = ActivityMainActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -103,12 +105,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
     private void createUserUUID() {
-        sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         userUUID = sharedPreferences.getString("userUUID", "");
         if (userUUID.isEmpty()) {
             userUUID = UUID.randomUUID().toString();
             sharedPreferences.edit().putString("userUUID", userUUID).apply();
+            //app will always start in english
+            sharedPreferences.edit().putString("language", "en").apply();
         }
     }
 
@@ -143,13 +145,21 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         binding.polishFlagImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLocale("pl");
+
+                if(sharedPreferences.getString("language", "")!="pl"){
+                    sharedPreferences.edit().putString("language", "pl").apply();
+                    setLocale("pl");
+                }
+
             }
         });
         binding.englishFlagImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLocale("en");
+                if(sharedPreferences.getString("language", "")!="en"){
+                    sharedPreferences.edit().putString("language", "en").apply();
+                    setLocale("en");
+                }
             }
         });
     }
@@ -162,5 +172,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         Intent refresh = new Intent(this, MainActivity.class);
         finish();
         startActivity(refresh);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }
