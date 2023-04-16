@@ -3,9 +3,16 @@ package com.example.splendormobilegame;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+
+import android.util.DisplayMetrics;
+import android.util.Log;
+
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +26,10 @@ import com.example.splendormobilegame.model.Model;
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
@@ -37,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
+        sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         //Bind layout with class
         binding = ActivityMainActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -70,12 +83,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
     private void createUserUUID() {
-        sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         userUUID = sharedPreferences.getString("userUUID", "");
         if (userUUID.isEmpty()) {
             userUUID = UUID.randomUUID().toString();
             sharedPreferences.edit().putString("userUUID", userUUID).apply();
+            //app will always start in english
+            sharedPreferences.edit().putString("language", "en").apply();
         }
     }
 
@@ -107,6 +120,36 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
             }
         });
-    }
+        binding.polishFlagImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if(sharedPreferences.getString("language", "")!="pl"){
+                    sharedPreferences.edit().putString("language", "pl").apply();
+                    setLocale("pl");
+                }
+
+            }
+        });
+        binding.englishFlagImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sharedPreferences.getString("language", "")!="en"){
+                    sharedPreferences.edit().putString("language", "en").apply();
+                    setLocale("en");
+                }
+            }
+        });
+    }
+    public void setLocale(String lang) {
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(lang.toLowerCase()));
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        finish();
+        startActivity(refresh);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 }
