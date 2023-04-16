@@ -1,5 +1,6 @@
-package com.example.splendormobilegame.websocket.reactions;
+package com.example.splendormobilegame.websocket;
 
+import android.app.Activity;
 import android.widget.Toast;
 
 import com.example.splendormobilegame.model.Model;
@@ -8,12 +9,12 @@ import com.github.splendor_mobile_game.websocket.utils.json.JsonParser;
 import com.github.splendor_mobile_game.websocket.utils.json.exceptions.JsonParserException;
 import com.google.gson.Gson;
 
-public class Utils {
+public class ReactionUtils {
 
-    public static void showToast(String message) {
-        Model.getActivity().runOnUiThread(new Runnable() {
+    public static void showToast(Activity activity, String message) {
+        activity.runOnUiThread(new Runnable() {
             public void run() {
-                Toast.makeText(Model.getActivity(), message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
