@@ -1,5 +1,7 @@
 package com.example.splendormobilegame;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +10,9 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -170,36 +174,41 @@ public class WaitingRoomActivity extends AppCompatActivity {
         binding.leaveGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(Model.getRoom().getUuid());
-                LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(Model.getUserUuid());
-                LeaveRoom.DataDTO dataDTO = new LeaveRoom.DataDTO(roomDTO, userDTO);
-
-                UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.LEAVE_ROOM, dataDTO);
-                CustomWebSocketClient.getInstance().send(userMessage);
-
-                // Don't bother with what server thinks, we want to leave
-                Model.setRoom(null);
-                Intent myIntent = new Intent(WaitingRoomActivity.this, MainActivity.class);
-                WaitingRoomActivity.this.startActivity(myIntent);
+                leaveRoom();
             }
         });
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() {leaveRoom();}
 
-        LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(Model.getRoom().getUuid());
-        LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(Model.getUserUuid());
-        LeaveRoom.DataDTO dataDTO = new LeaveRoom.DataDTO(roomDTO, userDTO);
 
-        UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.LEAVE_ROOM, dataDTO);
-        CustomWebSocketClient.getInstance().send(userMessage);
+    private void leaveRoom(){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
+                builder.setMessage(R.string.leave_confirmation_message);
+                builder.setTitle(R.string.leave_confirmation_title);
+                builder.setPositiveButton(R.string.leave_room, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(Model.getRoom().getUuid());
+                                LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(Model.getUserUuid());
+                                LeaveRoom.DataDTO dataDTO = new LeaveRoom.DataDTO(roomDTO, userDTO);
 
-        // Don't bother with what server thinks, we want to leave
-        Model.setRoom(null);
-        Intent myIntent = new Intent(WaitingRoomActivity.this, MainActivity.class);
-        WaitingRoomActivity.this.startActivity(myIntent);
-    }
+                                UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.LEAVE_ROOM, dataDTO);
+                                CustomWebSocketClient.getInstance().send(userMessage);
+
+                                // Don't bother with what server thinks, we want to leave
+                                Model.setRoom(null);
+                                Intent myIntent = new Intent(WaitingRoomActivity.this, MainActivity.class);
+                                WaitingRoomActivity.this.startActivity(myIntent);
+                            }
+                        }
+                );
+                builder.setNegativeButton(R.string.cancel, null);
+                builder.show();
+            }
+
+
+
 
 }
