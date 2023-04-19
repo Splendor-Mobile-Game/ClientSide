@@ -8,6 +8,219 @@
     android:background="@color/backGroundColor">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/CardsAristocratsCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/backGroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tokenButtonsCardView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Aristocrat3CardView"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/noble10" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Aristocrat5CardView"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/noble8" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Aristocrat1CardView"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/noble1" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Aristocrat2CardView"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/noble2" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Aristocrat4CardView"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/noble7" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/CardPile3CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat1CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Aristocrat1CardView"
+                app:layout_constraintTop_toTopOf="@+id/Aristocrat1CardView" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card31CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat2CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Aristocrat2CardView"
+                app:layout_constraintTop_toTopOf="@+id/Aristocrat2CardView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/CardPile2CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/CardPile3CardView"
+                app:layout_constraintEnd_toStartOf="@+id/CardPile3CardView"
+                app:layout_constraintTop_toTopOf="@+id/CardPile3CardView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card21CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Card31CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Card31CardView"
+                app:layout_constraintTop_toTopOf="@+id/Card31CardView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/CardPile1CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="23dp"
+                app:layout_constraintBottom_toBottomOf="@+id/CardPile2CardView"
+                app:layout_constraintEnd_toStartOf="@+id/CardPile2CardView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/CardPile2CardView" />
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card32CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat3CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Aristocrat3CardView"
+                app:layout_constraintTop_toTopOf="@+id/Aristocrat3CardView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card22CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Card32CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Card32CardView"
+                app:layout_constraintTop_toTopOf="@+id/Card32CardView" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card33CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat4CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Aristocrat4CardView"
+                app:layout_constraintTop_toTopOf="@+id/Aristocrat4CardView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card23CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Card33CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Card33CardView"
+                app:layout_constraintTop_toTopOf="@+id/Card33CardView" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card34CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat5CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Aristocrat5CardView"
+                app:layout_constraintTop_toTopOf="@+id/Aristocrat5CardView" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card24CardView"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Card34CardView"
+                app:layout_constraintEnd_toStartOf="@+id/Card34CardView"
+                app:layout_constraintTop_toTopOf="@+id/Card34CardView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="110dp"
+                android:layout_height="313dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CardPile1CardView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/pointsCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -16,7 +229,7 @@
         android:layout_marginEnd="10dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/playerOptionCardView"
-        app:layout_constraintEnd_toStartOf="@+id/blueTokenButton"
+        app:layout_constraintEnd_toStartOf="@+id/tokenButtonsCardView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -632,330 +845,6 @@
     </androidx.cardview.widget.CardView>
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Aristocrat3CardView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView" >
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/noble10" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Aristocrat5CardView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView" >
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/noble8" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Aristocrat1CardView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/noble1" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Aristocrat2CardView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView" >
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/noble2" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Aristocrat4CardView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView" >
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/noble7" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/CardPile3CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat1CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Aristocrat1CardView"
-        app:layout_constraintTop_toTopOf="@+id/Aristocrat1CardView" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/Card31CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat2CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Aristocrat2CardView"
-        app:layout_constraintTop_toTopOf="@+id/Aristocrat2CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/CardPile2CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/CardPile3CardView"
-        app:layout_constraintEnd_toStartOf="@+id/CardPile3CardView"
-        app:layout_constraintTop_toTopOf="@+id/CardPile3CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card21CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card31CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card31CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card31CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/CardPile1CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/CardPile2CardView"
-        app:layout_constraintEnd_toStartOf="@+id/CardPile2CardView"
-        app:layout_constraintTop_toTopOf="@+id/CardPile2CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card11CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card21CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card21CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card21CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card32CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat3CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Aristocrat3CardView"
-        app:layout_constraintTop_toTopOf="@+id/Aristocrat3CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card22CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card32CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card32CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card32CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card12CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card22CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card22CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card22CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card33CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat4CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Aristocrat4CardView"
-        app:layout_constraintTop_toTopOf="@+id/Aristocrat4CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card23CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card33CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card33CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card33CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card13CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card23CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card23CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card23CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card34CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Aristocrat5CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Aristocrat5CardView"
-        app:layout_constraintTop_toTopOf="@+id/Aristocrat5CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card24CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card34CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card34CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card34CardView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/Card14CardView"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Card24CardView"
-        app:layout_constraintEnd_toStartOf="@+id/Card24CardView"
-        app:layout_constraintTop_toTopOf="@+id/Card24CardView" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/yellowTokenButton"
-        style="@style/pointsButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="3"
-        app:strokeColor="@color/yasmine"
-        app:layout_constraintBottom_toBottomOf="@+id/CardPile1CardView"
-        app:layout_constraintEnd_toStartOf="@+id/CardPile1CardView"
-        app:layout_constraintTop_toTopOf="@+id/CardPile1CardView"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/whiteTokenButton"
-        style="@style/pointsButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="3"
-        app:layout_constraintEnd_toEndOf="@+id/yellowTokenButton"
-        app:layout_constraintStart_toStartOf="@+id/yellowTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/yellowTokenButton"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-        app:strokeColor="@color/white" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/blueTokenButton"
-        style="@style/pointsButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="3"
-        app:layout_constraintEnd_toEndOf="@+id/whiteTokenButton"
-        app:layout_constraintStart_toStartOf="@+id/whiteTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/whiteTokenButton"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-        app:strokeColor="@color/blue" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/greenTokenButton"
-        style="@style/pointsButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="3"
-        app:layout_constraintEnd_toEndOf="@+id/blueTokenButton"
-        app:layout_constraintStart_toStartOf="@+id/blueTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/blueTokenButton"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-        app:strokeColor="@color/green" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/redTokenButton"
-        style="@style/pointsButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="3"
-        app:layout_constraintEnd_toEndOf="@+id/greenTokenButton"
-        app:layout_constraintStart_toStartOf="@+id/greenTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/greenTokenButton"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-        app:strokeColor="@color/poppy" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/blackTokenButton"
-        style="@style/pointsButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="3"
-        app:layout_constraintEnd_toEndOf="@+id/redTokenButton"
-        app:layout_constraintStart_toStartOf="@+id/redTokenButton"
-        app:layout_constraintTop_toBottomOf="@+id/redTokenButton"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-        app:strokeColor="@color/black" />
-
     <Button
         android:id="@+id/sideBarButton"
         android:layout_width="wrap_content"
@@ -972,7 +861,7 @@
         android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/sideBarButton"
-        app:layout_constraintEnd_toStartOf="@+id/blueTokenButton"
+        app:layout_constraintEnd_toStartOf="@+id/tokenButtonsCardView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -1017,12 +906,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/sideBarButton"
-        app:layout_constraintEnd_toStartOf="@+id/blackTokenButton"
-        app:layout_constraintStart_toEndOf="@+id/sideBarButton"
-        app:layout_constraintTop_toTopOf="@+id/redTokenButton">
+        app:layout_constraintStart_toEndOf="@+id/sideBarButton">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -1058,5 +944,317 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/takeTokensCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/backGroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tokenButtonsCardView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/whiteTokenNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                style="@style/LightTextView20sp"
+                android:textColor="@color/white"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/takeTokensButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/take_tokens"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/addWhiteTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/whiteTokenNumberTextView"
+                app:layout_constraintEnd_toEndOf="@+id/whiteTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/whiteTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_up_24" />
+
+            <ImageView
+                android:id="@+id/removeWhiteTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/whiteTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/whiteTokenNumberTextView"
+                app:layout_constraintTop_toBottomOf="@+id/whiteTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_down_48" />
+
+            <TextView
+                android:id="@+id/blueTokenNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/LightTextView20sp"
+                android:layout_marginStart="60dp"
+                android:text="0"
+                android:textColor="@color/blue"
+                app:layout_constraintBottom_toBottomOf="@+id/whiteTokenNumberTextView"
+                app:layout_constraintStart_toEndOf="@+id/whiteTokenNumberTextView"
+                app:layout_constraintTop_toTopOf="@+id/whiteTokenNumberTextView" />
+
+            <ImageView
+                android:id="@+id/addBlueTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/blueTokenNumberTextView"
+                app:layout_constraintEnd_toEndOf="@+id/blueTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/blueTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_up_24" />
+
+            <ImageView
+                android:id="@+id/removeBlueTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/blueTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/blueTokenNumberTextView"
+                app:layout_constraintTop_toBottomOf="@+id/blueTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_down_48" />
+
+            <TextView
+                android:id="@+id/greenTokenNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                style="@style/LightTextView20sp"
+                android:textColor="@color/green"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/blueTokenNumberTextView"
+                app:layout_constraintStart_toEndOf="@+id/blueTokenNumberTextView"
+                app:layout_constraintTop_toTopOf="@+id/blueTokenNumberTextView" />
+
+            <ImageView
+                android:id="@+id/addGreenTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/greenTokenNumberTextView"
+                app:layout_constraintEnd_toEndOf="@+id/greenTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/greenTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_up_24" />
+
+            <ImageView
+                android:id="@+id/removeGreenTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/greenTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/greenTokenNumberTextView"
+                app:layout_constraintTop_toBottomOf="@+id/greenTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_down_48" />
+
+            <TextView
+                android:id="@+id/redTokenNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                style="@style/LightTextView20sp"
+                android:textColor="@color/poppy"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/greenTokenNumberTextView"
+                app:layout_constraintStart_toEndOf="@+id/greenTokenNumberTextView"
+                app:layout_constraintTop_toTopOf="@+id/greenTokenNumberTextView" />
+
+            <ImageView
+                android:id="@+id/addRedTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/redTokenNumberTextView"
+                app:layout_constraintEnd_toEndOf="@+id/redTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/redTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_up_24" />
+
+            <ImageView
+                android:id="@+id/removeRedTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/redTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/redTokenNumberTextView"
+                app:layout_constraintTop_toBottomOf="@+id/redTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_down_48" />
+
+            <TextView
+                android:id="@+id/blackTokenNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                style="@style/LightTextView20sp"
+                android:textColor="@color/black"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/redTokenNumberTextView"
+                app:layout_constraintStart_toEndOf="@+id/redTokenNumberTextView"
+                app:layout_constraintTop_toTopOf="@+id/redTokenNumberTextView" />
+
+            <ImageView
+                android:id="@+id/addBlackTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/blackTokenNumberTextView"
+                app:layout_constraintEnd_toEndOf="@+id/blackTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/blackTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_up_24" />
+
+            <ImageView
+                android:id="@+id/removeBlackTokenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/blackTokenNumberTextView"
+                app:layout_constraintStart_toStartOf="@+id/blackTokenNumberTextView"
+                app:layout_constraintTop_toBottomOf="@+id/blackTokenNumberTextView"
+                app:srcCompat="@drawable/baseline_arrow_drop_down_48" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tokenButtonsCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:cardBackgroundColor="@color/backGroundColor"
+        app:layout_constraintStart_toEndOf="@+id/playerOptionCardView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/yellowTokenButton"
+                style="@style/pointsButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3"
+                app:layout_constraintEnd_toEndOf="@+id/whiteTokenButton"
+                app:layout_constraintStart_toStartOf="@+id/whiteTokenButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                app:strokeColor="@color/yasmine" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/whiteTokenButton"
+                style="@style/pointsButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3"
+                app:layout_constraintEnd_toEndOf="@+id/blueTokenButton"
+                app:layout_constraintStart_toStartOf="@+id/blueTokenButton"
+                app:layout_constraintTop_toBottomOf="@+id/yellowTokenButton"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                app:strokeColor="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/blueTokenButton"
+                style="@style/pointsButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3"
+                app:layout_constraintEnd_toEndOf="@+id/greenTokenButton"
+                app:layout_constraintStart_toStartOf="@+id/greenTokenButton"
+                app:layout_constraintTop_toBottomOf="@+id/whiteTokenButton"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                app:strokeColor="@color/blue" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/greenTokenButton"
+                style="@style/pointsButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3"
+                app:layout_constraintEnd_toEndOf="@+id/redTokenButton"
+                app:layout_constraintStart_toStartOf="@+id/redTokenButton"
+                app:layout_constraintTop_toBottomOf="@+id/blueTokenButton"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                app:strokeColor="@color/green" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/redTokenButton"
+                style="@style/pointsButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3"
+                app:layout_constraintEnd_toEndOf="@+id/blackTokenButton"
+                app:layout_constraintStart_toStartOf="@+id/blackTokenButton"
+                app:layout_constraintTop_toBottomOf="@+id/greenTokenButton"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                app:strokeColor="@color/poppy" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/blackTokenButton"
+                style="@style/pointsButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/redTokenButton"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                app:strokeColor="@color/black" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
