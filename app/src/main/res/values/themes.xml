@@ -27,7 +27,7 @@
         <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
 
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
-
+        <item name="android:inset">2dp</item>
         <item name="backgroundTint">@color/poppy</item>
         <item name="android:textColor">@color/light_gray</item>
         <item name="tint">@color/marian</item>
