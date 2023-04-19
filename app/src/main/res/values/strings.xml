@@ -5,6 +5,7 @@
     <string name="join_room">Join</string>
     <string name="exit">Exit</string>
     <string name="logo_description" translatable="false">Logo</string>
+    <string name="cancel">Cancel</string>
     <!--CreateRoomActivity-->
     <string name="createRoom">Create game</string>
     <string name="room_nickname">Enter your nickname</string>
@@ -32,6 +33,9 @@
     <string name="name_of_room">Room</string>
     <string name="rooms_code">Code</string>
     <string name="current_players">Players</string>
+    <string name="leave_confirmation_message">Are you sure you want to leave the room?</string>
+    <string name="leave_confirmation_title">Leaving room?</string>
+
     <!--GameActivity-->
     <string name="reserve_card">Reserve card</string>
     <string name="buy_card">Buy card</string>

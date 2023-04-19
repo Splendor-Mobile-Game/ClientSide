@@ -4,6 +4,7 @@
     <string name="create_room">Stwórz pokój</string>
     <string name="join_room">Dołącz</string>
     <string name="exit">Wyjdź</string>
+    <string name="cancel">Anuluj</string>
     <string name="createRoom">Stwórz pokój</string>
     <string name="room_nickname">Wpisz swoje pseudonim</string>
     <string name="room_nickname2">Wpisz swoje pseudonim:</string>
@@ -32,4 +33,6 @@
     <string name="buy_card">Kup kartę</string>
     <string name="take_points">Weź tokeny</string>
     <string name="take_tokens">Weź tokeny</string>
+    <string name="leave_confirmation_message">Czy na pewno chcesz opuścić pokój?</string>
+    <string name="leave_confirmation_title">Opuszczanie pokoju?</string>
 </resources>
