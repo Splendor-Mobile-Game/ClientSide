@@ -31,4 +31,5 @@
     <string name="reserve_card">Zarezerwuj kartę</string>
     <string name="buy_card">Kup kartę</string>
     <string name="take_points">Weź tokeny</string>
+    <string name="take_tokens">Weź tokeny</string>
 </resources>
