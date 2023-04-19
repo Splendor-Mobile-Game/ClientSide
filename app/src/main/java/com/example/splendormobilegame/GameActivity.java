@@ -134,7 +134,7 @@ public class GameActivity extends AppCompatActivity {
         binding.removeBlackTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(blackTokens>0){
+                if(blackTokens>-3){
                     blackTokens--;
                     binding.blackTokenNumberTextView.setText(String.valueOf(blackTokens));
                 }
@@ -143,7 +143,7 @@ public class GameActivity extends AppCompatActivity {
         binding.removeRedTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(redTokens>0){
+                if(redTokens>-3){
                     redTokens--;
                     binding.redTokenNumberTextView.setText(String.valueOf(redTokens));
                 }
@@ -152,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
         binding.removeWhiteTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(whiteTokens>0){
+                if(whiteTokens>-3){
                     whiteTokens--;
                     binding.whiteTokenNumberTextView.setText(String.valueOf(whiteTokens));
                 }
@@ -161,7 +161,7 @@ public class GameActivity extends AppCompatActivity {
         binding.removeGreenTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(greenTokens>0){
+                if(greenTokens>-3){
                     greenTokens--;
                     binding.greenTokenNumberTextView.setText(String.valueOf(greenTokens));
                 }
@@ -170,7 +170,7 @@ public class GameActivity extends AppCompatActivity {
         binding.removeBlueTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(blueTokens>0){
+                if(blueTokens>-3){
                     blueTokens--;
                     binding.blueTokenNumberTextView.setText(String.valueOf(blueTokens));
                 }
