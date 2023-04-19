@@ -11,7 +11,7 @@
         android:id="@+id/CardsAristocratsCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/backGroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,14 +151,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/CardPile2CardView" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Card11CardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Card21CardView"
-                app:layout_constraintEnd_toStartOf="@+id/Card21CardView"
-                app:layout_constraintTop_toTopOf="@+id/Card21CardView" />
+
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/Card32CardView"
@@ -178,14 +171,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/Card32CardView"
                 app:layout_constraintTop_toTopOf="@+id/Card32CardView" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Card12CardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Card22CardView"
-                app:layout_constraintEnd_toStartOf="@+id/Card22CardView"
-                app:layout_constraintTop_toTopOf="@+id/Card22CardView" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/Card33CardView"
@@ -205,14 +190,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/Card33CardView"
                 app:layout_constraintTop_toTopOf="@+id/Card33CardView" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Card13CardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Card23CardView"
-                app:layout_constraintEnd_toStartOf="@+id/Card23CardView"
-                app:layout_constraintTop_toTopOf="@+id/Card23CardView" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/Card34CardView"
@@ -232,14 +209,13 @@
                 app:layout_constraintEnd_toStartOf="@+id/Card34CardView"
                 app:layout_constraintTop_toTopOf="@+id/Card34CardView" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Card14CardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Card24CardView"
-                app:layout_constraintEnd_toStartOf="@+id/Card24CardView"
-                app:layout_constraintTop_toTopOf="@+id/Card24CardView" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="110dp"
+                android:layout_height="313dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CardPile1CardView" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -973,7 +949,7 @@
         android:id="@+id/takeTokensCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/backGroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
