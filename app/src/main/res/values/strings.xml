@@ -41,6 +41,8 @@
     <string name="buy_card">Buy card</string>
     <string name="take_points">Take points</string>
     <string name="take_tokens">Take tokens</string>
+    <string name="skip_turn">Skip turn</string>
+    <string name="score">Score</string>
     <!--Shared preferences-->
     <string name="preference_file_key" translatable="false">SPLENDOR_PREFERENCES</string>
 

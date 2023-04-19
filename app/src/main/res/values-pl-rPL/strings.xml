@@ -35,4 +35,6 @@
     <string name="take_tokens">Weź tokeny</string>
     <string name="leave_confirmation_message">Czy na pewno chcesz opuścić pokój?</string>
     <string name="leave_confirmation_title">Opuszczanie pokoju?</string>
+    <string name="skip_turn">Pomiń turę</string>
+    <string name="score">Punkty</string>
 </resources>
