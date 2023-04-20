@@ -1,4 +1,4 @@
-package com.example.splendormobilegame;
+package com.example.splendormobilegame.activities.WaitingRoom;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +8,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.splendormobilegame.R;
+
 import java.util.ArrayList;
 
 public class WaitingRoomActivityAdapter extends RecyclerView.Adapter<WaitingRoomActivityAdapter.ViewHolder> {
-    public static ArrayList<String> usersList;
+    public ArrayList<String> usersList;
+
+    public void setUsersList(ArrayList<String> usersList) {
+        this.usersList = usersList;
+    }
+
+    public ArrayList<String> getUsersList() {
+        return this.usersList;
+    }
 
     public WaitingRoomActivityAdapter(ArrayList<String> usersList) {
         this.usersList = usersList;

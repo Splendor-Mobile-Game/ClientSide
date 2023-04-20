@@ -1,4 +1,4 @@
-package com.example.splendormobilegame;
+package com.example.splendormobilegame.activities.GameActivity;
 
 import android.animation.LayoutTransition;
 import android.os.Bundle;
@@ -14,11 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 
 import org.xmlpull.v1.XmlPullParser;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends CustomAppCompatActivity {
     private ActivityGameActivityBinding binding;
     private int blueTokens = 0;
     private int redTokens = 0;
