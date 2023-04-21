@@ -14,21 +14,49 @@ import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 public class TurnController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
+    private NewTurnAnnouncementMessageHandler newTurnAnnouncementMessageHandler;
+    private PassTurnAnnouncementMessageHandler passTurnAnnouncementMessageHandler;
 
     protected TurnController(T activity) {
         super(activity);
         this.gameActivity = activity;
+        this.newTurnAnnouncementMessageHandler = new NewTurnAnnouncementMessageHandler();
+        this.passTurnAnnouncementMessageHandler = new PassTurnAnnouncementMessageHandler();
     }
 
-    public void sendRequestToEndTurn() {
-        // TODO
+    public void endTurn() {
+        // Maybe you want to check some things before sending request
+        this.sendRequestToEndTurn();
     }
 
-    public class NewTurnAnnouncement extends UserReaction {
+    public void passTurn() {
+        // Maybe you want to check some things before sending request
+        this.sendRequestToPassTurn();
+    }
+
+    private void sendRequestToEndTurn() {
+        // TODO Compose up the messsage
+        // TODO Send the request
+    }
+
+    private void sendRequestToPassTurn() {
+        // TODO Compose up the messsage
+        // TODO Send the request
+    }
+
+    public NewTurnAnnouncementMessageHandler getNewTurnAnnouncementMessageHandler() {
+        return newTurnAnnouncementMessageHandler;
+    }
+
+    public PassTurnAnnouncementMessageHandler getPassTurnAnnouncementMessageHandler() {
+        return passTurnAnnouncementMessageHandler;
+    }
+
+    public class NewTurnAnnouncementMessageHandler extends UserReaction {
 
         @Override
         public UserMessage react(ServerMessage serverMessage) {
-            Log.i("UserReaction", "Entered NewTurnAnnouncement");
+            Log.i("UserReaction", "Entered NewTurnAnnouncementMessageHandler");
 
             // Get the data from the request
             // ...
@@ -58,6 +86,33 @@ public class TurnController<T extends GameActivity> extends Controller {
         @Override
         public UserMessage onError(ErrorResponse errorResponse) {
             activity.showToast("NewTurnAnnouncement error: " + errorResponse.data.error);
+            return null;
+        }
+
+    }
+
+    public class PassTurnAnnouncementMessageHandler extends UserReaction {
+
+        @Override
+        public UserMessage react(ServerMessage serverMessage) {
+            Log.i("UserReaction", "Entered PassTurnAnnouncementMessageHandler");
+
+            // As this is probably repeated work what is done in the previous message handler
+            // You should create some shared private functions for both of these handlers
+
+            // Return null if you don't want to send anything to the server
+            return null;
+        }
+
+        @Override
+        public UserMessage onFailure(ErrorResponse errorResponse) {
+            activity.showToast("PassTurnAnnouncement error: " + errorResponse.data.error);
+            return null;
+        }
+
+        @Override
+        public UserMessage onError(ErrorResponse errorResponse) {
+            activity.showToast("PassTurnAnnouncement error: " + errorResponse.data.error);
             return null;
         }
 

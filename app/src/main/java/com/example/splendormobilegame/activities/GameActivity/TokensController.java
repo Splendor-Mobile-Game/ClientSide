@@ -3,33 +3,44 @@ package com.example.splendormobilegame.activities.GameActivity;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
-import com.example.splendormobilegame.CustomAppCompatActivity;
-import com.example.splendormobilegame.activities.WaitingRoom.WaitingRoomActivity;
-import com.example.splendormobilegame.model.Model;
-import com.example.splendormobilegame.model.Room;
-import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
-import com.github.splendor_mobile_game.websocket.handlers.reactions.CreateRoom;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.GetTokens;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
 public class TokensController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
+    private GetTokensMessageHandler getTokensMessageHandler;
 
     public TokensController(T activity) {
         super(activity);
         this.gameActivity = activity;
+        this.getTokensMessageHandler = new GetTokensMessageHandler();
     }
 
-    public class GetTokensResponse extends UserReaction {
+    public void getTokens(int red, int blue, int green, int black, int white) {
+        // Maybe you want to check something here
+        // and then call the method to send the request
+        this.sendRequest(red, blue, green, black, white);
+    }
+
+    private void sendRequest(int red, int blue, int green, int black, int white) {
+        // TODO Compose up the message
+        // TODO Send the message
+    }
+
+    public GetTokensMessageHandler getGetTokensMessageHandler() {
+        return getTokensMessageHandler;
+    }
+
+    public class GetTokensMessageHandler extends UserReaction {
 
         @Override
         public UserMessage react(ServerMessage serverMessage) {
-            Log.i("UserReaction", "Entered GetTokensResponse");
+            Log.i("UserReaction", "Entered GetTokensMessageHandler");
 
             // Get the data from the request
             GetTokens.ResponseData responseData = (GetTokens.ResponseData) ReactionUtils.getResponseData(

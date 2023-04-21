@@ -42,6 +42,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
 
     private LeavingController leavingController;
     private JoiningController joiningController;
+    private StartGameController startGameController;
 
 
     @Override
@@ -69,6 +70,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         // Create controllers
         this.leavingController = new LeavingController(this, mAdapter);
         this.joiningController = new JoiningController(this, mAdapter);
+        this.startGameController = new StartGameController(this);
 
         // Set reaction
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -88,7 +90,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         binding.startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(WaitingRoomActivity.this, R.string.players_warning, Toast.LENGTH_SHORT).show();
+                WaitingRoomActivity.this.startGameController.startGame();
             }
         });
 

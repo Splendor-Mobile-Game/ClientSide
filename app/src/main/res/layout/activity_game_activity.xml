@@ -962,12 +962,12 @@
 
             <TextView
                 android:id="@+id/whiteTokenNumberTextView"
+                style="@style/LightTextView20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                style="@style/LightTextView20sp"
-                android:textColor="@color/white"
                 android:text="0"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -1005,9 +1005,9 @@
 
             <TextView
                 android:id="@+id/blueTokenNumberTextView"
+                style="@style/LightTextView20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/LightTextView20sp"
                 android:layout_marginStart="60dp"
                 android:text="0"
                 android:textColor="@color/blue"
@@ -1037,12 +1037,12 @@
 
             <TextView
                 android:id="@+id/greenTokenNumberTextView"
+                style="@style/LightTextView20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                style="@style/LightTextView20sp"
-                android:textColor="@color/green"
                 android:text="0"
+                android:textColor="@color/green"
                 app:layout_constraintBottom_toBottomOf="@+id/blueTokenNumberTextView"
                 app:layout_constraintStart_toEndOf="@+id/blueTokenNumberTextView"
                 app:layout_constraintTop_toTopOf="@+id/blueTokenNumberTextView" />
@@ -1069,12 +1069,12 @@
 
             <TextView
                 android:id="@+id/redTokenNumberTextView"
+                style="@style/LightTextView20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                style="@style/LightTextView20sp"
-                android:textColor="@color/poppy"
                 android:text="0"
+                android:textColor="@color/poppy"
                 app:layout_constraintBottom_toBottomOf="@+id/greenTokenNumberTextView"
                 app:layout_constraintStart_toEndOf="@+id/greenTokenNumberTextView"
                 app:layout_constraintTop_toTopOf="@+id/greenTokenNumberTextView" />
@@ -1101,12 +1101,12 @@
 
             <TextView
                 android:id="@+id/blackTokenNumberTextView"
+                style="@style/LightTextView20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                style="@style/LightTextView20sp"
-                android:textColor="@color/black"
                 android:text="0"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/redTokenNumberTextView"
                 app:layout_constraintStart_toEndOf="@+id/redTokenNumberTextView"
                 app:layout_constraintTop_toTopOf="@+id/redTokenNumberTextView" />
