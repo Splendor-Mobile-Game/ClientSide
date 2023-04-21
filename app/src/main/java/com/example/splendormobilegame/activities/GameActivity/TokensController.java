@@ -13,11 +13,13 @@ import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 public class TokensController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
+    private TurnController turnController;
     private GetTokensMessageHandler getTokensMessageHandler;
 
-    public TokensController(T activity) {
+    public TokensController(T activity, TurnController turnController) {
         super(activity);
         this.gameActivity = activity;
+        this.turnController = turnController;
         this.getTokensMessageHandler = new GetTokensMessageHandler();
     }
 
@@ -56,8 +58,11 @@ public class TokensController<T extends GameActivity> extends Controller {
             // this.gameActivity.hideGettingTokensSideBar()
             // ...
 
-            // if this is your turn, end it by calling
-            // this.gameActivity.TurnController.sendRequestToEndTurn()
+            // If this message pertains to me, it means I requested it, indicating that I have taken my action during my turn.
+            // Therefore, I need to end my turn.
+            // Perhaps it was not the best decision to require the user to manually end their turn.
+            // The server should handle this automatically.
+            TokensController.this.turnController.endTurn();
 
             // Return null if you don't want to send anything to the server
             return null;

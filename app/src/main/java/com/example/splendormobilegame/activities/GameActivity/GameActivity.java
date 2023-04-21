@@ -45,12 +45,13 @@ public class GameActivity extends CustomAppCompatActivity {
 
 
         // Create controllers
-        this.deckReservingController = new DeckReservingController(this);
-        this.revealedCardsReservingController = new RevealedCardsReservingController(this);
-        this.tokensController = new TokensController(this);
         this.turnController = new TurnController(this);
-        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this);
-        this.buyingReservedCardsController = new BuyingReservedCardsController(this);
+
+        this.deckReservingController = new DeckReservingController(this, this.turnController);
+        this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.turnController);
+        this.tokensController = new TokensController(this, this.turnController);
+        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.turnController);
+        this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.turnController);
         this.leavingController = new LeavingController(this);
         this.gameEndingController = new GameEndingController(this);
 

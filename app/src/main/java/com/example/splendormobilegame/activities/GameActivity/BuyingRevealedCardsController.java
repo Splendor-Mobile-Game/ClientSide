@@ -13,11 +13,13 @@ import java.util.UUID;
 public class BuyingRevealedCardsController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
+    private TurnController turnController;
     private BuyRevealedCardMessageHandler buyRevealedCardMessageHandler;
 
-    protected BuyingRevealedCardsController(T activity) {
+    protected BuyingRevealedCardsController(T activity, TurnController turnController) {
         super(activity);
         this.gameActivity = activity;
+        this.turnController = turnController;
         this.buyRevealedCardMessageHandler = new BuyRevealedCardMessageHandler();
     }
 
@@ -44,6 +46,12 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
 
             // TODO Update the model
             // TODO Update the view via `gameActivity` or other objects given in constructor
+
+            // If this message pertains to me, it means I requested it, indicating that I have taken my action during my turn.
+            // Therefore, I need to end my turn.
+            // Perhaps it was not the best decision to require the user to manually end their turn.
+            // The server should handle this automatically.
+            BuyingRevealedCardsController.this.turnController.endTurn();
 
             return null;
         }
