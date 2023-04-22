@@ -3,20 +3,19 @@ package com.example.splendormobilegame;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
+import com.example.splendormobilegame.activities.JoinRoom.JoinRoomActivity;
 import com.example.splendormobilegame.config.Config;
 import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
@@ -27,9 +26,7 @@ import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements Serializable {

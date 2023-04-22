@@ -24,24 +24,24 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".CreateRoomActivity"
+            android:name=".activities.CreateRoom.CreateRoomActivity"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".JoinRoomActivity"
+            android:name=".activities.JoinRoom.JoinRoomActivity"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".WaitingRoomActivity"
+            android:name=".activities.WaitingRoom.WaitingRoomActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".CreateRoomActivity"
+            android:parentActivityName=".activities.CreateRoom.CreateRoomActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".GameActivity"
+            android:name=".activities.GameActivity.GameActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".CreateRoomActivity"
+            android:parentActivityName=".activities.CreateRoom.CreateRoomActivity"
             android:screenOrientation="landscape" />
 </application>
     <uses-permission android:name="android.permission.INTERNET" />

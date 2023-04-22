@@ -1,30 +1,34 @@
-package com.example.splendormobilegame;
+package com.example.splendormobilegame.activities.GameActivity;
 
-import android.animation.LayoutTransition;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 
-import org.xmlpull.v1.XmlPullParser;
-
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends CustomAppCompatActivity {
     private ActivityGameActivityBinding binding;
     private int blueTokens = 0;
     private int redTokens = 0;
     private int blackTokens = 0;
     private int whiteTokens = 0;
     private int greenTokens = 0;
+
+    private DeckReservingController deckReservingController;
+    private RevealedCardsReservingController revealedCardsReservingController;
+    private TokensController tokensController;
+    private TurnController turnController;
+    private BuyingRevealedCardsController buyingRevealedCardsController;
+    private BuyingReservedCardsController buyingReservedCardsController;
+    private LeavingController leavingController;
+    private GameEndingController gameEndingController;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +42,80 @@ public class GameActivity extends AppCompatActivity {
         setupSideBar();
         setupButtons();
         setupPointsButtons();
+
+
+        // Create controllers
+        this.turnController = new TurnController(this);
+
+        this.deckReservingController = new DeckReservingController(this, this.turnController);
+        this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.turnController);
+        this.tokensController = new TokensController(this, this.turnController);
+        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.turnController);
+        this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.turnController);
+        this.leavingController = new LeavingController(this);
+        this.gameEndingController = new GameEndingController(this);
+
+        // Set reactions
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.MAKE_RESERVATION_FROM_DECK_ANNOUNCEMENT,
+                this.deckReservingController.getReservationFromDeckMessageHandler()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.MAKE_RESERVATION_FROM_DECK_RESPONSE,
+                this.deckReservingController.getReservationFromDeckMessageHandler()
+        );
+
+        // Commented out reactions are still being developed on the client
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_ANNOUNCEMENT,
+//                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
+//        );
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_RESPONSE,
+//                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
+//        );
+
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.GET_TOKENS_RESPONSE,
+                this.tokensController.getGetTokensMessageHandler()
+        );
+
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.NEW_TURN_ANNOUNCEMENT,
+//                this.turnController.getNewTurnAnnouncementMessageHandler()
+//        );
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.PASS_TURN_ANNOUNCEMENT,
+//                this.turnController.getPassTurnAnnouncementMessageHandler()
+//        );
+
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.BUY_REVEALED_MINE_ANNOUNCEMENT,
+                this.buyingRevealedCardsController.getBuyRevealedCardMessageHandler()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.BUY_REVEALED_MINE_RESPONSE,
+                this.buyingRevealedCardsController.getBuyRevealedCardMessageHandler()
+        );
+
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.BUY_RESERVED_MINE_ANNOUNCEMENT,
+//                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
+//        );
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.BUY_RESERVED_MINE_RESPONSE,
+//                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
+//        );
+
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.LEAVE_ROOM_RESPONSE,
+                this.leavingController.getLeaveRoomResponse()
+        );
+
+//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+//                ServerMessageType.GAME_ENDED,
+//                this.gameEndingController.getGameEndedMessageHandler()
+//        );
     }
 
     private void setupSideBar() {
@@ -51,9 +129,8 @@ public class GameActivity extends AppCompatActivity {
                 binding.otherPlayerCardView.setVisibility(otherCardsVisible);
             }
         });
-
-
     }
+
     private void setupButtons(){
         //Button used for taking points
         binding.takePointsButton.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +251,13 @@ public class GameActivity extends AppCompatActivity {
                     blueTokens--;
                     binding.blueTokenNumberTextView.setText(String.valueOf(blueTokens));
                 }
+            }
+        });
+
+        binding.tokenButtonsCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
             }
         });
 
