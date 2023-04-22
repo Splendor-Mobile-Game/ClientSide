@@ -1,5 +1,6 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -9,9 +10,13 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
+import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.UUID;
 
 public class GameActivity extends CustomAppCompatActivity {
     private ActivityGameActivityBinding binding;
@@ -150,7 +155,8 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.buyCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //testing purpose
+                showCardAlertDialog(UUID.randomUUID());
             }
         });
     }
@@ -261,5 +267,31 @@ public class GameActivity extends CustomAppCompatActivity {
             }
         });
 
+    }
+    private void showCardAlertDialog(UUID cardUuid){
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(getResources().getString(R.string.card_title))
+                .setMessage(getResources().getString(R.string.card_message))
+                .setNeutralButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Respond to neutral button press (hide dialog)
+                    }
+                })
+                .setNegativeButton(getResources().getString(R.string.reserve_card), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Respond to negative button press (left button)
+                        revealedCardsReservingController.reserveCard(cardUuid);
+                    }
+                })
+                .setPositiveButton(getResources().getString(R.string.buy_card), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Respond to positive button press (right button)
+                        buyingRevealedCardsController.buyRevealedCard(cardUuid);
+                    }
+                })
+                .show();
     }
 }
