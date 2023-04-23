@@ -35,6 +35,9 @@
     <string name="current_players">Players</string>
     <string name="leave_confirmation_message">Are you sure you want to leave the room?</string>
     <string name="leave_confirmation_title">Leaving room?</string>
+    <string name="card_title">Card options</string>
+    <string name="card_message">What do you want to do with card?</string>
+
 
     <!--GameActivity-->
     <string name="reserve_card">Reserve card</string>
