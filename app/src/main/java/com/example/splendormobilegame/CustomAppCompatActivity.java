@@ -8,7 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CustomAppCompatActivity extends AppCompatActivity {
 
     public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(CustomAppCompatActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void changeActivity(Class<? extends AppCompatActivity> newActivity) {
