@@ -60,6 +60,14 @@ public class JoinRoomController extends Controller {
                     new User(owner.uuid, owner.name)
             );
 
+            for(JoinRoom.UserDataResponse user : responseData.users)
+            {
+                if(user==owner){
+                    continue;
+                }
+                room.addUser(new User(user.uuid, user.name));
+            }
+
             Model.setRoom(room);
 
             activity.changeActivity(WaitingRoomActivity.class);

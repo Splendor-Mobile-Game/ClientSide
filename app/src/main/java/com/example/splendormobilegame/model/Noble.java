@@ -15,8 +15,8 @@ public class Noble {
     private final int onyxCost;  // Black
 
 
-    public Noble(int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost) {
-        this.uuid = UUID.randomUUID();
+    public Noble(UUID uuid, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost) {
+        this.uuid = uuid;
         this.emeraldCost = emeraldCost;
         this.sapphireCost = sapphireCost;
         this.rubyCost = rubyCost;

@@ -23,8 +23,8 @@ public class Card {
     private final int onyxCost;
 
 
-    public Card(CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token) {
-        this.uuid = UUID.randomUUID();
+    public Card(UUID uuid, CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token) {
+        this.uuid = uuid;
         this.cardTier = cardTier;
         this.points = points;
         this.emeraldCost = emeraldCost;
