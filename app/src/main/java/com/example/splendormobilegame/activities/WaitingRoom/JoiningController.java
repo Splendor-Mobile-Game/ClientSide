@@ -46,8 +46,14 @@ public class JoiningController extends Controller {
             for (User u : Model.getRoom().getUsers()) {
                 usersList.add(u.getName());
             }
-            usersAdapter.setUsersList(usersList);
-            usersAdapter.notifyDataSetChanged();
+
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    usersAdapter.setUsersList(usersList);
+                    usersAdapter.notifyDataSetChanged();
+                }
+            });
 
             activity.showToast("User: " + newUser.name + " has joined to the room.");
             return null;
