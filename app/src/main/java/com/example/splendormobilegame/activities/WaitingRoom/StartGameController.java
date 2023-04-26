@@ -94,7 +94,6 @@ public class StartGameController extends Controller {
                 ));
             }
 
-            List<TokenType> tokenTypes = new ArrayList<>(EnumSet.allOf(TokenType.class));
             HashMap<CardTier,ArrayList<Card>> cardsOnTable = new HashMap<CardTier,ArrayList<Card>>(){{
                 put(CardTier.LEVEL_1,new ArrayList<Card>());
                 put(CardTier.LEVEL_2,new ArrayList<Card>());
@@ -152,22 +151,3 @@ public class StartGameController extends Controller {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
