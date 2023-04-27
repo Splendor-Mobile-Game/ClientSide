@@ -8,14 +8,21 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
+import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.github.splendor_mobile_game.game.enums.CardTier;
+import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class GameActivity extends CustomAppCompatActivity {
@@ -34,6 +41,15 @@ public class GameActivity extends CustomAppCompatActivity {
     private BuyingReservedCardsController buyingReservedCardsController;
     private LeavingController leavingController;
     private GameEndingController gameEndingController;
+    CardsFirstTierAdapter cardsFirstTierAdapter;
+    CardsSecondTierAdapter cardsSecondTierAdapter;
+    CardsThirdTierAdapter cardsThirdTierAdapter;
+    RecyclerView cardsFirstTierRecyclerView;
+    RecyclerView cardsSecondTierRecyclerView;
+    RecyclerView cardsThirdTierRecyclerView;
+    List<Card> cardListFirstTier = new ArrayList<>();
+    List<Card> cardListSecondTier = new ArrayList<>();
+    List<Card> cardListThirdTier = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +63,9 @@ public class GameActivity extends CustomAppCompatActivity {
         setupSideBar();
         setupButtons();
         setupPointsButtons();
-
+        setupCardsFirstTierRecyclerView();
+        setupCardsSecondTierRecyclerView();
+        setupCardsThirdTierRecyclerView();
 
         // Create controllers
         this.turnController = new TurnController(this);
@@ -294,4 +312,54 @@ public class GameActivity extends CustomAppCompatActivity {
                 })
                 .show();
     }
+    public void setupCardsFirstTierRecyclerView(){
+        cardsFirstTierRecyclerView = (RecyclerView) binding.cards1RecyclerView;
+        cardsFirstTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Card myCard1 = new Card(CardTier.LEVEL_1, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
+        Card myCard2 = new Card(CardTier.LEVEL_1, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
+        Card myCard3 = new Card(CardTier.LEVEL_1, 4, 50, 5, 3, 2, 1, TokenType.EMERALD);
+        Card myCard4 = new Card(CardTier.LEVEL_1, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
+        cardListFirstTier.add(myCard1);
+        cardListFirstTier.add(myCard2);
+        cardListFirstTier.add(myCard3);
+        cardListFirstTier.add(myCard4);
+        cardsFirstTierAdapter = new CardsFirstTierAdapter(cardListFirstTier);
+        cardsFirstTierRecyclerView.setAdapter(cardsFirstTierAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+    public void setupCardsSecondTierRecyclerView(){
+        cardsSecondTierRecyclerView = (RecyclerView) binding.cards2RecyclerView;
+        cardsSecondTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Card myCard1 = new Card(CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
+        Card myCard2 = new Card(CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
+        Card myCard3 = new Card(CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.EMERALD);
+        Card myCard4 = new Card(CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
+        cardListSecondTier.add(myCard1);
+        cardListSecondTier.add(myCard2);
+        cardListSecondTier.add(myCard3);
+        cardListSecondTier.add(myCard4);
+        cardsSecondTierAdapter = new CardsSecondTierAdapter(cardListSecondTier);
+        cardsSecondTierRecyclerView.setAdapter(cardsSecondTierAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+
+    public void setupCardsThirdTierRecyclerView(){
+        cardsThirdTierRecyclerView = (RecyclerView) binding.cards3RecyclerView;
+        cardsThirdTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Card myCard1 = new Card(CardTier.LEVEL_3, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
+        Card myCard2 = new Card(CardTier.LEVEL_3, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
+        Card myCard3 = new Card(CardTier.LEVEL_3, 4, 50, 5, 3, 2, 1, TokenType.EMERALD);
+        Card myCard4 = new Card(CardTier.LEVEL_3, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
+        cardListThirdTier.add(myCard1);
+        cardListThirdTier.add(myCard2);
+        cardListThirdTier.add(myCard3);
+        cardListThirdTier.add(myCard4);
+        cardsThirdTierAdapter = new CardsThirdTierAdapter(cardListThirdTier);
+        cardsThirdTierRecyclerView.setAdapter(cardsThirdTierAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+
 }

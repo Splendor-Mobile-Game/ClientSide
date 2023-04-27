@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
+import com.example.splendormobilegame.activities.GameActivity.GameActivity;
 import com.example.splendormobilegame.activities.JoinRoom.JoinRoomActivity;
 import com.example.splendormobilegame.config.Config;
 import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 //create new intent -> pass class -> start intent
-                Intent myIntent = new Intent(MainActivity.this, CreateRoomActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, GameActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 //Animation when switching classes
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
