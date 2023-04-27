@@ -286,7 +286,7 @@ public class GameActivity extends CustomAppCompatActivity {
         });
 
     }
-    private void showCardAlertDialog(UUID cardUuid){
+    public void showCardAlertDialog(UUID cardUuid){
         new MaterialAlertDialogBuilder(this)
                 .setTitle(getResources().getString(R.string.card_title))
                 .setMessage(getResources().getString(R.string.card_message))
@@ -315,10 +315,10 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsFirstTierRecyclerView(){
         cardsFirstTierRecyclerView = (RecyclerView) binding.cards1RecyclerView;
         cardsFirstTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(CardTier.LEVEL_1, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
-        Card myCard2 = new Card(CardTier.LEVEL_1, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
-        Card myCard3 = new Card(CardTier.LEVEL_1, 4, 50, 5, 3, 2, 1, TokenType.EMERALD);
-        Card myCard4 = new Card(CardTier.LEVEL_1, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
+        Card myCard1 = new Card(CardTier.LEVEL_1, 5, 10, 7, 3, 2, 1, TokenType.RUBY);
+        Card myCard2 = new Card(CardTier.LEVEL_1, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
+        Card myCard3 = new Card(CardTier.LEVEL_1, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
+        Card myCard4 = new Card(CardTier.LEVEL_1, 3, 16, 58, 3, 2, 1, TokenType.DIAMOND);
         cardListFirstTier.add(myCard1);
         cardListFirstTier.add(myCard2);
         cardListFirstTier.add(myCard3);
@@ -332,9 +332,9 @@ public class GameActivity extends CustomAppCompatActivity {
         cardsSecondTierRecyclerView = (RecyclerView) binding.cards2RecyclerView;
         cardsSecondTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         Card myCard1 = new Card(CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
-        Card myCard2 = new Card(CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
-        Card myCard3 = new Card(CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.EMERALD);
-        Card myCard4 = new Card(CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
+        Card myCard2 = new Card(CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
+        Card myCard3 = new Card(CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
+        Card myCard4 = new Card(CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
         cardListSecondTier.add(myCard1);
         cardListSecondTier.add(myCard2);
         cardListSecondTier.add(myCard3);
@@ -348,9 +348,9 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsThirdTierRecyclerView(){
         cardsThirdTierRecyclerView = (RecyclerView) binding.cards3RecyclerView;
         cardsThirdTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(CardTier.LEVEL_3, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
+        Card myCard1 = new Card(CardTier.LEVEL_3, 5, 10, 7, 3, 2, 1, TokenType.ONYX);
         Card myCard2 = new Card(CardTier.LEVEL_3, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
-        Card myCard3 = new Card(CardTier.LEVEL_3, 4, 50, 5, 3, 2, 1, TokenType.EMERALD);
+        Card myCard3 = new Card(CardTier.LEVEL_3, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
         Card myCard4 = new Card(CardTier.LEVEL_3, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
         cardListThirdTier.add(myCard1);
         cardListThirdTier.add(myCard2);
