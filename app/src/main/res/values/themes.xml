@@ -90,6 +90,30 @@
         <item name="cornerSize">32dp</item>
     </style>
 
+    <style name="RoundedMaroonButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
+        <item name="backgroundTint">@color/maroon</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="tint">@color/marian</item>
+        <item name="iconTint">@color/marian</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+    <style name="DefaultMaroonButtonStyle" parent="@style/ButtonStyle">
+        <item name="materialThemeOverlay">@style/Widget.Material3.Button.ElevatedButton</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
+        <item name="backgroundTint">@color/maroon</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="tint">@color/marian</item>
+        <item name="iconTint">@color/marian</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="ProgressBarColor" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">@color/light_yellow</item>
+    </style>
     <style name="AlertDialogCustom" parent="Theme.Material3.Dark.Dialog.Alert">
         <item name="android:textColor">@color/white</item>
     </style>

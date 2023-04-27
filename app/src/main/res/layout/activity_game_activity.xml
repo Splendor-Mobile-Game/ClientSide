@@ -847,6 +847,7 @@
 
     <Button
         android:id="@+id/sideBarButton"
+        style="@style/DefaultMaroonButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -917,6 +918,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/reserveCardButton"
+                style="@style/DefaultMaroonButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reserve_card"
@@ -926,6 +928,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buyCardButton"
+                style="@style/DefaultMaroonButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/buy_card"
@@ -935,6 +938,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/takePointsButton"
+                style="@style/DefaultMaroonButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/take_points"
@@ -974,6 +978,7 @@
 
             <Button
                 android:id="@+id/takeTokensButton"
+                style="@style/DefaultMaroonButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -1151,7 +1156,7 @@
                 style="@style/pointsButtonStyle"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -1250,8 +1255,10 @@
                 android:text="3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/redTokenButton"
+                app:layout_constraintVertical_bias="1.0"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
                 app:strokeColor="@color/black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1262,7 +1269,8 @@
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:padding="0dp"
         android:text="@string/skip_turn"
         android:textSize="10sp"
@@ -1271,7 +1279,7 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@style/ProgressBarColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
