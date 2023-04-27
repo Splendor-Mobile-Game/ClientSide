@@ -112,7 +112,7 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
 
             //Lastly tokens
             for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
-                buyer.addTokens(tokenType, buyer.getTokens().get(tokenType)-tokens.get(tokenType));
+                buyer.setTokens(tokenType, tokens.get(tokenType));
             }
             // TODO Update the view via `gameActivity` or other objects given in constructor
 
