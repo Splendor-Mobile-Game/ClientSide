@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 //create new intent -> pass class -> start intent
-                Intent myIntent = new Intent(MainActivity.this, GameActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, CreateRoomActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 //Animation when switching classes
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
