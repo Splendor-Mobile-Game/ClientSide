@@ -80,11 +80,10 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
             Game game = room.getGame();
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
             Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);
-            ReservedCard tempReservedCard = new ReservedCard(boughtCard, buyer, false);
 
 
             buyer.addCard(boughtCard);
-            game.removeReservedCard(buyer, tempReservedCard);
+            game.removeReservedCard(buyer.getUuid(), boughtCard.getUuid());
 
             for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
                 buyer.setTokens(tokenType, tokens.get(tokenType));

@@ -45,8 +45,14 @@ public class Game {
         reservedCards.add(reservedCard);
     }
 
-    public void removeReservedCard(User user, ReservedCard reservedCard){
-        if(user.equals(reservedCard.getUser())){reservedCards.remove(reservedCard);}
+    public void removeReservedCard(UUID userUuid, UUID cardUuid) {
+        for(ReservedCard card : reservedCards){
+            if(cardUuid.equals(card.getCard().getUuid()) && userUuid.equals(card.getUser().getUuid()))
+            {
+                reservedCards.remove(card);
+                break;
+            }
+        }
     }
 
     public Card getCardByUuid(UUID uuid) {
