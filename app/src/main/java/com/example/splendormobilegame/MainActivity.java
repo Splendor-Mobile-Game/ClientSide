@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
+import com.example.splendormobilegame.activities.GameActivity.GameActivity;
 import com.example.splendormobilegame.activities.JoinRoom.JoinRoomActivity;
 import com.example.splendormobilegame.config.Config;
 import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
