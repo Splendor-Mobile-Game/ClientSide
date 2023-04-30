@@ -317,7 +317,7 @@ public class GameActivity extends CustomAppCompatActivity {
                 .show();
     }
 
-    public void showDeckReserveDialog(UUID cardUuid) {
+    public void showDeckReserveDialog(int cardTier) {
         new MaterialAlertDialogBuilder(this)
                 .setTitle(getResources().getString(R.string.card_title))
                 .setMessage(getResources().getString(R.string.card_message))
@@ -331,7 +331,7 @@ public class GameActivity extends CustomAppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Respond to positive button press (right button)
-                        deckReservingController.reserveCard(cardUuid);
+                        deckReservingController.reserveCard(cardTier);
                     }
                 })
                 .show();
