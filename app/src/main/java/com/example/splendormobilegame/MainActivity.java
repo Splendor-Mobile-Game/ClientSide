@@ -22,6 +22,7 @@ import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
 import com.example.splendormobilegame.databinding.ActivityMainActivityBinding;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.model.Model;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.CreateRoom;
 
 import java.io.Serializable;
 import java.net.URI;

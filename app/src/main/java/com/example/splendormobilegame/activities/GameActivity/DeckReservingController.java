@@ -23,13 +23,13 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
         this.reservationFromDeckMessageHandler = new ReservationFromDeckMessageHandler();
     }
 
-    public void reserveCard(UUID cardUuid) {
+    public void reserveCard(int cardTier) {
         // Maybe you want to check some things now
         // Then call the method to send request
-        this.sendRequestToReserve(cardUuid);
+        this.sendRequestToReserve(cardTier);
     }
 
-    private void sendRequestToReserve(UUID cardUuid) {
+    private void sendRequestToReserve(int cardTier) {
         // TODO Compose up the message to the server
         // TODO Send the message
     }
