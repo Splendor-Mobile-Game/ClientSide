@@ -71,6 +71,10 @@ public class Game {
         cardsOnTable.replace(card.getCardTier(), cards);
     }
 
+    public void removeCardFromTable(Card card){
+        cardsOnTable.get(card.getCardTier()).remove(card);
+    }
+
     public void transferNobleToUser(Noble noble, User user) {
         if (!noblesOnTable.contains(noble)) return;
         noblesOnTable.remove(noble);
