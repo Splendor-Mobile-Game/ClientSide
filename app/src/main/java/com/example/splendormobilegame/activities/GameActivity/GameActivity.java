@@ -341,22 +341,22 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.CardPile1CardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //random UUID for testing
-                showDeckReserveDialog(UUID.randomUUID());
+                //reserve 1 tier card
+                showDeckReserveDialog(1);
             }
         });
         binding.CardPile2CardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //random UUID for testing
-                showDeckReserveDialog(UUID.randomUUID());
+                //reserve 2 tier card
+                showDeckReserveDialog(2);
             }
         });
         binding.CardPile3CardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //random UUID for testing
-                showDeckReserveDialog(UUID.randomUUID());
+                //reserve 3 tier card
+                showDeckReserveDialog(3);
             }
         });
 
