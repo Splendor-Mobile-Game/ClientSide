@@ -8,14 +8,21 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
+import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.github.splendor_mobile_game.game.enums.CardTier;
+import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class GameActivity extends CustomAppCompatActivity {
@@ -34,6 +41,15 @@ public class GameActivity extends CustomAppCompatActivity {
     private BuyingReservedCardsController buyingReservedCardsController;
     private LeavingController leavingController;
     private GameEndingController gameEndingController;
+    CardsFirstTierAdapter cardsFirstTierAdapter;
+    CardsSecondTierAdapter cardsSecondTierAdapter;
+    CardsThirdTierAdapter cardsThirdTierAdapter;
+    RecyclerView cardsFirstTierRecyclerView;
+    RecyclerView cardsSecondTierRecyclerView;
+    RecyclerView cardsThirdTierRecyclerView;
+    List<Card> cardListFirstTier = new ArrayList<>();
+    List<Card> cardListSecondTier = new ArrayList<>();
+    List<Card> cardListThirdTier = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +63,10 @@ public class GameActivity extends CustomAppCompatActivity {
         setupSideBar();
         setupButtons();
         setupPointsButtons();
-
+        setupCardsFirstTierRecyclerView();
+        setupCardsSecondTierRecyclerView();
+        setupCardsThirdTierRecyclerView();
+        setupReservingFromDeckButtons();
 
         // Create controllers
         this.turnController = new TurnController(this);
@@ -136,7 +155,7 @@ public class GameActivity extends CustomAppCompatActivity {
         });
     }
 
-    private void setupButtons(){
+    private void setupButtons() {
         //Button used for taking points
         binding.takePointsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,19 +179,21 @@ public class GameActivity extends CustomAppCompatActivity {
             }
         });
     }
+
     //Function swapping right side between take points and cards.
-    private void ChangeRightSide(){
+    private void ChangeRightSide() {
         int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
         int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == View.GONE) ? View.GONE : View.VISIBLE;
         TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
         binding.CardsAristocratsCardView.setVisibility(cardsCard);
         binding.takeTokensCardView.setVisibility(takeTokensCard);
     }
-    private void setupPointsButtons(){
+
+    private void setupPointsButtons() {
         binding.addBlackTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(blackTokens<2){
+                if (blackTokens < 2) {
                     blackTokens++;
                     binding.blackTokenNumberTextView.setText(String.valueOf(blackTokens));
                 }
@@ -181,7 +202,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addRedTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(redTokens<2){
+                if (redTokens < 2) {
                     redTokens++;
                     binding.redTokenNumberTextView.setText(String.valueOf(redTokens));
                 }
@@ -190,7 +211,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addWhiteTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(whiteTokens<2){
+                if (whiteTokens < 2) {
                     whiteTokens++;
                     binding.whiteTokenNumberTextView.setText(String.valueOf(whiteTokens));
                 }
@@ -199,7 +220,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addGreenTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(greenTokens<2){
+                if (greenTokens < 2) {
                     greenTokens++;
                     binding.greenTokenNumberTextView.setText(String.valueOf(greenTokens));
                 }
@@ -208,7 +229,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addBlueTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(blueTokens<2){
+                if (blueTokens < 2) {
                     blueTokens++;
                     binding.blueTokenNumberTextView.setText(String.valueOf(blueTokens));
                 }
@@ -217,7 +238,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeBlackTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(blackTokens>-3){
+                if (blackTokens > -3) {
                     blackTokens--;
                     binding.blackTokenNumberTextView.setText(String.valueOf(blackTokens));
                 }
@@ -226,7 +247,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeRedTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(redTokens>-3){
+                if (redTokens > -3) {
                     redTokens--;
                     binding.redTokenNumberTextView.setText(String.valueOf(redTokens));
                 }
@@ -235,7 +256,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeWhiteTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(whiteTokens>-3){
+                if (whiteTokens > -3) {
                     whiteTokens--;
                     binding.whiteTokenNumberTextView.setText(String.valueOf(whiteTokens));
                 }
@@ -244,7 +265,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeGreenTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(greenTokens>-3){
+                if (greenTokens > -3) {
                     greenTokens--;
                     binding.greenTokenNumberTextView.setText(String.valueOf(greenTokens));
                 }
@@ -253,7 +274,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeBlueTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(blueTokens>-3){
+                if (blueTokens > -3) {
                     blueTokens--;
                     binding.blueTokenNumberTextView.setText(String.valueOf(blueTokens));
                 }
@@ -263,12 +284,13 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.tokenButtonsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
 
     }
-    private void showCardAlertDialog(UUID cardUuid){
+
+    public void showCardAlertDialog(UUID cardUuid) {
         new MaterialAlertDialogBuilder(this)
                 .setTitle(getResources().getString(R.string.card_title))
                 .setMessage(getResources().getString(R.string.card_message))
@@ -293,5 +315,106 @@ public class GameActivity extends CustomAppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public void showDeckReserveDialog(int cardTier) {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(getResources().getString(R.string.card_title))
+                .setMessage(getResources().getString(R.string.card_message))
+                .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //hide dialog
+                    }
+                })
+                .setPositiveButton(getResources().getString(R.string.reserve_card), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Respond to positive button press (right button)
+                        deckReservingController.reserveCard(cardTier);
+                    }
+                })
+                .show();
+    }
+
+    private void setupReservingFromDeckButtons() {
+        binding.CardPile1CardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //reserve 1 tier card
+                showDeckReserveDialog(1);
+            }
+        });
+        binding.CardPile2CardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //reserve 2 tier card
+                showDeckReserveDialog(2);
+            }
+        });
+        binding.CardPile3CardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //reserve 3 tier card
+                showDeckReserveDialog(3);
+            }
+        });
+
+    }
+
+    public void setupCardsFirstTierRecyclerView() {
+        cardsFirstTierRecyclerView = (RecyclerView) binding.cards1RecyclerView;
+        cardsFirstTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 5, 10, 7, 3, 2, 1, TokenType.RUBY);
+        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
+        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
+        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 3, 16, 58, 3, 2, 1, TokenType.DIAMOND);
+        cardListFirstTier.add(myCard1);
+        cardListFirstTier.add(myCard2);
+        cardListFirstTier.add(myCard3);
+        cardListFirstTier.add(myCard4);
+        cardsFirstTierAdapter = new CardsFirstTierAdapter(cardListFirstTier);
+        cardsFirstTierRecyclerView.setAdapter(cardsFirstTierAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+
+    public void setupCardsSecondTierRecyclerView() {
+        cardsSecondTierRecyclerView = (RecyclerView) binding.cards2RecyclerView;
+        cardsSecondTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
+        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
+        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
+        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
+        cardListSecondTier.add(myCard1);
+        cardListSecondTier.add(myCard2);
+        cardListSecondTier.add(myCard3);
+        cardListSecondTier.add(myCard4);
+        cardsSecondTierAdapter = new CardsSecondTierAdapter(cardListSecondTier);
+        cardsSecondTierRecyclerView.setAdapter(cardsSecondTierAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+
+    public void setupCardsThirdTierRecyclerView() {
+        cardsThirdTierRecyclerView = (RecyclerView) binding.cards3RecyclerView;
+        cardsThirdTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 5, 10, 7, 3, 2, 1, TokenType.ONYX);
+        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
+        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
+        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
+        cardListThirdTier.add(myCard1);
+        cardListThirdTier.add(myCard2);
+        cardListThirdTier.add(myCard3);
+        cardListThirdTier.add(myCard4);
+        cardsThirdTierAdapter = new CardsThirdTierAdapter(cardListThirdTier);
+        cardsThirdTierRecyclerView.setAdapter(cardsThirdTierAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

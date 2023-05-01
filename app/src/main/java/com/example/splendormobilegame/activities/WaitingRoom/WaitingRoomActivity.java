@@ -81,6 +81,10 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
                 ServerMessageType.JOIN_ROOM_RESPONSE,
                 this.joiningController.getJoinRoomResponse()
         );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.START_GAME_RESPONSE,
+                this.startGameController.getStartGameResponse()
+        );
 
         binding.nameOfRoomTextView.setText(Model.getRoom().getName());
         binding.enterCode.setText(Model.getRoom().getEnterCode());

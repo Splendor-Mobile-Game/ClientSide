@@ -49,6 +49,11 @@ public class User {
         this.uuid = uuid;
     }
 
+    public void setTokens(TokenType tokenType,int amount){
+        tokens.replace(tokenType, amount);
+    }
+
+
     public void addTokens(TokenType tokenType, int amount) {
         if (tokens.get(tokenType) == null) return;
         int val = tokens.get(tokenType);

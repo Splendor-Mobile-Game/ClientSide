@@ -45,6 +45,16 @@ public class Game {
         reservedCards.add(reservedCard);
     }
 
+    public void removeReservedCard(UUID userUuid, UUID cardUuid) {
+        for(ReservedCard card : reservedCards){
+            if(cardUuid.equals(card.getCard().getUuid()) && userUuid.equals(card.getUser().getUuid()))
+            {
+                reservedCards.remove(card);
+                break;
+            }
+        }
+    }
+
     public Card getCardByUuid(UUID uuid) {
         for (ArrayList<Card> tierCards : cardsOnTable.values())
             for (Card card : tierCards) {
@@ -69,6 +79,10 @@ public class Game {
         if (cards.contains(card)) return;
         cards.add(card);
         cardsOnTable.replace(card.getCardTier(), cards);
+    }
+
+    public void removeCardFromTable(Card card){
+        cardsOnTable.get(card.getCardTier()).remove(card);
     }
 
     public void transferNobleToUser(Noble noble, User user) {
