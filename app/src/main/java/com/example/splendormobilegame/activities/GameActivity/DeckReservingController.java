@@ -16,8 +16,9 @@ import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.MakeReservationFromDeck;
-import java.util.UUID;
 
+
+import java.util.UUID;
 
 public class DeckReservingController<T extends GameActivity> extends Controller {
 
@@ -32,24 +33,20 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
         this.reservationFromDeckMessageHandler = new ReservationFromDeckMessageHandler();
     }
 
-    public void reserveCard(UUID cardUuid) {
+    public void reserveCard(int cardTier) {
         // Maybe you want to check some things now
         // Then call the method to send request
-      this.sendRequestToReserve(cardUuid);
+        this.sendRequestToReserve(cardTier);
     }
 
-    private void sendRequestToReserve(UUID cardUuid) {
+    private void sendRequestToReserve(int cardTier) {
         // TODO Compose up the message to the server
         // TODO Send the message
-
-
-        Card card=Model.getRoom().getGame().getCardByUuid(cardUuid);
-        
-
-        MakeReservationFromDeck.DataDTO dataDTO = new MakeReservationFromDeck.DataDTO(Model.getUserUuid(), card.getCardTier().toString());
+        MakeReservationFromDeck.DataDTO dataDTO = new MakeReservationFromDeck.DataDTO(Model.getUserUuid(),  String.valueOf(cardTier));
 
         UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.MAKE_RESERVATION_FROM_DECK, dataDTO);
         CustomWebSocketClient.getInstance().send(userMessage);
+
 
     }
 
@@ -63,15 +60,20 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
         public UserMessage react(ServerMessage serverMessage) {
             Log.i("UserReaction", "Entered ReservationFromDeckMessageHandler react method");
 
-            
+            // TODO Update the model
+            // TODO Update the view via `gameActivity` or other objects given in constructor
             MakeReservationFromDeck.ResponseData responseData = (MakeReservationFromDeck.ResponseData) ReactionUtils.getResponseData(serverMessage, MakeReservationFromDeck.ResponseData.class);
 
 
             User user=Model.getRoom().getUserByUuid(Model.getUserUuid());
-            Card card=Model.getRoom().getGame().getCardByUuid(responseData.card.uuid);
-            ReservedCard reservedCard= new ReservedCard(card,user,true );
+
+
+            Card card=new Card(responseData.card.uuid,responseData.card.cardTier,responseData.card.prestige,responseData.card.tokensRequired.emerald,responseData.card.tokensRequired.sapphire, responseData.card.tokensRequired.ruby,responseData.card.tokensRequired.diamond,responseData.card.tokensRequired.onyx, responseData.card.bonusColor);
+
+
+            ReservedCard reservedCard= new ReservedCard(card,user,false );
             Model.getRoom().getGame().reserveCard(user, reservedCard);
-            
+
 
 
             // TODO Update the view via `gameActivity` or other objects given in constructor
