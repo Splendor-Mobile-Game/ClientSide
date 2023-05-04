@@ -40,8 +40,7 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
     }
 
     private void sendRequestToReserve(int cardTier) {
-        // TODO Compose up the message to the server
-        // TODO Send the message
+
         MakeReservationFromDeck.DataDTO dataDTO = new MakeReservationFromDeck.DataDTO(Model.getUserUuid(),  String.valueOf(cardTier));
 
         UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.MAKE_RESERVATION_FROM_DECK, dataDTO);
@@ -60,12 +59,11 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
         public UserMessage react(ServerMessage serverMessage) {
             Log.i("UserReaction", "Entered ReservationFromDeckMessageHandler react method");
 
-            // TODO Update the model
-            // TODO Update the view via `gameActivity` or other objects given in constructor
+
             MakeReservationFromDeck.ResponseData responseData = (MakeReservationFromDeck.ResponseData) ReactionUtils.getResponseData(serverMessage, MakeReservationFromDeck.ResponseData.class);
 
 
-            User user=Model.getRoom().getUserByUuid(Model.getUserUuid());
+            User user=Model.getRoom().getUserByUuid(responseData.userUuid);
 
 
             Card card=new Card(responseData.card.uuid,responseData.card.cardTier,responseData.card.prestige,responseData.card.tokensRequired.emerald,responseData.card.tokensRequired.sapphire, responseData.card.tokensRequired.ruby,responseData.card.tokensRequired.diamond,responseData.card.tokensRequired.onyx, responseData.card.bonusColor);
@@ -76,7 +74,7 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
 
 
 
-            // TODO Update the view via `gameActivity` or other objects given in constructor
+
 
             // If this message pertains to me, it means I requested it, indicating that I have taken my action during my turn.
             // Therefore, I need to end my turn.
