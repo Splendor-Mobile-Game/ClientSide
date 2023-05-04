@@ -78,7 +78,8 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
 
             // If this message pertains to me, it means I requested it, indicating that I have taken my action during my turn.
             // Therefore, I need to end my turn.
-
+            
+            // TODO Update the view via `gameActivity` or other objects given in constructor
 
             activity.showToast("User "+user.getName()+"reserved card from deck "+card.getCardTier());
 
