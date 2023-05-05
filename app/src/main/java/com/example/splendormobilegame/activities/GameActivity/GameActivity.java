@@ -1,5 +1,6 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -15,6 +16,9 @@ import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
+import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.model.Room;
+import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
@@ -22,6 +26,7 @@ import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -411,6 +416,63 @@ public class GameActivity extends CustomAppCompatActivity {
         cardsThirdTierRecyclerView.setAdapter(cardsThirdTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+    //Numbers don't need to be localized
+    @SuppressLint("SetTextI18n")
+    public void updateScoreBoard(){
+        ArrayList<User> users = Model.getRoom().getUsers();
+        int userCount = Model.getRoom().getPlayerCount();
+        if(userCount>0){
+            HashMap<TokenType, Integer> tokens =  users.get(0).getTokens();
+            binding.Player1NameTV.setText(users.get(0).getName());
+            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            //Will need to add it after users points will be added
+            //binding.Player1PointsTV.setText();
+        }
+        if(userCount>1){
+            HashMap<TokenType, Integer> tokens =  users.get(1).getTokens();
+            binding.Player1NameTV.setText(users.get(1).getName());
+            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            //Will need to add it after users points will be added
+            //binding.Player1PointsTV.setText();
+        }
+        if(userCount>2){
+            HashMap<TokenType, Integer> tokens =  users.get(2).getTokens();
+            binding.Player1NameTV.setText(users.get(2).getName());
+            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            //Will need to add it after users points will be added
+            //binding.Player1PointsTV.setText();
+        }
+        if(userCount>3){
+            HashMap<TokenType, Integer> tokens =  users.get(3).getTokens();
+            binding.Player1NameTV.setText(users.get(3).getName());
+            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            //Will need to add it after users points will be added
+            //binding.Player1PointsTV.setText();
+        }
+
+
+
     }
 
     @Override
