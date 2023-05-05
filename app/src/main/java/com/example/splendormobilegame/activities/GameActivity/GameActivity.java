@@ -431,44 +431,40 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
             binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
             binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            //Will need to add it after users points will be added
-            //binding.Player1PointsTV.setText();
+            binding.Player1PointsTV.setText(users.get(0).getPoints());
         }
         if(userCount>1){
             HashMap<TokenType, Integer> tokens =  users.get(1).getTokens();
-            binding.Player1NameTV.setText(users.get(1).getName());
-            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            //Will need to add it after users points will be added
-            //binding.Player1PointsTV.setText();
+            binding.Player2NameTV.setText(users.get(1).getName());
+            binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            binding.Player2PointsTV.setText(users.get(1).getPoints());
         }
         if(userCount>2){
             HashMap<TokenType, Integer> tokens =  users.get(2).getTokens();
-            binding.Player1NameTV.setText(users.get(2).getName());
-            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            //Will need to add it after users points will be added
-            //binding.Player1PointsTV.setText();
+            binding.Player3NameTV.setText(users.get(2).getName());
+            binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            binding.Player3PointsTV.setText(users.get(2).getPoints());
         }
         if(userCount>3){
             HashMap<TokenType, Integer> tokens =  users.get(3).getTokens();
-            binding.Player1NameTV.setText(users.get(3).getName());
-            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            //Will need to add it after users points will be added
-            //binding.Player1PointsTV.setText();
+            binding.Player3NameTV.setText(users.get(3).getName());
+            binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+            binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+            binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+            binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+            binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+            binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+            binding.Player3PointsTV.setText(users.get(3).getPoints());
         }
 
 
