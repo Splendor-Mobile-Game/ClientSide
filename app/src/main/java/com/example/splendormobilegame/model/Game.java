@@ -3,6 +3,7 @@ package com.example.splendormobilegame.model;
 
 import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Game {
     private final ArrayList<ReservedCard> reservedCards;
     private final HashMap<CardTier, ArrayList<Card>> cardsOnTable;
     private User whosTurn;
+    private ArrayList<EndTurn.PlayerDataResponse> playerRanking;
 
 
     public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable) {
@@ -108,6 +110,10 @@ public class Game {
     public void setWhosTurn(User whosTurn) {
         this.whosTurn = whosTurn;
     }
+
+    public ArrayList<EndTurn.PlayerDataResponse> getPlayerRanking(){ return this.playerRanking; }
+
+    public void setPlayerRanking(ArrayList<EndTurn.PlayerDataResponse> currentPlayerRanking){ this.playerRanking = currentPlayerRanking; }
 
 
 }
