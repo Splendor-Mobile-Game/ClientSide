@@ -17,7 +17,7 @@ public class Game {
     private final ArrayList<ReservedCard> reservedCards;
     private final HashMap<CardTier, ArrayList<Card>> cardsOnTable;
     private User whosTurn;
-    private static ArrayList<EndTurn.PlayerDataResponse> playerRanking;
+    private ArrayList<EndTurn.PlayerDataResponse> playerRanking;
 
 
     public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable) {
@@ -111,9 +111,9 @@ public class Game {
         this.whosTurn = whosTurn;
     }
 
-    public static ArrayList<EndTurn.PlayerDataResponse> getPlayerRanking(){ return playerRanking; }
+    public ArrayList<EndTurn.PlayerDataResponse> getPlayerRanking(){ return this.playerRanking; }
 
-    public static void setPlayerRanking(ArrayList<EndTurn.PlayerDataResponse> currentPlayerRanking){ playerRanking = currentPlayerRanking; }
+    public void setPlayerRanking(ArrayList<EndTurn.PlayerDataResponse> currentPlayerRanking){ this.playerRanking = currentPlayerRanking; }
 
 
 }

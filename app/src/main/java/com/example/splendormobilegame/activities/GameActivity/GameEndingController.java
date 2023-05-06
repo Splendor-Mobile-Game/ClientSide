@@ -38,7 +38,7 @@ public class GameEndingController<T extends GameActivity> extends Controller {
 
 
             EndTurn.ResponseDataEndGame responseDataEndGame = (EndTurn.ResponseDataEndGame) ReactionUtils.getResponseData(serverMessage, EndTurn.ResponseDataEndGame.class);
-            Game.setPlayerRanking(responseDataEndGame.playerRanking);
+            Model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
 
 
 
