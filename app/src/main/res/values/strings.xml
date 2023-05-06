@@ -31,7 +31,7 @@
     <string name="players_warning">You need to wait for other players to start the game</string>
     <string name="leave_room">Leave</string>
     <string name="name_of_room">Room</string>
-    <string name="rooms_code">Code</string>
+    <string name="rooms_code">Room\'s Code</string>
     <string name="current_players">Players</string>
     <string name="leave_confirmation_message">Are you sure you want to leave the room?</string>
     <string name="leave_confirmation_title">Leaving room?</string>

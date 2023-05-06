@@ -1,11 +1,15 @@
 package com.example.splendormobilegame.activities.WaitingRoom;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -104,6 +108,15 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
                 leaveRoom();
             }
         });
+
+        binding.enterCode.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                TextView code = (TextView) findViewById(R.id.enterCode);
+                copyToClipboard(code.getText().toString());
+            }
+    });
+
     }
 
     @Override
@@ -122,6 +135,15 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         });
         builder.setNegativeButton(R.string.cancel, null);
         builder.show();
+    }
+
+    private void copyToClipboard(String text){
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("roomCode", text);
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(this, "Copied.", Toast.LENGTH_SHORT).show();
     }
 
 }
