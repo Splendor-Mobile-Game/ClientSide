@@ -7,7 +7,6 @@ import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
-import com.github.splendor_mobile_game.websocket.handlers.reactions.LeaveRoom;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
 import com.example.splendormobilegame.model.Game;
