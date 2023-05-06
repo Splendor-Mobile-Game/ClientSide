@@ -13,56 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/bonanova_regular"
         android:text="@string/wait_players"
-        android:textColor="@color/light_yellow"
-        android:textSize="40sp"
+        style="@style/TitleStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/startGameButton"
-        style="@style/ButtonStyle"
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="60dp"
-        android:fontFamily="@font/lora_semibold"
-        android:text="@string/start_game"
-        android:textColor="@color/light_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/leaveGameButton"
-        style="@style/ButtonStyle"
-        android:layout_width="84dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="60dp"
-        android:fontFamily="@font/lora_semibold"
-        android:text="@string/leave_room"
-        android:textColor="@color/light_yellow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/startGameButton" />
-
-    <TextView
-        android:id="@+id/roomTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginStart="272dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/lora_semibold"
-        android:text="@string/name_of_room"
-        android:textColor="@color/light_yellow"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waitPlayersTextView"
-        app:layout_constraintVertical_bias="0.027" />
 
     <TextView
         android:id="@+id/playersTextView"
@@ -71,10 +27,8 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="216dp"
-        android:fontFamily="@font/lora_semibold"
         android:text="@string/current_players"
-        android:textColor="@color/light_yellow"
-        android:textSize="24sp"
+        style="@style/WaitingRoomTextHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.978"
@@ -92,30 +46,75 @@
         app:layout_constraintTop_toBottomOf="@+id/playersTextView" />
 
     <TextView
+        android:id="@+id/roomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/name_of_room"
+        style="@style/WaitingRoomTextHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waitPlayersTextView"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
         android:id="@+id/nameOfRoomTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="272dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/lora_regular"
         android:text="Nazwa pokoju"
-        android:textColor="@color/light_gray"
-        android:textSize="18sp"
+        style="@style/WaitingRoomTextConent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
+
+
+    <TextView
+        android:id="@+id/RoomCodePointer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rooms_code"
+        style="@style/WaitingRoomTextHeader"
+        app:layout_constraintBottom_toBottomOf="@+id/roomTextView"
+        app:layout_constraintEnd_toStartOf="@+id/roomTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/roomTextView" />
 
     <TextView
         android:id="@+id/enterCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/lora_regular"
-        android:text="enterCode (please, stylize it)"
-        android:textColor="@color/light_gray"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roomTextView" />
+        android:clickable="true"
+        android:text="enterCode"
+        style="@style/WaitingRoomTextConent"
+        app:layout_constraintBottom_toBottomOf="@+id/nameOfRoomTextView"
+        app:layout_constraintStart_toStartOf="@+id/RoomCodePointer"
+        app:layout_constraintTop_toTopOf="@+id/nameOfRoomTextView" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/start_game"
+        style="@style/RoundedMaroonButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/leaveGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/leave_room"
+        style="@style/RoundedMaroonButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/startGameButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
