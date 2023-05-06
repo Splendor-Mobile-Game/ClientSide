@@ -3,10 +3,15 @@ package com.example.splendormobilegame.activities.GameActivity;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
+import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.LeaveRoom;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
+import com.example.splendormobilegame.model.Game;
+import com.example.splendormobilegame.model.Model;
 
 import java.util.UUID;
 
@@ -32,7 +37,13 @@ public class GameEndingController<T extends GameActivity> extends Controller {
         public UserMessage react(ServerMessage serverMessage) {
             Log.i("UserReaction", "Entered GameEndedMessageHandler react method");
 
-            // TODO Update the model
+
+            EndTurn.ResponseDataEndGame responseDataEndGame = (EndTurn.ResponseDataEndGame) ReactionUtils.getResponseData(serverMessage, EndTurn.ResponseDataEndGame.class);
+            Game.setPlayerRanking(responseDataEndGame.playerRanking);
+
+
+
+
             // TODO Update the view via `gameActivity` or other objects given in constructor
 
             return null;
