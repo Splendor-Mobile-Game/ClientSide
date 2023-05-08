@@ -49,12 +49,15 @@ public class GameActivity extends CustomAppCompatActivity {
     CardsFirstTierAdapter cardsFirstTierAdapter;
     CardsSecondTierAdapter cardsSecondTierAdapter;
     CardsThirdTierAdapter cardsThirdTierAdapter;
+    ReservedCardsAdapter reservedCardsAdapter;
     RecyclerView cardsFirstTierRecyclerView;
     RecyclerView cardsSecondTierRecyclerView;
     RecyclerView cardsThirdTierRecyclerView;
+    RecyclerView reservedCardsBuyingRecyclerView;
     List<Card> cardListFirstTier = new ArrayList<>();
     List<Card> cardListSecondTier = new ArrayList<>();
     List<Card> cardListThirdTier = new ArrayList<>();
+    List<Card> cardListReservedCards = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +75,8 @@ public class GameActivity extends CustomAppCompatActivity {
         setupCardsSecondTierRecyclerView();
         setupCardsThirdTierRecyclerView();
         setupReservingFromDeckButtons();
+        setupBuyingReservedCards();
+        updateTokenNumber();
 
         // Create controllers
         this.turnController = new TurnController(this);
@@ -156,6 +161,7 @@ public class GameActivity extends CustomAppCompatActivity {
                 TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
                 binding.pointsCardView.setVisibility(pointCardVisible);
                 binding.otherPlayerCardView.setVisibility(otherCardsVisible);
+                binding.reservedCardsTextView.setVisibility(otherCardsVisible);
             }
         });
     }
@@ -166,21 +172,6 @@ public class GameActivity extends CustomAppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChangeRightSide();
-            }
-        });
-        //button used for reserving cards
-        binding.reserveCardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        //button used for buying card
-        binding.buyCardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //testing purpose
-                showCardAlertDialog(UUID.randomUUID());
             }
         });
     }
@@ -341,6 +332,25 @@ public class GameActivity extends CustomAppCompatActivity {
                 })
                 .show();
     }
+    public void showBuyingReservedCardDialog(UUID cardUuid) {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(getResources().getString(R.string.card_title))
+                .setMessage(getResources().getString(R.string.card_message))
+                .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //hide dialog
+                    }
+                })
+                .setPositiveButton(getResources().getString(R.string.buy_card), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Respond to positive button press (right button)
+                        buyingRevealedCardsController.buyRevealedCard(cardUuid);
+                    }
+                })
+                .show();
+    }
 
     private void setupReservingFromDeckButtons() {
         binding.CardPile1CardView.setOnClickListener(new View.OnClickListener() {
@@ -466,8 +476,35 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
             binding.Player3PointsTV.setText(users.get(3).getPoints());
         }
+    }
 
+    private void setupBuyingReservedCards(){
+        reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
+        LinearLayoutManager HorizontalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        reservedCardsBuyingRecyclerView.setLayoutManager(HorizontalLayout);
+        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
+        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
+        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
+        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
+        //testing
+        cardListReservedCards.add(myCard1);
+        cardListReservedCards.add(myCard2);
+        cardListReservedCards.add(myCard3);
+        cardListReservedCards.add(myCard4);
+        reservedCardsAdapter = new ReservedCardsAdapter(cardListReservedCards);
+        reservedCardsBuyingRecyclerView.setAdapter(reservedCardsAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        reservedCardsAdapter.notifyDataSetChanged();
+    }
 
+    public void updateTokenNumber(){
+        //Another Getter is missing, it will be implemented in next commit.
+        binding.blackTokenButton.setText("");
+        binding.blueTokenButton.setText("");
+        binding.redTokenButton.setText("");
+        binding.greenTokenButton.setText("");
+        binding.whiteTokenButton.setText("");
+        binding.yellowTokenButton.setText("");
 
     }
 
