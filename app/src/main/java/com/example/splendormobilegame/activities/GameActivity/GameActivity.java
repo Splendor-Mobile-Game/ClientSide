@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
+import com.example.splendormobilegame.activities.WaitingRoom.NewRoomOwnerController;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.Model;
@@ -46,6 +47,7 @@ public class GameActivity extends CustomAppCompatActivity {
     private BuyingReservedCardsController buyingReservedCardsController;
     private LeavingController leavingController;
     private GameEndingController gameEndingController;
+    private NewRoomOwnerController newRoomOwnerController;
     CardsFirstTierAdapter cardsFirstTierAdapter;
     CardsSecondTierAdapter cardsSecondTierAdapter;
     CardsThirdTierAdapter cardsThirdTierAdapter;
@@ -83,6 +85,7 @@ public class GameActivity extends CustomAppCompatActivity {
         this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.turnController);
         this.leavingController = new LeavingController(this);
         this.gameEndingController = new GameEndingController(this);
+        this.newRoomOwnerController = new NewRoomOwnerController(this);
 
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -145,6 +148,10 @@ public class GameActivity extends CustomAppCompatActivity {
 //                ServerMessageType.GAME_ENDED,
 //                this.gameEndingController.getGameEndedMessageHandler()
 //        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.NEW_ROOM_OWNER,
+                this.newRoomOwnerController.getNewRoomOwnerResponse()
+        );
     }
 
     private void setupSideBar() {
