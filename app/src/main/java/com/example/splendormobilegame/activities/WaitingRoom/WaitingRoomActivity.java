@@ -47,6 +47,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
     private LeavingController leavingController;
     private JoiningController joiningController;
     private StartGameController startGameController;
+    private NewRoomOwnerController newRoomOwnerController;
 
 
     @Override
@@ -75,6 +76,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         this.leavingController = new LeavingController(this, mAdapter);
         this.joiningController = new JoiningController(this, mAdapter);
         this.startGameController = new StartGameController(this);
+        this.newRoomOwnerController = new NewRoomOwnerController(this);
 
         // Set reaction
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -88,6 +90,10 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.START_GAME_RESPONSE,
                 this.startGameController.getStartGameResponse()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.NEW_ROOM_OWNER,
+                this.newRoomOwnerController.getNewRoomOwnerResponse()
         );
 
         binding.nameOfRoomTextView.setText(Model.getRoom().getName());
