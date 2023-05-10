@@ -16,6 +16,7 @@ import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
+import com.example.splendormobilegame.model.Game;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Room;
 import com.example.splendormobilegame.model.User;
@@ -40,7 +41,7 @@ public class GameActivity extends CustomAppCompatActivity {
 
     private DeckReservingController deckReservingController;
     private RevealedCardsReservingController revealedCardsReservingController;
-    private TokensController tokensController;
+    //private TokensController tokensController;
     private TurnController turnController;
     private BuyingRevealedCardsController buyingRevealedCardsController;
     private BuyingReservedCardsController buyingReservedCardsController;
@@ -76,14 +77,13 @@ public class GameActivity extends CustomAppCompatActivity {
         setupCardsThirdTierRecyclerView();
         setupReservingFromDeckButtons();
         setupBuyingReservedCards();
-        updateTokenNumber();
 
         // Create controllers
         this.turnController = new TurnController(this);
 
         this.deckReservingController = new DeckReservingController(this, this.turnController);
         this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.turnController);
-        this.tokensController = new TokensController(this, this.turnController);
+       // this.tokensController = new TokensController(this, this.turnController);
         this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.turnController);
         this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.turnController);
         this.leavingController = new LeavingController(this);
@@ -108,12 +108,12 @@ public class GameActivity extends CustomAppCompatActivity {
 //                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_RESPONSE,
 //                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
 //        );
-
+/*
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.GET_TOKENS_RESPONSE,
-                this.tokensController.getGetTokensMessageHandler()
+              //  this.tokensController.getGetTokensMessageHandler()
         );
-
+*/
 //        CustomWebSocketClient.getInstance().assignReactionToMessageType(
 //                ServerMessageType.NEW_TURN_ANNOUNCEMENT,
 //                this.turnController.getNewTurnAnnouncementMessageHandler()
@@ -498,13 +498,12 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     public void updateTokenNumber(){
-        //Another Getter is missing, it will be implemented in next commit.
-        binding.blackTokenButton.setText("");
-        binding.blueTokenButton.setText("");
-        binding.redTokenButton.setText("");
-        binding.greenTokenButton.setText("");
-        binding.whiteTokenButton.setText("");
-        binding.yellowTokenButton.setText("");
+        binding.blackTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
+        binding.blueTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
+        binding.redTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
+        binding.greenTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
+        binding.whiteTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
+        binding.yellowTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
 
     }
 

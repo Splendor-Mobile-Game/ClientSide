@@ -32,7 +32,6 @@ public class Game {
         if (tokensOnTable.get(tokenType) == null) return;
         int onTable = tokensOnTable.get(tokenType);
         if (amount > onTable) return; // Not enough tokens on table
-
         tokensOnTable.replace(tokenType, onTable - amount);
     }
 
@@ -102,7 +101,9 @@ public class Game {
         addTokens(tokenType, amount);
         user.removeTokens(tokenType, amount);
     }
-
+    public Integer getTokenValue(TokenType tokenType) {
+        return tokensOnTable.get(tokenType);
+    }
     public User getWhosTurn() {
         return whosTurn;
     }
