@@ -25,8 +25,8 @@ public class TurnController<T extends GameActivity> extends Controller {
     }
 
     public void endTurn() {
-        // Maybe you want to check some things before sending request
-        this.sendRequestToEndTurn();
+        if(Model.getRoom().getGame().getWhosTurn()==Model.getRoom().getUserByUuid(Model.getUserUuid())){ this.sendRequestToEndTurn(); }
+        else{ Log.i("UserReaction", "TurnController Error: User failed to end turn during Player verification step. Request not sent."); }
     }
 
     public void passTurn() {
