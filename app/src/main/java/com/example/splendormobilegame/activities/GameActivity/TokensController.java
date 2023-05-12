@@ -17,11 +17,11 @@ import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.GetTokens;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
-import java.util.EnumMap;
-import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-/*
+
 public class TokensController<T extends GameActivity> extends Controller {
     private T gameActivity;
     private TurnController turnController;
@@ -41,10 +41,15 @@ public class TokensController<T extends GameActivity> extends Controller {
     }
 
     private void sendRequest(int red, int blue, int green, int black, int white) {
-        // TODO Compose up the message
-        // TODO Send the message
-        GetTokens.TokensChangeDTO tokensChangeDTO = new GetTokens.TokensChangeDTO(red, blue, green, black, white);
-        GetTokens.DataDTO dataDTO = new GetTokens.DataDTO(Model.getUserUuid(), tokensChangeDTO);
+        GetTokens.TokensChangeDTO tokensTakenDTO = new GetTokens.TokensChangeDTO(0,0,0,0,0);
+        GetTokens.TokensChangeDTO tokensReturnedDTO = new GetTokens.TokensChangeDTO(0,0,0,0,0);
+        if(red>0){tokensTakenDTO.ruby=red;}else{tokensReturnedDTO.ruby=red;}
+        if(blue>0){tokensTakenDTO.sapphire=blue;}else{tokensReturnedDTO.sapphire=blue;}
+        if(green>0){tokensTakenDTO.emerald=green;}else{tokensReturnedDTO.emerald=green;}
+        if(black>0){tokensTakenDTO.onyx=black;}else{tokensReturnedDTO.onyx=black;}
+        if(white>0){tokensTakenDTO.diamond=white;}else{tokensReturnedDTO.diamond=white;}
+
+        GetTokens.DataDTO dataDTO = new GetTokens.DataDTO(Model.getUserUuid(), tokensTakenDTO, tokensReturnedDTO);
 
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.GET_TOKENS, dataDTO);
 
@@ -67,15 +72,23 @@ public class TokensController<T extends GameActivity> extends Controller {
             );
 
             // Get the data about tokens change
-            GetTokens.TokensChangeDTO tokensDataResponse = responseData.data.tokensChangeDTO;
+            GetTokens.TokensChangeDTO tokensTakenDataResponse = responseData.data.tokensTakenDTO;
+            GetTokens.TokensChangeDTO tokensReturnedDataResponse = responseData.data.tokensReturnedDTO;
 
-            EnumMap<TokenType,Integer> tokens = new EnumMap<TokenType, Integer>(TokenType.class);
-            tokens.put(TokenType.RUBY,tokensDataResponse.ruby);
-            tokens.put(TokenType.EMERALD,tokensDataResponse.emerald);
-            tokens.put(TokenType.SAPPHIRE,tokensDataResponse.sapphire);
-            tokens.put(TokenType.DIAMOND,tokensDataResponse.diamond);
-            tokens.put(TokenType.ONYX,tokensDataResponse.onyx);
-            //tokens.put(TokenType.GOLD_JOKER,tokensDataResponse.gold);  commented because user can't take gold tokens by himself
+
+            Map<TokenType, Integer> tokensTaken = new HashMap<TokenType, Integer>();
+            tokensTaken.put(TokenType.RUBY, tokensTakenDataResponse.ruby);
+            tokensTaken.put(TokenType.SAPPHIRE, tokensTakenDataResponse.sapphire);
+            tokensTaken.put(TokenType.EMERALD, tokensTakenDataResponse.emerald);
+            tokensTaken.put(TokenType.DIAMOND, tokensTakenDataResponse.diamond);
+            tokensTaken.put(TokenType.ONYX, tokensTakenDataResponse.onyx);
+
+            Map<TokenType, Integer> tokensReturned = new HashMap<TokenType, Integer>();
+            tokensReturned.put(TokenType.RUBY, tokensReturnedDataResponse.ruby);
+            tokensReturned.put(TokenType.SAPPHIRE, tokensReturnedDataResponse.sapphire);
+            tokensReturned.put(TokenType.EMERALD, tokensReturnedDataResponse.emerald);
+            tokensReturned.put(TokenType.DIAMOND, tokensReturnedDataResponse.diamond);
+            tokensReturned.put(TokenType.ONYX, tokensReturnedDataResponse.onyx);
 
             // Update the model
             Room room = Model.getRoom();
@@ -84,10 +97,16 @@ public class TokensController<T extends GameActivity> extends Controller {
 
 
             //add tokens to user and remove tokens from the table
-            for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
-                user.addTokens(tokenType, tokens.get(tokenType));
-                game.removeTokens(tokenType, tokens.get(tokenType));
+
+            for(Map.Entry<TokenType, Integer> set : tokensTaken.entrySet()) {
+                user.addTokens(set.getKey(),set.getValue());
+                game.removeTokens(set.getKey(),set.getValue());
             }
+            for(Map.Entry<TokenType, Integer> set : tokensReturned.entrySet()) {
+                user.removeTokens(set.getKey(),set.getValue());
+                game.addTokens(set.getKey(),set.getValue());
+            }
+
 
             // TODO Update the view
             // ...
@@ -120,4 +139,4 @@ public class TokensController<T extends GameActivity> extends Controller {
     }
 
 }
- */
+
