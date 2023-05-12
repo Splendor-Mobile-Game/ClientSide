@@ -1,5 +1,5 @@
 package com.example.splendormobilegame.activities.GameActivity;
-
+import com.example.splendormobilegame.model.Model;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;

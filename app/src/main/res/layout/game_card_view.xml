@@ -22,6 +22,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
                 android:text="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
+                android:background="@color/green"
                 android:text="1"
                 app:layout_constraintStart_toEndOf="@+id/whitePointsTextView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
+                android:background="@color/black"
                 android:text="2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whitePointsTextView" />
@@ -51,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
+                android:background="@color/blue"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
                 app:layout_constraintStart_toEndOf="@+id/blackPointsTextView"
@@ -62,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
+                android:background="@color/poppy"
                 android:text="5"
                 app:layout_constraintStart_toEndOf="@+id/greenPointsTextView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -72,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                style="@style/LightTextView"
                 android:text="4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

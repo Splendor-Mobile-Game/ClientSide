@@ -19,6 +19,7 @@ import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.Game;
 import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.model.Noble;
 import com.example.splendormobilegame.model.Room;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
@@ -53,15 +54,17 @@ public class GameActivity extends CustomAppCompatActivity {
     CardsSecondTierAdapter cardsSecondTierAdapter;
     CardsThirdTierAdapter cardsThirdTierAdapter;
     ReservedCardsAdapter reservedCardsAdapter;
+    nobleCardsAdapter nobleCardsAdapter;
     RecyclerView cardsFirstTierRecyclerView;
     RecyclerView cardsSecondTierRecyclerView;
     RecyclerView cardsThirdTierRecyclerView;
     RecyclerView reservedCardsBuyingRecyclerView;
+    RecyclerView cardsNobleCardsRecyclerView;
     List<Card> cardListFirstTier = new ArrayList<>();
     List<Card> cardListSecondTier = new ArrayList<>();
     List<Card> cardListThirdTier = new ArrayList<>();
     List<Card> cardListReservedCards = new ArrayList<>();
-
+    List<Noble> cardListNobleCards = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +82,7 @@ public class GameActivity extends CustomAppCompatActivity {
         setupCardsThirdTierRecyclerView();
         setupReservingFromDeckButtons();
         setupBuyingReservedCards();
-
+        setupNobleCardsRecyclerView();
         // Create controllers
         this.turnController = new TurnController(this);
 
@@ -433,6 +436,22 @@ public class GameActivity extends CustomAppCompatActivity {
         cardsThirdTierRecyclerView.setAdapter(cardsThirdTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         cardsFirstTierAdapter.notifyDataSetChanged();
+    }
+    public void setupNobleCardsRecyclerView() {
+        cardsNobleCardsRecyclerView = (RecyclerView) binding.nobleCardsRecyclerView;
+        cardsNobleCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Noble noble1 = new Noble(UUID.randomUUID(), 3, 3, 3, 0, 0);
+        Noble noble2 = new Noble(UUID.randomUUID(), 0, 4, 4, 4, 0);
+        Noble noble3 = new Noble(UUID.randomUUID(), 4, 4, 0, 4, 0);
+        cardListNobleCards.add(noble1);
+        cardListNobleCards.add(noble2);
+        cardListNobleCards.add(noble3);
+        cardListNobleCards.add(noble1);
+        cardListNobleCards.add(noble2);
+        nobleCardsAdapter = new nobleCardsAdapter(cardListNobleCards);
+        cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
+        // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        nobleCardsAdapter.notifyDataSetChanged();
     }
     //Numbers don't need to be localized
     @SuppressLint("SetTextI18n")

@@ -10,7 +10,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/CardsAristocratsCardView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:visibility="visible"
         app:cardBackgroundColor="@color/backGroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,95 +25,12 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat3CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView">
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble10" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat5CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="23dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble8" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat1CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble1" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat2CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble2" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat4CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble7" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardPile3CardView"
                 android:layout_width="80dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat1CardView"
-                app:layout_constraintEnd_toStartOf="@+id/Aristocrat1CardView"
-                app:layout_constraintTop_toTopOf="@+id/Aristocrat1CardView" />
+                app:layout_constraintEnd_toStartOf="@+id/nobleCardsRecyclerView"
+                tools:layout_editor_absoluteY="27dp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardPile2CardView"
@@ -127,7 +46,7 @@
                 android:layout_width="80dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="23dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/CardPile2CardView"
                 app:layout_constraintEnd_toStartOf="@+id/CardPile2CardView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -161,6 +80,14 @@
                 app:layout_constraintStart_toStartOf="@+id/CardPile2CardView"
                 app:layout_constraintTop_toBottomOf="@+id/CardPile2CardView"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nobleCardsRecyclerView"
+                android:layout_width="70dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
