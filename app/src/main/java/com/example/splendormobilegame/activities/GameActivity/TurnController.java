@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
 import com.example.splendormobilegame.CustomAppCompatActivity;
+import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
