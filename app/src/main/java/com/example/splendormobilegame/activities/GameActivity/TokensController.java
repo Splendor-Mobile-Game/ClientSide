@@ -17,8 +17,6 @@ import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.GetTokens;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
-import java.util.EnumMap;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -102,11 +100,13 @@ public class TokensController<T extends GameActivity> extends Controller {
 
             for(Map.Entry<TokenType, Integer> set : tokensTaken.entrySet()) {
                 user.addTokens(set.getKey(),set.getValue());
+                game.removeTokens(set.getKey(),set.getValue());
             }
             for(Map.Entry<TokenType, Integer> set : tokensReturned.entrySet()) {
                 user.removeTokens(set.getKey(),set.getValue());
+                game.addTokens(set.getKey(),set.getValue());
             }
-            
+
 
             // TODO Update the view
             // ...
