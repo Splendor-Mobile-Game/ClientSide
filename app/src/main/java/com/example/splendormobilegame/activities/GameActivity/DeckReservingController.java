@@ -6,7 +6,6 @@ import com.example.splendormobilegame.Controller;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.User;
-import com.example.splendormobilegame.model.Game;
 import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.example.splendormobilegame.websocket.ReactionUtils;
@@ -23,13 +22,13 @@ import java.util.UUID;
 public class DeckReservingController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
-    private TurnController turnController;
+    private EndTurnController endTurnController;
     private ReservationFromDeckMessageHandler reservationFromDeckMessageHandler;
 
-    protected DeckReservingController(T activity, TurnController turnController) {
+    protected DeckReservingController(T activity, EndTurnController endTurnController) {
         super(activity);
         this.gameActivity = activity;
-        this.turnController = turnController;
+        this.endTurnController = endTurnController;
         this.reservationFromDeckMessageHandler = new ReservationFromDeckMessageHandler();
     }
 
@@ -85,7 +84,7 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
 
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
-            DeckReservingController.this.turnController.endTurn();
+            DeckReservingController.this.endTurnController.endTurn();
 
             return null;
         }

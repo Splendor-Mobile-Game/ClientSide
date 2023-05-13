@@ -16,7 +16,6 @@ import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
-import com.github.splendor_mobile_game.websocket.handlers.reactions.BuyRevealedMine;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.MakeReservationFromTable;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
@@ -25,13 +24,13 @@ import java.util.UUID;
 public class RevealedCardsReservingController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
-    private TurnController turnController;
+    private EndTurnController endTurnController;
     private ReservationFromRevealedMessageHandler reservationFromRevealedMessageHandler;
 
-    protected RevealedCardsReservingController(T activity, TurnController turnController) {
+    protected RevealedCardsReservingController(T activity, EndTurnController endTurnController) {
         super(activity);
         this.gameActivity = activity;
-        this.turnController = turnController;
+        this.endTurnController = endTurnController;
         this.reservationFromRevealedMessageHandler = new ReservationFromRevealedMessageHandler();
     }
 
@@ -104,7 +103,7 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
             // Therefore, I need to end my turn.
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
-            RevealedCardsReservingController.this.turnController.endTurn();
+            RevealedCardsReservingController.this.endTurnController.endTurn();
 
             return null;
         }

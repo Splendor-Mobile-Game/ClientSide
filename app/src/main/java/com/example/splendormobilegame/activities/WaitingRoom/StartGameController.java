@@ -127,7 +127,7 @@ public class StartGameController extends Controller {
             }
 
             //Update the model
-            Model.getRoom().setGame(new Game(tokensOnTable,noblesOnTable,cardsOnTable));
+            Model.getRoom().setGame(new Game(tokensOnTable,noblesOnTable,cardsOnTable, responseData.userToPlay.uuid));
 
             activity.changeActivity(GameActivity.class);
 
