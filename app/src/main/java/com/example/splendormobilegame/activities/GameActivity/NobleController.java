@@ -20,20 +20,20 @@ import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 public class NobleController<T extends GameActivity>  extends Controller {
 
     private T gameActivity;
-    private NobleReceivedMessageHandeler nobleReceivedResponse;
+    private NobleReceivedMessageHandler nobleReceivedResponse;
 
 
 
     public NobleController(CustomAppCompatActivity activity) {
         super(activity);
-        this.nobleReceivedResponse = new NobleReceivedMessageHandeler();
+        this.nobleReceivedResponse = new NobleReceivedMessageHandler();
     }
 
-    public NobleReceivedMessageHandeler getNobleAcquisitionResponse() {
+    public NobleReceivedMessageHandler getNobleReceivedResponse() {
         return nobleReceivedResponse;
     }
 
-    public class NobleReceivedMessageHandeler extends UserReaction {
+    public class NobleReceivedMessageHandler extends UserReaction {
 
         @Override
         public UserMessage react(ServerMessage serverMessage) {
