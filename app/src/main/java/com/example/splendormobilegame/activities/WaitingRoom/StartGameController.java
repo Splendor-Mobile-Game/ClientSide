@@ -33,13 +33,13 @@ import java.util.UUID;
 public class StartGameController extends Controller {
     private StartGameController.StartGameResponse startGameResponse;
 
-    protected StartGameController(CustomAppCompatActivity activity) {
-        super(activity);
+    protected StartGameController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.startGameResponse=new StartGameResponse();
     }
 
     public void startGame() {
-        if(Model.getRoom().getUsers().size()<2){
+        if(model.getRoom().getUsers().size()<2){
             String message = "Sam chcesz grac?";
             activity.showToast(message);
             return;
@@ -50,12 +50,12 @@ public class StartGameController extends Controller {
     }
 
     public void sendRequestToStartGame() {
-        StartGame.UserDTO user = new StartGame.UserDTO(Model.getUserUuid());
-        StartGame.RoomDTO room = new StartGame.RoomDTO(Model.getRoom().getUuid());
+        StartGame.UserDTO user = new StartGame.UserDTO(model.getUserUuid());
+        StartGame.RoomDTO room = new StartGame.RoomDTO(model.getRoom().getUuid());
         StartGame.DataDTO data = new StartGame.DataDTO(user,room);
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.START_GAME,data);
 
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public StartGameResponse getStartGameResponse(){
@@ -127,7 +127,7 @@ public class StartGameController extends Controller {
             }
 
             //Update the model
-            Model.getRoom().setGame(new Game(tokensOnTable,noblesOnTable,cardsOnTable, responseData.userToPlay.uuid));
+            model.getRoom().setGame(new Game(tokensOnTable,noblesOnTable,cardsOnTable, responseData.userToPlay.uuid));
 
             activity.changeActivity(GameActivity.class);
 

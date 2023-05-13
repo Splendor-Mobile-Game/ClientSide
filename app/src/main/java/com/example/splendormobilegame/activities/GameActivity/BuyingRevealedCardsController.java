@@ -27,8 +27,8 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
     private EndTurnController endTurnController;
     private BuyRevealedCardMessageHandler buyRevealedCardMessageHandler;
 
-    protected BuyingRevealedCardsController(T activity, EndTurnController endTurnController) {
-        super(activity);
+    protected BuyingRevealedCardsController(T activity, CustomWebSocketClient customWebSocketClient, Model model, EndTurnController endTurnController) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.endTurnController = endTurnController;
         this.buyRevealedCardMessageHandler = new BuyRevealedCardMessageHandler();
@@ -42,12 +42,12 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
     }
 
     private void sendRequest(UUID cardUuid) {
-        BuyRevealedMine.UserDTO userUuidDTO = new BuyRevealedMine.UserDTO(Model.getUserUuid());
+        BuyRevealedMine.UserDTO userUuidDTO = new BuyRevealedMine.UserDTO(model.getUserUuid());
         BuyRevealedMine.CardDTO cardUuidDTO = new BuyRevealedMine.CardDTO(cardUuid);
         BuyRevealedMine.DataDTO dataDTO = new BuyRevealedMine.DataDTO(userUuidDTO,cardUuidDTO);
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.BUY_REVEALED_MINE,dataDTO);
 
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public BuyRevealedCardMessageHandler getBuyRevealedCardMessageHandler() {
@@ -90,7 +90,7 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             }
 
             // Update the model
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
             Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);

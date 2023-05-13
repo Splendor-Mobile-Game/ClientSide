@@ -23,15 +23,15 @@ public class EndTurnController<T extends GameActivity> extends Controller {
     private T gameActivity;
     private NewTurnAnnouncementMessageHandler newTurnAnnouncementMessageHandler;
 
-    protected EndTurnController(T activity) {
-        super(activity);
+    protected EndTurnController(T activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.newTurnAnnouncementMessageHandler = new NewTurnAnnouncementMessageHandler();
     }
 
     public void endTurn() {
 
-        if (Model.getRoom().getGame().getWhosTurn().equals(Model.getUserUuid()))
+        if (model.getRoom().getGame().getWhosTurn().equals(model.getUserUuid()))
             this.sendRequest();
         else {
             Log.i("UserReaction", "TurnController Error: It's not your turn!");
@@ -41,7 +41,7 @@ public class EndTurnController<T extends GameActivity> extends Controller {
 
 
     private void sendRequest() {
-        EndTurn.DataDTO dataDTO = new EndTurn.DataDTO(Model.getUserUuid());
+        EndTurn.DataDTO dataDTO = new EndTurn.DataDTO(model.getUserUuid());
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.END_TURN, dataDTO);
 
         CustomWebSocketClient.getInstance().send(message);
@@ -64,9 +64,9 @@ public class EndTurnController<T extends GameActivity> extends Controller {
             );
 
 
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
-            User user = Model.getRoom().getUserByUuid(responseData.nextUserUuid);
+            User user = model.getRoom().getUserByUuid(responseData.nextUserUuid);
 
             game.setWhosTurn(user.getUuid());
 

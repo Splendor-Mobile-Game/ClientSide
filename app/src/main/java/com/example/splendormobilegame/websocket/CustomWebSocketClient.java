@@ -20,7 +20,7 @@ public class CustomWebSocketClient extends WebSocketClient {
     private final Map<ServerMessageType, UserReaction> clientReactions;
     private final Gson gson;
 
-    public CustomWebSocketClient(
+    private CustomWebSocketClient(
             URI uri,
             int connectionTimeoutMs,
             int readTimeoutMs,

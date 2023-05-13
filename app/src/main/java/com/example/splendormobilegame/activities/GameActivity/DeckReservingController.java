@@ -25,8 +25,8 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
     private EndTurnController endTurnController;
     private ReservationFromDeckMessageHandler reservationFromDeckMessageHandler;
 
-    protected DeckReservingController(T activity, EndTurnController endTurnController) {
-        super(activity);
+    public DeckReservingController(T activity, CustomWebSocketClient customWebSocketClient, Model model, EndTurnController endTurnController) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.endTurnController = endTurnController;
         this.reservationFromDeckMessageHandler = new ReservationFromDeckMessageHandler();
@@ -40,12 +40,10 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
 
     private void sendRequestToReserve(int cardTier) {
 
-        MakeReservationFromDeck.DataDTO dataDTO = new MakeReservationFromDeck.DataDTO(Model.getUserUuid(),  String.valueOf(cardTier));
+        MakeReservationFromDeck.DataDTO dataDTO = new MakeReservationFromDeck.DataDTO(model.getUserUuid(),  String.valueOf(cardTier));
 
         UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.MAKE_RESERVATION_FROM_DECK, dataDTO);
-        CustomWebSocketClient.getInstance().send(userMessage);
-
-
+        customWebSocketClient.send(userMessage);
     }
 
     public ReservationFromDeckMessageHandler getReservationFromDeckMessageHandler() {
@@ -56,20 +54,20 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
 
         @Override
         public UserMessage react(ServerMessage serverMessage) {
-            Log.i("UserReaction", "Entered ReservationFromDeckMessageHandler react method");
+            System.out.println("Entered ReservationFromDeckMessageHandler react method");
 
 
             MakeReservationFromDeck.ResponseData responseData = (MakeReservationFromDeck.ResponseData) ReactionUtils.getResponseData(serverMessage, MakeReservationFromDeck.ResponseData.class);
 
 
-            User user=Model.getRoom().getUserByUuid(responseData.userUuid);
+            User user=model.getRoom().getUserByUuid(responseData.userUuid);
 
 
             Card card=new Card(responseData.card.uuid,responseData.card.cardTier,responseData.card.prestige,responseData.card.tokensRequired.emerald,responseData.card.tokensRequired.sapphire, responseData.card.tokensRequired.ruby,responseData.card.tokensRequired.diamond,responseData.card.tokensRequired.onyx, responseData.card.bonusColor);
 
 
             ReservedCard reservedCard= new ReservedCard(card,user,false );
-            Model.getRoom().getGame().reserveCard(user, reservedCard);
+            model.getRoom().getGame().reserveCard(user, reservedCard);
 
 
 

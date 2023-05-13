@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import android.util.DisplayMetrics;
 
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -59,7 +60,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
 
         createUserUUID();
-        Model.setUserUuid(UUID.fromString(userUUID));
+
+        Model.initialize();
+        Model.getInstance().setUserUuid(UUID.fromString(userUUID));
 
         //taking parameters form config.properties
         Config config = new Config(this);

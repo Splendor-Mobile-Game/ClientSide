@@ -62,7 +62,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
 
         // Create adapter for list of users in the room
         // RecyclerView for user names
-        for (User u : Model.getRoom().getUsers()) {
+        for (User u : Model.getInstance().getRoom().getUsers()) {
             usersList.add(u.getName());
         }
 
@@ -73,10 +73,10 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         // Create controllers
-        this.leavingController = new LeavingController(this, mAdapter);
-        this.joiningController = new JoiningController(this, mAdapter);
-        this.startGameController = new StartGameController(this);
-        this.newRoomOwnerController = new NewRoomOwnerController(this);
+        this.leavingController = new LeavingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), mAdapter);
+        this.joiningController = new JoiningController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), mAdapter);
+        this.startGameController = new StartGameController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.newRoomOwnerController = new NewRoomOwnerController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
 
         // Set reaction
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -96,8 +96,8 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
                 this.newRoomOwnerController.getNewRoomOwnerResponse()
         );
 
-        binding.nameOfRoomTextView.setText(Model.getRoom().getName());
-        binding.enterCode.setText(Model.getRoom().getEnterCode());
+        binding.nameOfRoomTextView.setText(Model.getInstance().getRoom().getName());
+        binding.enterCode.setText(Model.getInstance().getRoom().getEnterCode());
     }
 
     private void setupButtons() {

@@ -83,18 +83,19 @@ public class GameActivity extends CustomAppCompatActivity {
         setupReservingFromDeckButtons();
         setupBuyingReservedCards();
         setupNobleCardsRecyclerView();
-        // Create controllers
-        this.endTurnController = new EndTurnController(this);
 
-        this.deckReservingController = new DeckReservingController(this, this.endTurnController);
-        this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.endTurnController);
+        // Create controllers
+        this.endTurnController = new EndTurnController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+
+        this.deckReservingController = new DeckReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.revealedCardsReservingController = new RevealedCardsReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
        // this.tokensController = new TokensController(this, this.turnController);
-        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.endTurnController);
-        this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.endTurnController);
-        this.leavingController = new LeavingController(this);
-        this.gameEndingController = new GameEndingController(this);
-        this.newRoomOwnerController = new NewRoomOwnerController(this);
-        this.nobleController = new NobleController(this);
+        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.buyingReservedCardsController = new BuyingReservedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.leavingController = new LeavingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.gameEndingController = new GameEndingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.newRoomOwnerController = new NewRoomOwnerController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+
 
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -476,8 +477,8 @@ public class GameActivity extends CustomAppCompatActivity {
     //Numbers don't need to be localized
     @SuppressLint("SetTextI18n")
     public void updateScoreBoard(){
-        ArrayList<User> users = Model.getRoom().getUsers();
-        int userCount = Model.getRoom().getPlayerCount();
+        ArrayList<User> users = Model.getInstance().getRoom().getUsers();
+        int userCount = Model.getInstance().getRoom().getPlayerCount();
         if(userCount>0){
             HashMap<TokenType, Integer> tokens =  users.get(0).getTokens();
             binding.Player1NameTV.setText(users.get(0).getName());
@@ -544,12 +545,12 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     public void updateTokenNumber(){
-        binding.blackTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
-        binding.blueTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
-        binding.redTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
-        binding.greenTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
-        binding.whiteTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
-        binding.yellowTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
+        binding.blackTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
+        binding.blueTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
+        binding.redTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
+        binding.greenTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
+        binding.whiteTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
+        binding.yellowTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
 
     }
 

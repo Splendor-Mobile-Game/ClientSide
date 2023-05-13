@@ -9,6 +9,7 @@ import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Noble;
 import com.example.splendormobilegame.model.Room;
 import com.example.splendormobilegame.model.User;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
@@ -24,8 +25,8 @@ public class NobleController<T extends GameActivity>  extends Controller {
 
 
 
-    public NobleController(CustomAppCompatActivity activity) {
-        super(activity);
+    public NobleController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.nobleReceivedResponse = new NobleReceivedMessageHandler();
     }
 
@@ -43,7 +44,7 @@ public class NobleController<T extends GameActivity>  extends Controller {
             );
 
 
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
             User user = room.getUserByUuid(responseData.userUuid);
             Noble noble = game.getNobleByUuid(responseData.nobleUuid);
