@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ScoreBoard"
+        android:layout_width="237dp"
+        android:layout_height="77dp"
+        android:text="ScoreBoard"
+        android:textSize="40dp"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="30dp" />
+
+    <ListView
+        android:id="@+id/rankingListView"
+        android:layout_width="323dp"
+        android:layout_height="391dp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <Button
+        android:id="@+id/BackToMenuButton"
+        android:layout_width="279dp"
+        android:layout_height="78dp"
+        android:text="Back to main menu"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="586dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
