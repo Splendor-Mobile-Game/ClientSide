@@ -50,6 +50,7 @@ public class GameActivity extends CustomAppCompatActivity {
     private LeavingController leavingController;
     private GameEndingController gameEndingController;
     private NewRoomOwnerController newRoomOwnerController;
+    private NobleController nobleController;
     CardsFirstTierAdapter cardsFirstTierAdapter;
     CardsSecondTierAdapter cardsSecondTierAdapter;
     CardsThirdTierAdapter cardsThirdTierAdapter;
@@ -94,6 +95,7 @@ public class GameActivity extends CustomAppCompatActivity {
         this.leavingController = new LeavingController(this);
         this.gameEndingController = new GameEndingController(this);
         this.newRoomOwnerController = new NewRoomOwnerController(this);
+        this.nobleController = new NobleController(this);
 
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -159,6 +161,11 @@ public class GameActivity extends CustomAppCompatActivity {
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NEW_ROOM_OWNER,
                 this.newRoomOwnerController.getNewRoomOwnerResponse()
+        );
+
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.NOBLE_RECEIVED_ANNOUNCEMENT,
+                this.nobleController.getNobleReceivedResponse()
         );
     }
 
