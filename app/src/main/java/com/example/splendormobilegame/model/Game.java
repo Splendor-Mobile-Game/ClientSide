@@ -16,15 +16,16 @@ public class Game {
     private final ArrayList<Noble> noblesOnTable;
     private final ArrayList<ReservedCard> reservedCards;
     private final HashMap<CardTier, ArrayList<Card>> cardsOnTable;
-    private User whosTurn;
+    private UUID whosTurn;
     private ArrayList<EndTurn.PlayerDataResponse> playerRanking;
 
 
-    public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable) {
+    public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable, UUID firstPlayer) {
         this.tokensOnTable = tokensOnTable;
         this.noblesOnTable = noblesOnTable;
         this.cardsOnTable = cardsOnTable;
         this.reservedCards = new ArrayList<>();
+        this.whosTurn = firstPlayer;
     }
 
 
@@ -104,11 +105,11 @@ public class Game {
     public Integer getTokenValue(TokenType tokenType) {
         return tokensOnTable.get(tokenType);
     }
-    public User getWhosTurn() {
+    public UUID getWhosTurn() {
         return whosTurn;
     }
 
-    public void setWhosTurn(User whosTurn) {
+    public void setWhosTurn(UUID whosTurn) {
         this.whosTurn = whosTurn;
     }
 

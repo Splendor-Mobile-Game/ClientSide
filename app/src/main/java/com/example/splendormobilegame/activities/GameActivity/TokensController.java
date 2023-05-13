@@ -24,13 +24,13 @@ import java.util.UUID;
 
 public class TokensController<T extends GameActivity> extends Controller {
     private T gameActivity;
-    private TurnController turnController;
+    private EndTurnController endTurnController;
     private GetTokensMessageHandler getTokensMessageHandler;
 
-    public TokensController(T activity, TurnController turnController) {
+    public TokensController(T activity, EndTurnController endTurnController) {
         super(activity);
         this.gameActivity = activity;
-        this.turnController = turnController;
+        this.endTurnController = endTurnController;
         this.getTokensMessageHandler = new GetTokensMessageHandler();
     }
 
@@ -118,7 +118,7 @@ public class TokensController<T extends GameActivity> extends Controller {
             // Therefore, I need to end my turn.
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
-            TokensController.this.turnController.endTurn();
+            TokensController.this.endTurnController.endTurn();
 
             // Return null if you don't want to send anything to the server
             return null;

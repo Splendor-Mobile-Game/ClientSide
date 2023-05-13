@@ -17,10 +17,8 @@ import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.activities.WaitingRoom.NewRoomOwnerController;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
-import com.example.splendormobilegame.model.Game;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Noble;
-import com.example.splendormobilegame.model.Room;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.github.splendor_mobile_game.game.enums.CardTier;
@@ -44,7 +42,7 @@ public class GameActivity extends CustomAppCompatActivity {
     private DeckReservingController deckReservingController;
     private RevealedCardsReservingController revealedCardsReservingController;
     //private TokensController tokensController;
-    private TurnController turnController;
+    private EndTurnController endTurnController;
     private BuyingRevealedCardsController buyingRevealedCardsController;
     private BuyingReservedCardsController buyingReservedCardsController;
     private LeavingController leavingController;
@@ -76,6 +74,7 @@ public class GameActivity extends CustomAppCompatActivity {
         // binding.gameActivityConstraintLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         setupSideBar();
         setupButtons();
+        setupSkipButton();
         setupPointsButtons();
         setupCardsFirstTierRecyclerView();
         setupCardsSecondTierRecyclerView();
@@ -84,13 +83,13 @@ public class GameActivity extends CustomAppCompatActivity {
         setupBuyingReservedCards();
         setupNobleCardsRecyclerView();
         // Create controllers
-        this.turnController = new TurnController(this);
+        this.endTurnController = new EndTurnController(this);
 
-        this.deckReservingController = new DeckReservingController(this, this.turnController);
-        this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.turnController);
+        this.deckReservingController = new DeckReservingController(this, this.endTurnController);
+        this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.endTurnController);
        // this.tokensController = new TokensController(this, this.turnController);
-        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.turnController);
-        this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.turnController);
+        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.endTurnController);
+        this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.endTurnController);
         this.leavingController = new LeavingController(this);
         this.gameEndingController = new GameEndingController(this);
         this.newRoomOwnerController = new NewRoomOwnerController(this);
@@ -120,14 +119,15 @@ public class GameActivity extends CustomAppCompatActivity {
               //  this.tokensController.getGetTokensMessageHandler()
         );
 */
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.NEW_TURN_ANNOUNCEMENT,
-//                this.turnController.getNewTurnAnnouncementMessageHandler()
-//        );
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.PASS_TURN_ANNOUNCEMENT,
-//                this.turnController.getPassTurnAnnouncementMessageHandler()
-//        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.NEW_TURN_ANNOUNCEMENT,
+                this.endTurnController.getNewTurnAnnouncementMessageHandler()
+        );
+
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.END_TURN_RESPONSE,
+                this.endTurnController.getNewTurnAnnouncementMessageHandler()
+        );
 
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.BUY_REVEALED_MINE_ANNOUNCEMENT,
@@ -175,6 +175,19 @@ public class GameActivity extends CustomAppCompatActivity {
             }
         });
     }
+
+
+    private void setupSkipButton() {
+        binding.skipTurnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                endTurnController.endTurn();
+
+            }
+        });
+    }
+
 
     private void setupButtons() {
         //Button used for taking points
