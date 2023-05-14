@@ -154,10 +154,10 @@ public class GameActivity extends CustomAppCompatActivity {
                 this.leavingController.getLeaveRoomResponse()
         );
 
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.GAME_ENDED,
-//                this.gameEndingController.getGameEndedMessageHandler()
-//        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+               ServerMessageType.END_GAME_ANNOUNCEMENT,
+               this.gameEndingController.getGameEndedMessageHandler()
+        );
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NEW_ROOM_OWNER,
                 this.newRoomOwnerController.getNewRoomOwnerResponse()
@@ -188,7 +188,8 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.takePointsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeRightSide();
+                //ChangeRightSide();
+                gameEndingController.sendRequest();
             }
         });
     }

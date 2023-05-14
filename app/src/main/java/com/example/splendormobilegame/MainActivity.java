@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
     private void createUserUUID() {
-        userUUID = sharedPreferences.getString("userUUID", "");
-        if (userUUID.isEmpty()) {
+        //userUUID = sharedPreferences.getString("userUUID", "");
+        //if (userUUID.isEmpty()) {
             userUUID = UUID.randomUUID().toString();
             sharedPreferences.edit().putString("userUUID", userUUID).apply();
             //app will always start in english
-            sharedPreferences.edit().putString("language", "en").apply();
-        }
+           // sharedPreferences.edit().putString("language", "en").apply();
+        //}
     }
 
     private void setupButtons() {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 //create new intent -> pass class -> start intent
-                Intent myIntent = new Intent(MainActivity.this, GameActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, CreateRoomActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 //Animation when switching classes
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
