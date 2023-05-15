@@ -99,6 +99,12 @@ public class GameActivity extends CustomAppCompatActivity {
         this.newRoomOwnerController = new NewRoomOwnerController(this);
         this.nobleController = new NobleController(this);
 
+        //update lists
+        cardListFirstTier = Model.getRoom().getGame().getFirstTierCards();
+        cardListSecondTier = Model.getRoom().getGame().getSecondTierCards();
+        cardListThirdTier = Model.getRoom().getGame().getThirdTierCards();
+        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
+        cardListNobleCards = Model.getRoom().getGame().getNoble();
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.MAKE_RESERVATION_FROM_DECK_ANNOUNCEMENT,
@@ -452,7 +458,7 @@ public class GameActivity extends CustomAppCompatActivity {
         cardsNobleCardsRecyclerView = (RecyclerView) binding.nobleCardsRecyclerView;
         cardsNobleCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardListNobleCards = Model.getRoom().getGame().getNoble();
-        nobleCardsAdapter.setCardList(cardListNobleCards);
+        nobleCardsAdapter = new nobleCardsAdapter(cardListNobleCards);
         cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         nobleCardsAdapter.notifyDataSetChanged();
