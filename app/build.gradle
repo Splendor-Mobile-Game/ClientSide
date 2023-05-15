@@ -41,6 +41,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'tech.gusavila92:java-android-websocket-client:1.2.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.github.Splendor-Mobile-Game:ServerSide:make-response-classes-static-SNAPSHOT'
+    implementation 'com.github.Splendor-Mobile-Game:ServerSide:develop-SNAPSHOT'
     implementation 'com.google.android.material:material:1.8.0'
 }
