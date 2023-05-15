@@ -44,7 +44,7 @@ public class GameActivity extends CustomAppCompatActivity {
 
     private DeckReservingController deckReservingController;
     private RevealedCardsReservingController revealedCardsReservingController;
-    //private TokensController tokensController;
+    private TokensController tokensController;
     private EndTurnController endTurnController;
     private BuyingRevealedCardsController buyingRevealedCardsController;
     private BuyingReservedCardsController buyingReservedCardsController;
@@ -75,6 +75,14 @@ public class GameActivity extends CustomAppCompatActivity {
         binding = ActivityGameActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        //update lists
+        cardListFirstTier = Model.getRoom().getGame().getFirstTierCards();
+        cardListSecondTier = Model.getRoom().getGame().getSecondTierCards();
+        cardListThirdTier = Model.getRoom().getGame().getThirdTierCards();
+        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
+        cardListNobleCards = Model.getRoom().getGame().getNoble();
+
         // binding.gameActivityConstraintLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         setupSideBar();
         setupButtons();
@@ -86,12 +94,17 @@ public class GameActivity extends CustomAppCompatActivity {
         setupReservingFromDeckButtons();
         setupBuyingReservedCards();
         setupNobleCardsRecyclerView();
+
+        this.updateTokenNumber();
+        this.updateReservedCards();
+        this.updateScoreBoard();
+
         // Create controllers
         this.endTurnController = new EndTurnController(this);
 
         this.deckReservingController = new DeckReservingController(this, this.endTurnController);
         this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.endTurnController);
-       // this.tokensController = new TokensController(this, this.turnController);
+        this.tokensController = new TokensController(this, this.endTurnController);
         this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.endTurnController);
         this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.endTurnController);
         this.leavingController = new LeavingController(this);
@@ -99,12 +112,6 @@ public class GameActivity extends CustomAppCompatActivity {
         this.newRoomOwnerController = new NewRoomOwnerController(this);
         this.nobleController = new NobleController(this);
 
-        //update lists
-        cardListFirstTier = Model.getRoom().getGame().getFirstTierCards();
-        cardListSecondTier = Model.getRoom().getGame().getSecondTierCards();
-        cardListThirdTier = Model.getRoom().getGame().getThirdTierCards();
-        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
-        cardListNobleCards = Model.getRoom().getGame().getNoble();
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.MAKE_RESERVATION_FROM_DECK_ANNOUNCEMENT,
@@ -115,21 +122,20 @@ public class GameActivity extends CustomAppCompatActivity {
                 this.deckReservingController.getReservationFromDeckMessageHandler()
         );
 
-        // Commented out reactions are still being developed on the client
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_ANNOUNCEMENT,
-//                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
-//        );
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_RESPONSE,
-//                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
-//        );
-/*
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.MAKE_RESERVATION_FROM_TABLE_ANNOUNCEMENT,
+                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.MAKE_RESERVATION_FROM_TABLE_RESPONSE,
+                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
+        );
+
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.GET_TOKENS_RESPONSE,
-              //  this.tokensController.getGetTokensMessageHandler()
+                this.tokensController.getGetTokensMessageHandler()
         );
-*/
+
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NEW_TURN_ANNOUNCEMENT,
                 this.endTurnController.getNewTurnAnnouncementMessageHandler()
@@ -149,24 +155,24 @@ public class GameActivity extends CustomAppCompatActivity {
                 this.buyingRevealedCardsController.getBuyRevealedCardMessageHandler()
         );
 
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.BUY_RESERVED_MINE_ANNOUNCEMENT,
-//                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
-//        );
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.BUY_RESERVED_MINE_RESPONSE,
-//                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
-//        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.BUY_RESERVED_MINE_ANNOUNCEMENT,
+                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.BUY_RESERVED_MINE_RESPONSE,
+                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
+        );
 
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.LEAVE_ROOM_RESPONSE,
                 this.leavingController.getLeaveRoomResponse()
         );
 
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.GAME_ENDED,
-//                this.gameEndingController.getGameEndedMessageHandler()
-//        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.END_GAME_ANNOUNCEMENT,
+                this.gameEndingController.getGameEndedMessageHandler()
+        );
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NEW_ROOM_OWNER,
                 this.newRoomOwnerController.getNewRoomOwnerResponse()
@@ -320,6 +326,13 @@ public class GameActivity extends CustomAppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        binding.takeTokensButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GameActivity.this.tokensController.getTokens(redTokens, blueTokens, greenTokens, blackTokens, whiteTokens);
             }
         });
 
@@ -482,7 +495,7 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
             binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
             binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player1PointsTV.setText(users.get(0).getPoints());
+            binding.Player1PointsTV.setText(Integer.toString(users.get(0).getPoints()));
         }
         if(userCount>1){
             HashMap<TokenType, Integer> tokens =  users.get(1).getTokens();
@@ -493,7 +506,7 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
             binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
             binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player2PointsTV.setText(users.get(1).getPoints());
+            binding.Player2PointsTV.setText(Integer.toString(users.get(1).getPoints()));
         }
         if(userCount>2){
             HashMap<TokenType, Integer> tokens =  users.get(2).getTokens();
@@ -504,7 +517,7 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
             binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
             binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player3PointsTV.setText(users.get(2).getPoints());
+            binding.Player3PointsTV.setText(Integer.toString(users.get(2).getPoints()));
         }
         if(userCount>3){
             HashMap<TokenType, Integer> tokens =  users.get(3).getTokens();
@@ -515,7 +528,7 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
             binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
             binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player3PointsTV.setText(users.get(3).getPoints());
+            binding.Player3PointsTV.setText(Integer.toString(users.get(3).getPoints()));
         }
     }
 
