@@ -73,6 +73,9 @@ public class Game {
         }
         return null;
     }
+    public ArrayList<Noble> getNoble() {
+        return noblesOnTable;
+    }
 
 
     public void addNewCardToTable(Card card) {

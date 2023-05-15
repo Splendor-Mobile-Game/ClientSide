@@ -460,6 +460,7 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupNobleCardsRecyclerView() {
         cardsNobleCardsRecyclerView = (RecyclerView) binding.nobleCardsRecyclerView;
         cardsNobleCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        /* Testing purposes
         Noble noble1 = new Noble(UUID.randomUUID(), 3, 3, 3, 0, 0);
         Noble noble2 = new Noble(UUID.randomUUID(), 0, 4, 4, 4, 0);
         Noble noble3 = new Noble(UUID.randomUUID(), 4, 4, 0, 4, 0);
@@ -468,9 +469,16 @@ public class GameActivity extends CustomAppCompatActivity {
         cardListNobleCards.add(noble3);
         cardListNobleCards.add(noble1);
         cardListNobleCards.add(noble2);
-        nobleCardsAdapter = new nobleCardsAdapter(cardListNobleCards);
+        */
+        cardListNobleCards = Model.getRoom().getGame().getNoble();
+        nobleCardsAdapter.setCardList(cardListNobleCards);
         cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
+        nobleCardsAdapter.notifyDataSetChanged();
+    }
+    public void updateNobleCardsRecyclerView(){
+        cardListNobleCards = Model.getRoom().getGame().getNoble();
+        nobleCardsAdapter.setCardList(cardListNobleCards);
         nobleCardsAdapter.notifyDataSetChanged();
     }
     //Numbers don't need to be localized
