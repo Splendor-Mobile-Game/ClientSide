@@ -72,6 +72,11 @@ public class EndTurnController<T extends GameActivity> extends Controller {
 
             activity.showToast("INFO: " + user.getName() + "'s turn!");
 
+            gameActivity.updateScoreBoard();
+            gameActivity.updateTokenNumber();
+            gameActivity.updateReservedCards();
+            gameActivity.updateCards();
+
             // TODO Update the view
             // ...
             // this.gameActivity.updateTurnIndicator()
