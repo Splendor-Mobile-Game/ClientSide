@@ -27,8 +27,8 @@ public class TokensController<T extends GameActivity> extends Controller {
     private EndTurnController endTurnController;
     private GetTokensMessageHandler getTokensMessageHandler;
 
-    public TokensController(T activity, EndTurnController endTurnController) {
-        super(activity);
+    public TokensController(T activity, CustomWebSocketClient customWebSocketClient, Model model, EndTurnController endTurnController) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.endTurnController = endTurnController;
         this.getTokensMessageHandler = new GetTokensMessageHandler();
@@ -49,11 +49,11 @@ public class TokensController<T extends GameActivity> extends Controller {
         if(black>0){tokensTakenDTO.onyx=black;}else{tokensReturnedDTO.onyx=black;}
         if(white>0){tokensTakenDTO.diamond=white;}else{tokensReturnedDTO.diamond=white;}
 
-        GetTokens.DataDTO dataDTO = new GetTokens.DataDTO(Model.getUserUuid(), tokensTakenDTO, tokensReturnedDTO);
+        GetTokens.DataDTO dataDTO = new GetTokens.DataDTO(model.getUserUuid(), tokensTakenDTO, tokensReturnedDTO);
 
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.GET_TOKENS, dataDTO);
 
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public GetTokensMessageHandler getGetTokensMessageHandler() {
@@ -91,7 +91,7 @@ public class TokensController<T extends GameActivity> extends Controller {
             tokensReturned.put(TokenType.ONYX, tokensReturnedDataResponse.onyx);
 
             // Update the model
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
             User user = room.getUserByUuid(responseData.data.userUuid);
 

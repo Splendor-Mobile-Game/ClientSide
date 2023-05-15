@@ -28,8 +28,8 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
     private EndTurnController endTurnController;
     private BuyReservedCardMessageHandler buyReservedCardMessageHandler;
 
-    protected BuyingReservedCardsController(T activity, EndTurnController endTurnController) {
-        super(activity);
+    protected BuyingReservedCardsController(T activity, CustomWebSocketClient customWebSocketClient, Model model, EndTurnController endTurnController) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.endTurnController = endTurnController;
         this.buyReservedCardMessageHandler = new BuyReservedCardMessageHandler();
@@ -42,12 +42,12 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
     }
 
     private void sendRequest(UUID cardUuid) {
-        BuyReservedMine.UserDTO userUuidDTO = new BuyReservedMine.UserDTO(Model.getUserUuid());
+        BuyReservedMine.UserDTO userUuidDTO = new BuyReservedMine.UserDTO(model.getUserUuid());
         BuyReservedMine.CardDTO cardUuidDTO = new BuyReservedMine.CardDTO(cardUuid);
         BuyReservedMine.DataDTO dataDTO = new BuyReservedMine.DataDTO(userUuidDTO,cardUuidDTO);
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.BUY_RESERVED_MINE,dataDTO);
 
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public BuyReservedCardMessageHandler getBuyReservedCardMessageHandler() {
@@ -75,7 +75,7 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
             tokens.put(TokenType.GOLD_JOKER,tokensDataResponse.gold);
 
             // Update the model
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
             Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);

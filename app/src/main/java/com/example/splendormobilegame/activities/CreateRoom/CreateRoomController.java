@@ -22,8 +22,8 @@ import java.util.UUID;
 public class CreateRoomController extends Controller {
     private CreateRoomResponse createRoomResponse;
 
-    public CreateRoomController(CustomAppCompatActivity activity) {
-        super(activity);
+    public CreateRoomController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.createRoomResponse = new CreateRoomResponse();
     }
 
@@ -31,12 +31,12 @@ public class CreateRoomController extends Controller {
 
         // Prepare data
         CreateRoom.RoomDTO room = new CreateRoom.RoomDTO(name, password);
-        CreateRoom.UserDTO user = new CreateRoom.UserDTO(Model.getUserUuid(), nickname);
+        CreateRoom.UserDTO user = new CreateRoom.UserDTO(model.getUserUuid(), nickname);
         CreateRoom.DataDTO data = new CreateRoom.DataDTO(room, user);
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.CREATE_ROOM, data);
 
         // Send request
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public CreateRoomResponse getCreateRoomResponse() {
@@ -55,7 +55,7 @@ public class CreateRoomController extends Controller {
             );
 
             // Update the model
-            Model.setRoom(new Room(
+            model.setRoom(new Room(
                     responseData.room.uuid,
                     responseData.room.name,
                     responseData.room.enterCode,
