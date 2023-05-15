@@ -1,6 +1,10 @@
 package com.example.splendormobilegame.model;
 
 
+import static com.github.splendor_mobile_game.game.enums.CardTier.LEVEL_1;
+import static com.github.splendor_mobile_game.game.enums.CardTier.LEVEL_2;
+import static com.github.splendor_mobile_game.game.enums.CardTier.LEVEL_3;
+
 import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
@@ -26,6 +30,21 @@ public class Game {
         this.cardsOnTable = cardsOnTable;
         this.reservedCards = new ArrayList<>();
         this.whosTurn = firstPlayer;
+    }
+
+    public ArrayList<ReservedCard> getReservedCards(){
+        return reservedCards;
+    }
+    public ArrayList<Card> getFirstTierCards(){
+        return cardsOnTable.get(LEVEL_1);
+    }
+
+    public ArrayList<Card> getSecondTierCards(){
+        return cardsOnTable.get(LEVEL_2);
+    }
+
+    public ArrayList<Card> getThirdTierCards(){
+        return cardsOnTable.get(LEVEL_3);
     }
 
 

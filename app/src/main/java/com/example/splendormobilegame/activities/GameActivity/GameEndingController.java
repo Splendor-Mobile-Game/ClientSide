@@ -1,8 +1,11 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
+import com.example.splendormobilegame.MainActivity;
+import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
@@ -39,8 +42,6 @@ public class GameEndingController<T extends GameActivity> extends Controller {
 
             EndTurn.ResponseDataEndGame responseDataEndGame = (EndTurn.ResponseDataEndGame) ReactionUtils.getResponseData(serverMessage, EndTurn.ResponseDataEndGame.class);
             Model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
-
-
 
 
             // TODO Update the view via `gameActivity` or other objects given in constructor

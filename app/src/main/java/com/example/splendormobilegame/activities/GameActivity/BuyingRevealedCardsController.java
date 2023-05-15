@@ -116,6 +116,10 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             // The server should handle this automatically.
             BuyingRevealedCardsController.this.endTurnController.endTurn();
 
+            gameActivity.updateScoreBoard();
+            gameActivity.updateTokenNumber();
+            gameActivity.updateCards();
+
             return null;
         }
 

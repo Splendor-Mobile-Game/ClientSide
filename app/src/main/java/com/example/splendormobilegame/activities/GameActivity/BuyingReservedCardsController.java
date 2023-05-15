@@ -92,6 +92,10 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
             BuyingReservedCardsController.this.endTurnController.endTurn();
+
+            gameActivity.updateScoreBoard();
+            gameActivity.updateTokenNumber();
+
             return null;
         }
 

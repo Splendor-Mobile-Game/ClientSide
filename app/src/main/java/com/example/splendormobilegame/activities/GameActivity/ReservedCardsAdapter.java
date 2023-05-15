@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.model.Card;
+import com.example.splendormobilegame.model.Noble;
+import com.example.splendormobilegame.model.ReservedCard;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 
 import java.util.List;
 
 public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdapter.ViewHolder> {
-    private List<Card> cardList;
+    private List<ReservedCard> cardList;
     private TextView whitePointsTextView;
     private TextView greenPointsTextView;
     private TextView redPointsTextView;
@@ -30,8 +32,12 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     private Context context;
     private android.app.Activity activity;
 
+    public void setCardList(List<ReservedCard> cardList) {
+        this.cardList = cardList;
+    }
 
-    public ReservedCardsAdapter(List<Card> assetDataList){
+
+    public ReservedCardsAdapter(List<ReservedCard> assetDataList){
         this.cardList = assetDataList;
     }
     @NonNull
@@ -45,41 +51,41 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     @Override
     public void onBindViewHolder(@NonNull ReservedCardsAdapter.ViewHolder holder, int position) {
         GameActivity activity = (GameActivity) context;
-        Card cardData = cardList.get(position);
+        ReservedCard cardData = cardList.get(position);
         CardView cardView = holder.cardView;
 
         whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
-        whitePointsTextView.setText(String.valueOf(cardData.getDiamondCost()));
+        whitePointsTextView.setText(String.valueOf(cardData.getCard().getDiamondCost()));
         greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
-        greenPointsTextView.setText(String.valueOf(cardData.getEmeraldCost()));
+        greenPointsTextView.setText(String.valueOf(cardData.getCard().getEmeraldCost()));
         redPointsTextView = cardView.findViewById(R.id.redPointsTextView);
-        redPointsTextView.setText(String.valueOf(cardData.getRubyCost()));
+        redPointsTextView.setText(String.valueOf(cardData.getCard().getRubyCost()));
         bluePointsTextView = cardView.findViewById(R.id.bluePointsTextView);
-        bluePointsTextView.setText(String.valueOf(cardData.getSapphireCost()));
+        bluePointsTextView.setText(String.valueOf(cardData.getCard().getSapphireCost()));
         blackPointsTextView = cardView.findViewById(R.id.blackPointsTextView);
-        blackPointsTextView.setText(String.valueOf(cardData.getOnyxCost()));
+        blackPointsTextView.setText(String.valueOf(cardData.getCard().getOnyxCost()));
         pointsTextView = cardView.findViewById(R.id.pointsTextView);
-        pointsTextView.setText(String.valueOf(cardData.getPoints()));
+        pointsTextView.setText(String.valueOf(cardData.getCard().getPoints()));
         cardType = cardView.findViewById(R.id.cardTypeImageView);
-        if(cardData.getBonusToken() == TokenType.EMERALD){
+        if(cardData.getCard().getBonusToken() == TokenType.EMERALD){
             cardType.setImageResource(R.drawable.diamond_shape_green);
         }
-        if(cardData.getBonusToken() == TokenType.SAPPHIRE){
+        if(cardData.getCard().getBonusToken() == TokenType.SAPPHIRE){
             cardType.setImageResource(R.drawable.diamond_shape_blue);
         }
-        if(cardData.getBonusToken() == TokenType.RUBY){
+        if(cardData.getCard().getBonusToken() == TokenType.RUBY){
             cardType.setImageResource(R.drawable.diamond_shape_red);
         }
-        if(cardData.getBonusToken() == TokenType.ONYX){
+        if(cardData.getCard().getBonusToken() == TokenType.ONYX){
             cardType.setImageResource(R.drawable.diamond_shape_black);
         }
-        if(cardData.getBonusToken() == TokenType.DIAMOND){
+        if(cardData.getCard().getBonusToken() == TokenType.DIAMOND){
             cardType.setImageResource(R.drawable.diamond_shape_white);
         }
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.showBuyingReservedCardDialog(cardData.getUuid());
+                activity.showBuyingReservedCardDialog(cardData.getCard().getUuid());
             }
         });
 

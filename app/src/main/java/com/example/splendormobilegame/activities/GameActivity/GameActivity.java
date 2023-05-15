@@ -2,6 +2,7 @@ package com.example.splendormobilegame.activities.GameActivity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -14,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
+import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
 import com.example.splendormobilegame.activities.WaitingRoom.NewRoomOwnerController;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Noble;
+import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.github.splendor_mobile_game.game.enums.CardTier;
@@ -62,7 +65,7 @@ public class GameActivity extends CustomAppCompatActivity {
     List<Card> cardListFirstTier = new ArrayList<>();
     List<Card> cardListSecondTier = new ArrayList<>();
     List<Card> cardListThirdTier = new ArrayList<>();
-    List<Card> cardListReservedCards = new ArrayList<>();
+    List<ReservedCard> cardListReservedCards = new ArrayList<>();
     List<Noble> cardListNobleCards = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -410,14 +413,6 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsFirstTierRecyclerView() {
         cardsFirstTierRecyclerView = (RecyclerView) binding.cards1RecyclerView;
         cardsFirstTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 5, 10, 7, 3, 2, 1, TokenType.RUBY);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 3, 16, 58, 3, 2, 1, TokenType.DIAMOND);
-        cardListFirstTier.add(myCard1);
-        cardListFirstTier.add(myCard2);
-        cardListFirstTier.add(myCard3);
-        cardListFirstTier.add(myCard4);
         cardsFirstTierAdapter = new CardsFirstTierAdapter(cardListFirstTier);
         cardsFirstTierRecyclerView.setAdapter(cardsFirstTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
@@ -427,14 +422,6 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsSecondTierRecyclerView() {
         cardsSecondTierRecyclerView = (RecyclerView) binding.cards2RecyclerView;
         cardsSecondTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
-        cardListSecondTier.add(myCard1);
-        cardListSecondTier.add(myCard2);
-        cardListSecondTier.add(myCard3);
-        cardListSecondTier.add(myCard4);
         cardsSecondTierAdapter = new CardsSecondTierAdapter(cardListSecondTier);
         cardsSecondTierRecyclerView.setAdapter(cardsSecondTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
@@ -444,32 +431,26 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsThirdTierRecyclerView() {
         cardsThirdTierRecyclerView = (RecyclerView) binding.cards3RecyclerView;
         cardsThirdTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 5, 10, 7, 3, 2, 1, TokenType.ONYX);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
-        cardListThirdTier.add(myCard1);
-        cardListThirdTier.add(myCard2);
-        cardListThirdTier.add(myCard3);
-        cardListThirdTier.add(myCard4);
+
         cardsThirdTierAdapter = new CardsThirdTierAdapter(cardListThirdTier);
         cardsThirdTierRecyclerView.setAdapter(cardsThirdTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         cardsFirstTierAdapter.notifyDataSetChanged();
     }
+    public void updateCards(){
+        cardListFirstTier = Model.getRoom().getGame().getFirstTierCards();
+        cardListSecondTier = Model.getRoom().getGame().getSecondTierCards();
+        cardListThirdTier = Model.getRoom().getGame().getThirdTierCards();
+        cardsFirstTierAdapter.setCardList(cardListFirstTier);
+        cardsSecondTierAdapter.setCardList(cardListSecondTier);
+        cardsThirdTierAdapter.setCardList(cardListThirdTier);
+        cardsFirstTierAdapter.notifyDataSetChanged();
+        cardsSecondTierAdapter.notifyDataSetChanged();
+        cardsThirdTierAdapter.notifyDataSetChanged();
+    }
     public void setupNobleCardsRecyclerView() {
         cardsNobleCardsRecyclerView = (RecyclerView) binding.nobleCardsRecyclerView;
         cardsNobleCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        /* Testing purposes
-        Noble noble1 = new Noble(UUID.randomUUID(), 3, 3, 3, 0, 0);
-        Noble noble2 = new Noble(UUID.randomUUID(), 0, 4, 4, 4, 0);
-        Noble noble3 = new Noble(UUID.randomUUID(), 4, 4, 0, 4, 0);
-        cardListNobleCards.add(noble1);
-        cardListNobleCards.add(noble2);
-        cardListNobleCards.add(noble3);
-        cardListNobleCards.add(noble1);
-        cardListNobleCards.add(noble2);
-        */
         cardListNobleCards = Model.getRoom().getGame().getNoble();
         nobleCardsAdapter.setCardList(cardListNobleCards);
         cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
@@ -536,19 +517,16 @@ public class GameActivity extends CustomAppCompatActivity {
         reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.HORIZONTAL, false);
         reservedCardsBuyingRecyclerView.setLayoutManager(HorizontalLayout);
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
-        //testing
-        cardListReservedCards.add(myCard1);
-        cardListReservedCards.add(myCard2);
-        cardListReservedCards.add(myCard3);
-        cardListReservedCards.add(myCard4);
+        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
         reservedCardsAdapter = new ReservedCardsAdapter(cardListReservedCards);
         reservedCardsBuyingRecyclerView.setAdapter(reservedCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         reservedCardsAdapter.notifyDataSetChanged();
+    }
+    public void updateReservedCards(){
+        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
+        nobleCardsAdapter.setCardList(cardListNobleCards);
+        nobleCardsAdapter.notifyDataSetChanged();
     }
 
     public void updateTokenNumber(){
@@ -558,6 +536,15 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.greenTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
         binding.whiteTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
         binding.yellowTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
+
+    }
+
+    public void endGame(){
+        //Change to end game activity screen
+        Intent myIntent = new Intent(GameActivity.this, CreateRoomActivity.class);
+        GameActivity.this.startActivity(myIntent);
+        //Animation when switching classes
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
     }
 
