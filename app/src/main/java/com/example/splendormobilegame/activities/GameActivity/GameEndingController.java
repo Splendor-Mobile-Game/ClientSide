@@ -3,6 +3,7 @@ package com.example.splendormobilegame.activities.GameActivity;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
+import com.example.splendormobilegame.activities.GameEndingActivity.GameEndingActivity;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
@@ -30,7 +31,7 @@ public class GameEndingController<T extends GameActivity> extends Controller {
     }
     public void sendRequest() {
         EndTurnTest.DataDTO dataDTO = new EndTurnTest.DataDTO(Model.getUserUuid());
-        UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.END_TURN, dataDTO);
+        UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.END_TURN_TEST, dataDTO);
 
         CustomWebSocketClient.getInstance().send(message);
     }
@@ -52,9 +53,8 @@ public class GameEndingController<T extends GameActivity> extends Controller {
             Model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
 
 
+            activity.changeActivity(GameEndingActivity.class);
 
-
-            // TODO Update the view via `gameActivity` or other objects given in constructor
 
             return null;
         }

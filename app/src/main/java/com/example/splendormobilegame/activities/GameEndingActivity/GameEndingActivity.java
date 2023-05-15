@@ -1,6 +1,7 @@
 package com.example.splendormobilegame.activities.GameEndingActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,21 +33,18 @@ public class GameEndingActivity extends CustomAppCompatActivity {
         setContentView(R.layout.endingscreen);
         rankingListView = findViewById(R.id.rankingListView);
         playerRanking = Model.getRoom().getGame().getPlayerRanking();
-        Collections.sort(playerRanking, new Comparator<EndTurn.PlayerDataResponse>() {
-            @Override
-            public int compare(EndTurn.PlayerDataResponse o1, EndTurn.PlayerDataResponse o2) {
-                return Integer.compare(o1.points,o2.points);
-            }
-        });
         List<String> rankingList = new ArrayList<>();
 
-        for (int i= 0; i<rankingList.size();i++)
+        for (int i= 0; i<playerRanking.size();i++)
         {
             EndTurn.PlayerDataResponse o1 = playerRanking.get(i);
             rankingList.add((i+1)+". "+ Model.getRoom().getUserByUuid(o1.playerUUID).getName()+ " "+o1.points);
         }
+        //displaying ranking list
         rankingAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,rankingList);
         rankingListView.setAdapter(rankingAdapter);
+        rankingAdapter.notifyDataSetChanged();
+
 
         Button backToMenuButton = findViewById(R.id.BackToMenuButton);
         backToMenuButton.setOnClickListener(new View.OnClickListener() {
