@@ -51,6 +51,7 @@ public class NobleController<T extends GameActivity>  extends Controller {
             game.transferNobleToUser(noble, user);
 
 gameActivity.updateNobleCardsRecyclerView();
+gameActivity.setNobleBackground(responseData.nobleUuid);
             return null;
         }
 

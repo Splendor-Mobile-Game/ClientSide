@@ -7,6 +7,7 @@ import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +50,7 @@ public class GameActivity extends CustomAppCompatActivity {
     private GameEndingController gameEndingController;
     private NewRoomOwnerController newRoomOwnerController;
     private NobleController nobleController;
+    private ImageView backgroundImageView;
     CardsFirstTierAdapter cardsFirstTierAdapter;
     CardsSecondTierAdapter cardsSecondTierAdapter;
     CardsThirdTierAdapter cardsThirdTierAdapter;
@@ -72,6 +74,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding = ActivityGameActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        backgroundImageView = findViewById(R.id.imageView);
         // binding.gameActivityConstraintLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         setupSideBar();
         setupButtons();
@@ -564,5 +567,10 @@ public class GameActivity extends CustomAppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    public void setNobleBackground(UUID nobleId) {
+        int resourceId = getResources().getIdentifier(nobleId.toString(), "drawable", getPackageName());
+        backgroundImageView.setImageResource(resourceId);
     }
 }
