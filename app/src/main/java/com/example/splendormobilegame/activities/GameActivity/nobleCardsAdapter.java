@@ -35,6 +35,10 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         return new ViewHolder(view);
     }
 
+    public void setCardList(List<Noble> cardList) {
+        this.cardList = cardList;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull nobleCardsAdapter.ViewHolder holder, int position) {
         GameActivity activity = (GameActivity) context;

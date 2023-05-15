@@ -50,7 +50,7 @@ public class NobleController<T extends GameActivity>  extends Controller {
 
             game.transferNobleToUser(noble, user);
 
-
+gameActivity.updateNobleCardsRecyclerView();
             return null;
         }
 
