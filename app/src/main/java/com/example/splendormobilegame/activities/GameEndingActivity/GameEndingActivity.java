@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.MainActivity;
 import com.example.splendormobilegame.R;
+import com.example.splendormobilegame.activities.WaitingRoom.LeavingController;
 import com.example.splendormobilegame.model.Model;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
 
@@ -49,7 +50,9 @@ public class GameEndingActivity extends CustomAppCompatActivity {
         Button backToMenuButton = findViewById(R.id.BackToMenuButton);
         backToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                Model.setRoom(null);
                 changeActivity(MainActivity.class);
             }
         });
