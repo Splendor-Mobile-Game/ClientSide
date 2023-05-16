@@ -33,13 +33,13 @@ public class GameEndingActivity extends CustomAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.endingscreen);
         rankingListView = findViewById(R.id.rankingListView);
-        playerRanking = Model.getRoom().getGame().getPlayerRanking();
+        playerRanking = Model.getInstance().getRoom().getGame().getPlayerRanking();
         List<String> rankingList = new ArrayList<>();
 
         for (int i= 0; i<playerRanking.size();i++)
         {
             EndTurn.PlayerDataResponse o1 = playerRanking.get(i);
-            rankingList.add((i+1)+". "+ Model.getRoom().getUserByUuid(o1.playerUUID).getName()+ " "+o1.points);
+            rankingList.add((i+1)+". "+ Model.getInstance().getRoom().getUserByUuid(o1.playerUUID).getName()+ " "+o1.points);
         }
         //displaying ranking list
         rankingAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,rankingList);
@@ -52,7 +52,7 @@ public class GameEndingActivity extends CustomAppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Model.setRoom(null);
+                Model.getInstance().setRoom(null);
                 changeActivity(MainActivity.class);
             }
         });

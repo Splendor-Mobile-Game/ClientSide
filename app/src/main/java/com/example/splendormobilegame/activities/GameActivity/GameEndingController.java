@@ -30,7 +30,7 @@ public class GameEndingController<T extends GameActivity> extends Controller {
         this.gameEndedMessageHandler = new GameEndedMessageHandler();
     }
     public void sendRequest() {
-        EndTurnTest.DataDTO dataDTO = new EndTurnTest.DataDTO(Model.getUserUuid());
+        EndTurnTest.DataDTO dataDTO = new EndTurnTest.DataDTO(model.getUserUuid());
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.END_TURN_TEST, dataDTO);
 
         CustomWebSocketClient.getInstance().send(message);
