@@ -16,7 +16,6 @@ import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
-import com.github.splendor_mobile_game.websocket.handlers.reactions.BuyRevealedMine;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.MakeReservationFromTable;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
@@ -25,13 +24,13 @@ import java.util.UUID;
 public class RevealedCardsReservingController<T extends GameActivity> extends Controller {
 
     private T gameActivity;
-    private TurnController turnController;
+    private EndTurnController endTurnController;
     private ReservationFromRevealedMessageHandler reservationFromRevealedMessageHandler;
 
-    protected RevealedCardsReservingController(T activity, TurnController turnController) {
-        super(activity);
+    protected RevealedCardsReservingController(T activity, CustomWebSocketClient customWebSocketClient, Model model, EndTurnController endTurnController) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
-        this.turnController = turnController;
+        this.endTurnController = endTurnController;
         this.reservationFromRevealedMessageHandler = new ReservationFromRevealedMessageHandler();
     }
 
@@ -42,12 +41,12 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
     }
 
     private void sendRequestToReserve(UUID cardUuid) {
-        MakeReservationFromTable.UserDTO userUuidDTO = new MakeReservationFromTable.UserDTO(Model.getUserUuid());
+        MakeReservationFromTable.UserDTO userUuidDTO = new MakeReservationFromTable.UserDTO(model.getUserUuid());
         MakeReservationFromTable.CardDTO cardUuidDTO = new MakeReservationFromTable.CardDTO(cardUuid);
         MakeReservationFromTable.DataDTO dataDTO = new MakeReservationFromTable.DataDTO(cardUuidDTO,userUuidDTO);
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.MAKE_RESERVATION_FROM_TABLE,dataDTO);
 
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public ReservationFromRevealedMessageHandler getReservationFromRevealedMessageHandler() {
@@ -67,7 +66,7 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
 
 
             // Update the model
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
             User user = room.getUserByUuid(responseData.reservee.userUuid);
             ReservedCard reservedCard = new ReservedCard(game.getCardByUuid(responseData.reservee.reservedCardUuid), user, true);
@@ -104,7 +103,7 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
             // Therefore, I need to end my turn.
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
-            RevealedCardsReservingController.this.turnController.endTurn();
+            RevealedCardsReservingController.this.endTurnController.endTurn();
 
             return null;
         }

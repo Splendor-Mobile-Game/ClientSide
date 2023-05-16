@@ -89,7 +89,7 @@ public class GameActivity extends CustomAppCompatActivity {
 
         this.deckReservingController = new DeckReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.revealedCardsReservingController = new RevealedCardsReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
-        // this.tokensController = new TokensController(this, this.turnController);
+       // this.tokensController = new TokensController(this, this.turnController);
         this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.buyingReservedCardsController = new BuyingReservedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.leavingController = new LeavingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());

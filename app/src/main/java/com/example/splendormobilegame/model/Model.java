@@ -2,27 +2,47 @@ package com.example.splendormobilegame.model;
 
 import android.app.Activity;
 
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.example.splendormobilegame.websocket.NotInitializedException;
+
+import java.net.URI;
 import java.util.UUID;
 
 public class Model {
 
+    private static Model instance;
 
-    private static UUID userUuid;
-    private static Room room;
+    private Model() {
 
-    public static UUID getUserUuid() {
+    }
+
+    public static void initialize() {
+        instance = new Model();
+    }
+
+    public static Model getInstance() {
+        if (instance == null) {
+            throw new NotInitializedException("Please, run first `initialize` method before using this class!");
+        }
+        return instance;
+    }
+
+    private UUID userUuid;
+    private Room room;
+
+    public UUID getUserUuid() {
         return userUuid;
     }
 
-    public static void setUserUuid(UUID userUuid) {
-        Model.userUuid = userUuid;
+    public void setUserUuid(UUID userUuid) {
+        this.userUuid = userUuid;
     }
 
-    public static Room getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public static void setRoom(Room room) {
-        Model.room = room;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

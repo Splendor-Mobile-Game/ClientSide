@@ -24,8 +24,8 @@ public class GameEndingController<T extends GameActivity> extends Controller {
     private T gameActivity;
     private GameEndedMessageHandler gameEndedMessageHandler;
 
-    protected GameEndingController(T activity) {
-        super(activity);
+    protected GameEndingController(T activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.gameEndedMessageHandler = new GameEndedMessageHandler();
     }
@@ -50,7 +50,7 @@ public class GameEndingController<T extends GameActivity> extends Controller {
 
 
             EndTurn.ResponseDataEndGame responseDataEndGame = (EndTurn.ResponseDataEndGame) ReactionUtils.getResponseData(serverMessage, EndTurn.ResponseDataEndGame.class);
-            Model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
+            model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
 
 
             activity.changeActivity(GameEndingActivity.class);
