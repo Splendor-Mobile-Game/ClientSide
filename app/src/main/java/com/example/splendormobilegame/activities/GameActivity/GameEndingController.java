@@ -3,11 +3,15 @@ package com.example.splendormobilegame.activities.GameActivity;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
+import com.example.splendormobilegame.activities.GameEndingActivity.GameEndingActivity;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
+
+import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurnTest;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
 import com.example.splendormobilegame.model.Game;
@@ -25,6 +29,13 @@ public class GameEndingController<T extends GameActivity> extends Controller {
         this.gameActivity = activity;
         this.gameEndedMessageHandler = new GameEndedMessageHandler();
     }
+    public void sendRequest() {
+        EndTurnTest.DataDTO dataDTO = new EndTurnTest.DataDTO(Model.getUserUuid());
+        UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.END_TURN_TEST, dataDTO);
+
+        CustomWebSocketClient.getInstance().send(message);
+    }
+
 
 
     public GameEndedMessageHandler getGameEndedMessageHandler() {
@@ -42,9 +53,8 @@ public class GameEndingController<T extends GameActivity> extends Controller {
             model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
 
 
+            activity.changeActivity(GameEndingActivity.class);
 
-
-            // TODO Update the view via `gameActivity` or other objects given in constructor
 
             return null;
         }

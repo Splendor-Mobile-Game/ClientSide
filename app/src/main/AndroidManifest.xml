@@ -43,6 +43,11 @@
             android:label="@string/app_name"
             android:parentActivityName=".activities.CreateRoom.CreateRoomActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.GameEndingActivity.GameEndingActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.GameActivity.GameActivity"
+            android:screenOrientation="landscape" />
 </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
