@@ -471,14 +471,14 @@ public class GameActivity extends CustomAppCompatActivity {
         cardListNobleCards.add(noble1);
         cardListNobleCards.add(noble2);
         */
-        cardListNobleCards = Model.getRoom().getGame().getNoble();
+        cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
         nobleCardsAdapter.setCardList(cardListNobleCards);
         cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         nobleCardsAdapter.notifyDataSetChanged();
     }
     public void updateNobleCardsRecyclerView(){
-        cardListNobleCards = Model.getRoom().getGame().getNoble();
+        cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
         nobleCardsAdapter.setCardList(cardListNobleCards);
         nobleCardsAdapter.notifyDataSetChanged();
     }
