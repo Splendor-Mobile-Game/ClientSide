@@ -1,5 +1,8 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -188,8 +191,8 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.sideBarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int pointCardVisible = (binding.pointsCardView.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
-                int otherCardsVisible = (binding.pointsCardView.getVisibility() == View.GONE) ? View.GONE : View.VISIBLE;
+                int pointCardVisible = (binding.pointsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
+                int otherCardsVisible = (binding.pointsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
                 TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
                 binding.pointsCardView.setVisibility(pointCardVisible);
                 binding.otherPlayerCardView.setVisibility(otherCardsVisible);
@@ -223,8 +226,8 @@ public class GameActivity extends CustomAppCompatActivity {
 
     //Function swapping right side between take points and cards.
     private void ChangeRightSide() {
-        int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
-        int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == View.GONE) ? View.GONE : View.VISIBLE;
+        int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
+        int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
         TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
         binding.CardsAristocratsCardView.setVisibility(cardsCard);
         binding.takeTokensCardView.setVisibility(takeTokensCard);
@@ -486,8 +489,11 @@ public class GameActivity extends CustomAppCompatActivity {
     public void updateScoreBoard(){
         ArrayList<User> users = Model.getRoom().getUsers();
         int userCount = Model.getRoom().getPlayerCount();
+        hideScoreBoard();
+
         if(userCount>0){
             HashMap<TokenType, Integer> tokens =  users.get(0).getTokens();
+            show1PlayerScoreBoard();
             binding.Player1NameTV.setText(users.get(0).getName());
             binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
             binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
@@ -499,6 +505,7 @@ public class GameActivity extends CustomAppCompatActivity {
         }
         if(userCount>1){
             HashMap<TokenType, Integer> tokens =  users.get(1).getTokens();
+            show2PlayerScoreBoard();
             binding.Player2NameTV.setText(users.get(1).getName());
             binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
             binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
@@ -510,6 +517,7 @@ public class GameActivity extends CustomAppCompatActivity {
         }
         if(userCount>2){
             HashMap<TokenType, Integer> tokens =  users.get(2).getTokens();
+            show3PlayerScoreBoard();
             binding.Player3NameTV.setText(users.get(2).getName());
             binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
             binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
@@ -521,6 +529,7 @@ public class GameActivity extends CustomAppCompatActivity {
         }
         if(userCount>3){
             HashMap<TokenType, Integer> tokens =  users.get(3).getTokens();
+            mainPlayerScoreBoard();
             binding.Player3NameTV.setText(users.get(3).getName());
             binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
             binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
@@ -531,7 +540,73 @@ public class GameActivity extends CustomAppCompatActivity {
             binding.Player3PointsTV.setText(Integer.toString(users.get(3).getPoints()));
         }
     }
+    private void hideScoreBoard(){
+        binding.Player1NameTV.setVisibility(GONE);
+        binding.Player1BlackPointsTV.setVisibility(GONE);
+        binding.Player1BluePointsTV.setVisibility(GONE);
+        binding.Player1RedPointsTV.setVisibility(GONE);
+        binding.Player1WhitePointsTV.setVisibility(GONE);
+        binding.Player1GreenPointsTV.setVisibility(GONE);
+        binding.Player1YellowPointsTV.setVisibility(GONE);
+        binding.Player2NameTV.setVisibility(GONE);
+        binding.Player2BlackPointsTV.setVisibility(GONE);
+        binding.Player2BluePointsTV.setVisibility(GONE);
+        binding.Player2RedPointsTV.setVisibility(GONE);
+        binding.Player2WhitePointsTV.setVisibility(GONE);
+        binding.Player2GreenPointsTV.setVisibility(GONE);
+        binding.Player2YellowPointsTV.setVisibility(GONE);
+        binding.Player3NameTV.setVisibility(GONE);
+        binding.Player3BlackPointsTV.setVisibility(GONE);
+        binding.Player3BluePointsTV.setVisibility(GONE);
+        binding.Player3RedPointsTV.setVisibility(GONE);
+        binding.Player3WhitePointsTV.setVisibility(GONE);
+        binding.Player3GreenPointsTV.setVisibility(GONE);
+        binding.Player3YellowPointsTV.setVisibility(GONE);
+        binding.mainPlayerNameTV.setVisibility(GONE);
+        binding.mainPlayerBlackPointsTV.setVisibility(GONE);
+        binding.mainPlayerBluePointsTV.setVisibility(GONE);
+        binding.mainPlayerRedPointsTV.setVisibility(GONE);
+        binding.mainPlayerWhitePointsTV.setVisibility(GONE);
+        binding.mainPlayerGreenPointsTV.setVisibility(GONE);
+        binding.mainPlayerYellowPointsTV.setVisibility(GONE);
+    }
 
+    private void show1PlayerScoreBoard(){
+        binding.Player1NameTV.setVisibility(VISIBLE);
+        binding.Player1BlackPointsTV.setVisibility(VISIBLE);
+        binding.Player1BluePointsTV.setVisibility(VISIBLE);
+        binding.Player1RedPointsTV.setVisibility(VISIBLE);
+        binding.Player1WhitePointsTV.setVisibility(VISIBLE);
+        binding.Player1GreenPointsTV.setVisibility(VISIBLE);
+        binding.Player1YellowPointsTV.setVisibility(VISIBLE);
+    }
+    private void show2PlayerScoreBoard(){
+        binding.Player2NameTV.setVisibility(VISIBLE);
+        binding.Player2BlackPointsTV.setVisibility(VISIBLE);
+        binding.Player2BluePointsTV.setVisibility(VISIBLE);
+        binding.Player2RedPointsTV.setVisibility(VISIBLE);
+        binding.Player2WhitePointsTV.setVisibility(VISIBLE);
+        binding.Player2GreenPointsTV.setVisibility(VISIBLE);
+        binding.Player2YellowPointsTV.setVisibility(VISIBLE);
+    }
+    private void show3PlayerScoreBoard(){
+        binding.Player3NameTV.setVisibility(VISIBLE);
+        binding.Player3BlackPointsTV.setVisibility(VISIBLE);
+        binding.Player3BluePointsTV.setVisibility(VISIBLE);
+        binding.Player3RedPointsTV.setVisibility(VISIBLE);
+        binding.Player3WhitePointsTV.setVisibility(VISIBLE);
+        binding.Player3GreenPointsTV.setVisibility(VISIBLE);
+        binding.Player3YellowPointsTV.setVisibility(VISIBLE);
+    }
+    private void mainPlayerScoreBoard(){
+        binding.mainPlayerNameTV.setVisibility(VISIBLE);
+        binding.mainPlayerBlackPointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerBluePointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerRedPointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerWhitePointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerGreenPointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerYellowPointsTV.setVisibility(VISIBLE);
+    }
     private void setupBuyingReservedCards(){
         reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.HORIZONTAL, false);

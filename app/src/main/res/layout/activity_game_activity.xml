@@ -365,10 +365,9 @@
                 style="@style/LightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
-                app:layout_constraintStart_toEndOf="@+id/redPointsImageView"
+                app:layout_constraintStart_toEndOf="@+id/bluePointsImageView"
                 app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
 
             <TextView
@@ -708,8 +707,8 @@
 
             <ImageView
                 android:id="@+id/redPointsImageView"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/mainPlayerRedPointsTV"
                 app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
                 app:layout_constraintTop_toTopOf="@+id/mainPlayerRedPointsTV"
