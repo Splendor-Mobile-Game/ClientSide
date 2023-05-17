@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.databinding.ActivityJoinRoomActivityBinding;
+import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 
@@ -27,7 +28,7 @@ public class JoinRoomActivity extends CustomAppCompatActivity {
         setupButtons();
 
         // Create controllers
-        this.joinRoomController = new JoinRoomController(this);
+        this.joinRoomController = new JoinRoomController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
 
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(

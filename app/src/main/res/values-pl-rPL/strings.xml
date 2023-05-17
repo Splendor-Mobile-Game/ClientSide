@@ -27,7 +27,7 @@
     <string name="players_warning">Musisz poczekać, aż inni gracze rozpoczną grę</string>
     <string name="leave_room">Wyjdź</string>
     <string name="name_of_room">Pokój</string>
-    <string name="rooms_code">Kod</string>
+    <string name="rooms_code">Kod pokoju</string>
     <string name="current_players">Gracze</string>
     <string name="reserve_card">Zarezerwuj kartę</string>
     <string name="buy_card">Kup kartę</string>

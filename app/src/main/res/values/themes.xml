@@ -49,6 +49,18 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="WaitingRoomTextHeader" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/light_yellow</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/lora_semibold</item>
+    </style>
+
+    <style name="WaitingRoomTextConent" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/lora_regular</item>
+    </style>
+
     <style name="TitleStyle" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:fontFamily">@font/bonanova_regular</item>
         <item name="android:textColor">@color/light_yellow</item>
@@ -95,10 +107,14 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Button.Rounded</item>
         <item name="backgroundTint">@color/maroon</item>
         <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
         <item name="tint">@color/marian</item>
         <item name="iconTint">@color/marian</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">32dp</item>
+        <item name="fontFamily">@font/lora_regular</item>
+
     </style>
 
     <style name="DefaultMaroonButtonStyle" parent="@style/ButtonStyle">

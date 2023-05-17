@@ -3,6 +3,7 @@ package com.example.splendormobilegame.model;
 
 import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -15,14 +16,16 @@ public class Game {
     private final ArrayList<Noble> noblesOnTable;
     private final ArrayList<ReservedCard> reservedCards;
     private final HashMap<CardTier, ArrayList<Card>> cardsOnTable;
-    private User whosTurn;
+    private UUID whosTurn;
+    private ArrayList<EndTurn.PlayerDataResponse> playerRanking;
 
 
-    public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable) {
+    public Game(HashMap<TokenType, Integer> tokensOnTable, ArrayList<Noble> noblesOnTable, HashMap<CardTier, ArrayList<Card>> cardsOnTable, UUID firstPlayer) {
         this.tokensOnTable = tokensOnTable;
         this.noblesOnTable = noblesOnTable;
         this.cardsOnTable = cardsOnTable;
         this.reservedCards = new ArrayList<>();
+        this.whosTurn = firstPlayer;
     }
 
 
@@ -30,7 +33,6 @@ public class Game {
         if (tokensOnTable.get(tokenType) == null) return;
         int onTable = tokensOnTable.get(tokenType);
         if (amount > onTable) return; // Not enough tokens on table
-
         tokensOnTable.replace(tokenType, onTable - amount);
     }
 
@@ -71,6 +73,9 @@ public class Game {
         }
         return null;
     }
+    public ArrayList<Noble> getNoble() {
+        return noblesOnTable;
+    }
 
 
     public void addNewCardToTable(Card card) {
@@ -100,14 +105,20 @@ public class Game {
         addTokens(tokenType, amount);
         user.removeTokens(tokenType, amount);
     }
-
-    public User getWhosTurn() {
+    public Integer getTokenValue(TokenType tokenType) {
+        return tokensOnTable.get(tokenType);
+    }
+    public UUID getWhosTurn() {
         return whosTurn;
     }
 
-    public void setWhosTurn(User whosTurn) {
+    public void setWhosTurn(UUID whosTurn) {
         this.whosTurn = whosTurn;
     }
+
+    public ArrayList<EndTurn.PlayerDataResponse> getPlayerRanking(){ return this.playerRanking; }
+
+    public void setPlayerRanking(ArrayList<EndTurn.PlayerDataResponse> currentPlayerRanking){ this.playerRanking = currentPlayerRanking; }
 
 
 }

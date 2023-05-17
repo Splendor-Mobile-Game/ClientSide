@@ -10,7 +10,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/CardsAristocratsCardView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:visibility="visible"
         app:cardBackgroundColor="@color/backGroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,95 +25,12 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat3CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat2CardView">
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble10" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat5CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="23dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat4CardView">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble8" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat1CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble1" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat2CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat1CardView">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble2" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Aristocrat4CardView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Aristocrat3CardView">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/noble7" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardPile3CardView"
                 android:layout_width="80dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Aristocrat1CardView"
-                app:layout_constraintEnd_toStartOf="@+id/Aristocrat1CardView"
-                app:layout_constraintTop_toTopOf="@+id/Aristocrat1CardView" />
+                app:layout_constraintEnd_toStartOf="@+id/nobleCardsRecyclerView"
+                tools:layout_editor_absoluteY="27dp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardPile2CardView"
@@ -127,7 +46,7 @@
                 android:layout_width="80dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="23dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/CardPile2CardView"
                 app:layout_constraintEnd_toStartOf="@+id/CardPile2CardView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -162,6 +81,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/CardPile2CardView"
                 app:layout_constraintVertical_bias="1.0" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nobleCardsRecyclerView"
+                android:layout_width="70dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -170,9 +97,9 @@
         android:id="@+id/pointsCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="2dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/playerOptionCardView"
         app:layout_constraintEnd_toStartOf="@+id/tokenButtonsCardView"
@@ -319,6 +246,7 @@
                 style="@style/LightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="@+id/pointsConstraintLayout"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -780,8 +708,8 @@
 
             <ImageView
                 android:id="@+id/redPointsImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/mainPlayerRedPointsTV"
                 app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
                 app:layout_constraintTop_toTopOf="@+id/mainPlayerRedPointsTV"
@@ -802,47 +730,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/takePointsButton"
+        style="@style/DefaultMaroonButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/take_tokens"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sideBarButton" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/otherPlayerCardView"
-        android:layout_width="290dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/sideBarButton"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toStartOf="@+id/tokenButtonsCardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/reservedCardsTextView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/otherPlayerConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backGroundColor">
+            android:background="@color/backGroundColor"
+            android:visibility="visible">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/OtherPlayer1PileCardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reservedCardsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scrollbars="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintStart_toEndOf="@+id/OtherPlayer2PileCardView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/OtherPlayer2PileCardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/OtherPlayer3PileCardView"
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/OtherPlayer2PileCardView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -862,35 +786,6 @@
             android:layout_height="match_parent"
             android:background="@color/backGroundColor">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/reserveCardButton"
-                style="@style/DefaultMaroonButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reserve_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buyCardButton" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buyCardButton"
-                style="@style/DefaultMaroonButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/buy_card"
-                app:layout_constraintEnd_toEndOf="@+id/reserveCardButton"
-                app:layout_constraintStart_toStartOf="@+id/reserveCardButton"
-                app:layout_constraintTop_toBottomOf="@+id/takePointsButton" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/takePointsButton"
-                style="@style/DefaultMaroonButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/take_points"
-                app:layout_constraintEnd_toEndOf="@+id/reserveCardButton"
-                app:layout_constraintStart_toStartOf="@+id/reserveCardButton"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -1090,7 +985,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         app:cardBackgroundColor="@color/backGroundColor"
-        app:layout_constraintStart_toEndOf="@+id/playerOptionCardView"
+        app:layout_constraintStart_toEndOf="@+id/takePointsButton"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -1226,21 +1121,34 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/ProgressBarColor"
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/playerNameTurnTextView"
         app:layout_constraintEnd_toStartOf="@+id/playerOptionCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pointsCardView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/playerNameTurnTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         android:text="PlayerName"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/sideBarButton"
         app:layout_constraintEnd_toStartOf="@+id/playerOptionCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/reservedCardsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/reserved_cards"
+        android:visibility="gone"
+        style="@style/LightTextView20sp"
+        app:layout_constraintEnd_toEndOf="@+id/otherPlayerCardView"
+        app:layout_constraintStart_toStartOf="@+id/otherPlayerCardView"
+        app:layout_constraintTop_toBottomOf="@+id/skipTurnButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,8 +24,8 @@ public class JoinRoomController extends Controller {
     private JoinRoomResponse joinRoomResponse;
     private String enterCode;
 
-    public JoinRoomController(CustomAppCompatActivity activity) {
-        super(activity);
+    public JoinRoomController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.joinRoomResponse = new JoinRoomResponse();
     }
 
@@ -37,11 +37,11 @@ public class JoinRoomController extends Controller {
         this.enterCode = enterCode;
 
         JoinRoom.RoomDTO roomDTO = new JoinRoom.RoomDTO(enterCode, password);
-        JoinRoom.UserDTO userDTO = new JoinRoom.UserDTO(Model.getUserUuid(), nickname);
+        JoinRoom.UserDTO userDTO = new JoinRoom.UserDTO(model.getUserUuid(), nickname);
         JoinRoom.DataDTO dataDTO = new JoinRoom.DataDTO(roomDTO, userDTO);
 
         UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.JOIN_ROOM, dataDTO);
-        CustomWebSocketClient.getInstance().send(userMessage);
+        customWebSocketClient.send(userMessage);
     }
 
     public class JoinRoomResponse extends UserReaction {
@@ -68,7 +68,7 @@ public class JoinRoomController extends Controller {
                 room.addUser(new User(user.uuid, user.name));
             }
 
-            Model.setRoom(room);
+            model.setRoom(room);
 
             activity.changeActivity(WaitingRoomActivity.class);
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

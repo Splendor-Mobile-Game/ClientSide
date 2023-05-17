@@ -11,7 +11,6 @@ import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
-import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
@@ -19,24 +18,19 @@ import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.BuyRevealedMine;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.UUID;
 
 public class BuyingRevealedCardsController<T extends GameActivity> extends Controller {
     private T gameActivity;
-    private TurnController turnController;
+    private EndTurnController endTurnController;
     private BuyRevealedCardMessageHandler buyRevealedCardMessageHandler;
 
-    protected BuyingRevealedCardsController(T activity, TurnController turnController) {
-        super(activity);
+    protected BuyingRevealedCardsController(T activity, CustomWebSocketClient customWebSocketClient, Model model, EndTurnController endTurnController) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
-        this.turnController = turnController;
+        this.endTurnController = endTurnController;
         this.buyRevealedCardMessageHandler = new BuyRevealedCardMessageHandler();
     }
 
@@ -48,12 +42,12 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
     }
 
     private void sendRequest(UUID cardUuid) {
-        BuyRevealedMine.UserDTO userUuidDTO = new BuyRevealedMine.UserDTO(Model.getUserUuid());
+        BuyRevealedMine.UserDTO userUuidDTO = new BuyRevealedMine.UserDTO(model.getUserUuid());
         BuyRevealedMine.CardDTO cardUuidDTO = new BuyRevealedMine.CardDTO(cardUuid);
         BuyRevealedMine.DataDTO dataDTO = new BuyRevealedMine.DataDTO(userUuidDTO,cardUuidDTO);
         UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.BUY_REVEALED_MINE,dataDTO);
 
-        CustomWebSocketClient.getInstance().send(message);
+        customWebSocketClient.send(message);
     }
 
     public BuyRevealedCardMessageHandler getBuyRevealedCardMessageHandler() {
@@ -96,7 +90,7 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             }
 
             // Update the model
-            Room room = Model.getRoom();
+            Room room = model.getRoom();
             Game game = room.getGame();
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
             Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);
@@ -120,7 +114,7 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             // Therefore, I need to end my turn.
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
-            BuyingRevealedCardsController.this.turnController.endTurn();
+            BuyingRevealedCardsController.this.endTurnController.endTurn();
 
             return null;
         }

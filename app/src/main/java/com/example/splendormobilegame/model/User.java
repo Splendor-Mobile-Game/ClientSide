@@ -119,6 +119,17 @@ public class User {
         return suma;
     }
 
+    public int getPoints() {
+        int points = 0;
+        for (Card card : cards) {
+            points += card.getPoints();
+        }
+        for (Noble noble : nobles) {
+            points += noble.getPoints();
+        }
+        return points;
+    }
+
 
     @Override
     public boolean equals(Object o) {

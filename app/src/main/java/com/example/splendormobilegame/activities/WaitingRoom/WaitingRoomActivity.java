@@ -1,11 +1,15 @@
 package com.example.splendormobilegame.activities.WaitingRoom;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -43,6 +47,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
     private LeavingController leavingController;
     private JoiningController joiningController;
     private StartGameController startGameController;
+    private NewRoomOwnerController newRoomOwnerController;
 
 
     @Override
@@ -57,7 +62,7 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
 
         // Create adapter for list of users in the room
         // RecyclerView for user names
-        for (User u : Model.getRoom().getUsers()) {
+        for (User u : Model.getInstance().getRoom().getUsers()) {
             usersList.add(u.getName());
         }
 
@@ -68,9 +73,10 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         // Create controllers
-        this.leavingController = new LeavingController(this, mAdapter);
-        this.joiningController = new JoiningController(this, mAdapter);
-        this.startGameController = new StartGameController(this);
+        this.leavingController = new LeavingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), mAdapter);
+        this.joiningController = new JoiningController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), mAdapter);
+        this.startGameController = new StartGameController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.newRoomOwnerController = new NewRoomOwnerController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
 
         // Set reaction
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -85,9 +91,13 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
                 ServerMessageType.START_GAME_RESPONSE,
                 this.startGameController.getStartGameResponse()
         );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.NEW_ROOM_OWNER,
+                this.newRoomOwnerController.getNewRoomOwnerResponse()
+        );
 
-        binding.nameOfRoomTextView.setText(Model.getRoom().getName());
-        binding.enterCode.setText(Model.getRoom().getEnterCode());
+        binding.nameOfRoomTextView.setText(Model.getInstance().getRoom().getName());
+        binding.enterCode.setText(Model.getInstance().getRoom().getEnterCode());
     }
 
     private void setupButtons() {
@@ -104,6 +114,15 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
                 leaveRoom();
             }
         });
+
+        binding.enterCode.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                TextView code = (TextView) findViewById(R.id.enterCode);
+                copyToClipboard(code.getText().toString());
+            }
+    });
+
     }
 
     @Override
@@ -122,6 +141,15 @@ public class WaitingRoomActivity extends CustomAppCompatActivity {
         });
         builder.setNegativeButton(R.string.cancel, null);
         builder.show();
+    }
+
+    private void copyToClipboard(String text){
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("roomCode", text);
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(this, "Copied.", Toast.LENGTH_SHORT).show();
     }
 
 }
