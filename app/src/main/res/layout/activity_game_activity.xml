@@ -159,14 +159,14 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/bluePointsImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player1RedPointsTV" />
 
             <ImageView
                 android:id="@+id/PointsImageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/Player2PointsTV"
-                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
+                app:layout_constraintStart_toStartOf="@+id/yellowPointsImageView2"
                 app:layout_constraintTop_toTopOf="@+id/Player2PointsTV"
                 app:srcCompat="@drawable/circle_shape_yellow" />
 
@@ -190,7 +190,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/greenPointsImageView1"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player3BluePointsTV" />
 
             <TextView
                 android:id="@+id/mainPlayerYellowPointsTV"
@@ -260,7 +260,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/whitePointsImageView1"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerGreenPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player3GreenPointsTV" />
 
             <ImageView
                 android:id="@+id/bluePointsImageView3"
@@ -296,7 +296,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/Player1WhitePointsTV"
-                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintStart_toStartOf="@+id/greenPointsImageView3"
                 app:layout_constraintTop_toTopOf="@+id/Player1WhitePointsTV"
                 app:srcCompat="@drawable/diamond_shape_white" />
 
@@ -358,17 +358,16 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/blackPointsImageView1"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerWhitePointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player3WhitePointsTV" />
 
             <TextView
                 android:id="@+id/mainPlayerBluePointsTV"
                 style="@style/LightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
-                app:layout_constraintStart_toEndOf="@+id/redPointsImageView"
+                app:layout_constraintStart_toEndOf="@+id/bluePointsImageView"
                 app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
 
             <TextView
@@ -420,14 +419,14 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/whitePointsImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/Player2GreenPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player1GreenPointsTV" />
 
             <ImageView
                 android:id="@+id/PointsImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/Player1PointsTV"
-                app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                app:layout_constraintStart_toStartOf="@+id/yellowPointsImageView3"
                 app:layout_constraintTop_toTopOf="@+id/Player1PointsTV"
                 app:srcCompat="@drawable/circle_shape_yellow" />
 
@@ -471,7 +470,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/greenPointsImageView2"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player2BluePointsTV" />
 
             <ImageView
                 android:id="@+id/blackPointsImageView3"
@@ -509,7 +508,7 @@
                 android:layout_marginTop="5dp"
                 android:text="1"
                 app:layout_constraintStart_toEndOf="@+id/PointsImageView2"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerYellowPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player3YellowPointsTV" />
 
             <TextView
                 android:id="@+id/Player3YellowPointsTV"
@@ -520,7 +519,7 @@
                 android:layout_marginTop="5dp"
                 android:text="1"
                 app:layout_constraintStart_toEndOf="@+id/yellowPointsImageView1"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBlackPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player3BlackPointsTV" />
 
             <TextView
                 android:id="@+id/mainPlayerWhitePointsTV"
@@ -542,7 +541,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/greenPointsImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerBluePointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player1BluePointsTV" />
 
             <ImageView
                 android:id="@+id/yellowPointsImageView1"
@@ -613,7 +612,7 @@
                 android:layout_marginTop="5dp"
                 android:text="1"
                 app:layout_constraintStart_toEndOf="@+id/yellowPointsImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/Player2BlackPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player1BlackPointsTV" />
 
             <TextView
                 android:id="@+id/Player1BlackPointsTV"
@@ -624,7 +623,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/blackPointsImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/Player2WhitePointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player1WhitePointsTV" />
 
             <TextView
                 android:id="@+id/Player2RedPointsTV"
@@ -650,9 +649,9 @@
                 android:id="@+id/whitePointsImageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/Player1WhitePointsTV"
-                app:layout_constraintStart_toStartOf="@+id/Player2NameTV"
-                app:layout_constraintTop_toTopOf="@+id/Player1WhitePointsTV"
+                app:layout_constraintBottom_toBottomOf="@+id/Player2WhitePointsTV"
+                app:layout_constraintStart_toStartOf="@+id/greenPointsImageView2"
+                app:layout_constraintTop_toTopOf="@+id/Player2WhitePointsTV"
                 app:srcCompat="@drawable/diamond_shape_white" />
 
             <TextView
@@ -664,7 +663,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/bluePointsImageView1"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player3RedPointsTV" />
 
             <ImageView
                 android:id="@+id/PointsImageView2"
@@ -684,7 +683,7 @@
                 android:layout_marginTop="5dp"
                 android:text="1"
                 app:layout_constraintStart_toEndOf="@+id/PointsImageView"
-                app:layout_constraintTop_toBottomOf="@+id/Player2YellowPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player1YellowPointsTV" />
 
             <ImageView
                 android:id="@+id/blackPointsImageView"
@@ -704,12 +703,12 @@
                 android:layout_marginTop="5dp"
                 android:text="10(10)"
                 app:layout_constraintStart_toEndOf="@+id/bluePointsImageView2"
-                app:layout_constraintTop_toBottomOf="@+id/mainPlayerRedPointsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/Player2RedPointsTV" />
 
             <ImageView
                 android:id="@+id/redPointsImageView"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/mainPlayerRedPointsTV"
                 app:layout_constraintStart_toStartOf="@+id/mainPlayerNameTV"
                 app:layout_constraintTop_toTopOf="@+id/mainPlayerRedPointsTV"

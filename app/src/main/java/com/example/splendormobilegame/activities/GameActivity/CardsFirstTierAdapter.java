@@ -30,6 +30,9 @@ public class CardsFirstTierAdapter extends RecyclerView.Adapter<CardsFirstTierAd
     private Context context;
     private android.app.Activity activity;
 
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
 
     public CardsFirstTierAdapter(List<Card> assetDataList){
         this.cardList = assetDataList;

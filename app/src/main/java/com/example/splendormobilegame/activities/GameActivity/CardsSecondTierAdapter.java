@@ -28,6 +28,10 @@ public class CardsSecondTierAdapter extends RecyclerView.Adapter<CardsSecondTier
     private TextView pointsTextView;
     private ImageView cardType;
 
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
+
     public CardsSecondTierAdapter(List<Card> assetDataList){
         this.cardList = assetDataList;
     }

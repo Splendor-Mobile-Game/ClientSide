@@ -1,5 +1,6 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
@@ -52,9 +53,7 @@ public class GameEndingController<T extends GameActivity> extends Controller {
             EndTurn.ResponseDataEndGame responseDataEndGame = (EndTurn.ResponseDataEndGame) ReactionUtils.getResponseData(serverMessage, EndTurn.ResponseDataEndGame.class);
             model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
 
-
             activity.changeActivity(GameEndingActivity.class);
-
 
             return null;
         }

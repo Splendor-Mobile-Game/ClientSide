@@ -28,6 +28,10 @@ public class CardsThirdTierAdapter extends RecyclerView.Adapter<CardsThirdTierAd
     private TextView pointsTextView;
     private ImageView cardType;
 
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
+
     public CardsThirdTierAdapter(List<Card> assetDataList){
         this.cardList = assetDataList;
     }

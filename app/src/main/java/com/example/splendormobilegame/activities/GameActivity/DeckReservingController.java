@@ -84,6 +84,11 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
             // The server should handle this automatically.
             DeckReservingController.this.endTurnController.endTurn();
 
+            gameActivity.updateScoreBoard();
+            gameActivity.updateTokenNumber();
+            gameActivity.updateReservedCards();
+            gameActivity.updateCards();
+
             return null;
         }
 

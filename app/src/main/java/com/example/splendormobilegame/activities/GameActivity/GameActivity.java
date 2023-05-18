@@ -1,7 +1,11 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -14,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.R;
+import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
 import com.example.splendormobilegame.activities.WaitingRoom.NewRoomOwnerController;
 import com.example.splendormobilegame.databinding.ActivityGameActivityBinding;
 import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Noble;
+import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.github.splendor_mobile_game.game.enums.CardTier;
@@ -41,7 +47,7 @@ public class GameActivity extends CustomAppCompatActivity {
 
     private DeckReservingController deckReservingController;
     private RevealedCardsReservingController revealedCardsReservingController;
-    //private TokensController tokensController;
+    private TokensController tokensController;
     private EndTurnController endTurnController;
     private BuyingRevealedCardsController buyingRevealedCardsController;
     private BuyingReservedCardsController buyingReservedCardsController;
@@ -62,7 +68,7 @@ public class GameActivity extends CustomAppCompatActivity {
     List<Card> cardListFirstTier = new ArrayList<>();
     List<Card> cardListSecondTier = new ArrayList<>();
     List<Card> cardListThirdTier = new ArrayList<>();
-    List<Card> cardListReservedCards = new ArrayList<>();
+    List<ReservedCard> cardListReservedCards = new ArrayList<>();
     List<Noble> cardListNobleCards = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +78,14 @@ public class GameActivity extends CustomAppCompatActivity {
         binding = ActivityGameActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        //update lists
+        cardListFirstTier = Model.getInstance().getRoom().getGame().getFirstTierCards();
+        cardListSecondTier = Model.getInstance().getRoom().getGame().getSecondTierCards();
+        cardListThirdTier = Model.getInstance().getRoom().getGame().getThirdTierCards();
+        cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
+        cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
+
         // binding.gameActivityConstraintLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         setupSideBar();
         setupButtons();
@@ -84,17 +98,21 @@ public class GameActivity extends CustomAppCompatActivity {
         setupBuyingReservedCards();
         setupNobleCardsRecyclerView();
 
+        this.updateTokenNumber();
+        this.updateReservedCards();
+        this.updateScoreBoard();
+
         // Create controllers
         this.endTurnController = new EndTurnController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
-
         this.deckReservingController = new DeckReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.revealedCardsReservingController = new RevealedCardsReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
-       // this.tokensController = new TokensController(this, this.turnController);
+        this.tokensController = new TokensController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.buyingReservedCardsController = new BuyingReservedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
         this.leavingController = new LeavingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
         this.gameEndingController = new GameEndingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
         this.newRoomOwnerController = new NewRoomOwnerController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.nobleController = new NobleController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
 
 
         // Set reactions
@@ -107,21 +125,20 @@ public class GameActivity extends CustomAppCompatActivity {
                 this.deckReservingController.getReservationFromDeckMessageHandler()
         );
 
-        // Commented out reactions are still being developed on the client
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_ANNOUNCEMENT,
-//                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
-//        );
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.MAKE_RESERVATION_FROM_REVEALED_RESPONSE,
-//                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
-//        );
-/*
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.MAKE_RESERVATION_FROM_TABLE_ANNOUNCEMENT,
+                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.MAKE_RESERVATION_FROM_TABLE_RESPONSE,
+                this.revealedCardsReservingController.getReservationFromRevealedMessageHandler()
+        );
+
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.GET_TOKENS_RESPONSE,
-              //  this.tokensController.getGetTokensMessageHandler()
+                this.tokensController.getGetTokensMessageHandler()
         );
-*/
+
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NEW_TURN_ANNOUNCEMENT,
                 this.endTurnController.getNewTurnAnnouncementMessageHandler()
@@ -141,24 +158,24 @@ public class GameActivity extends CustomAppCompatActivity {
                 this.buyingRevealedCardsController.getBuyRevealedCardMessageHandler()
         );
 
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.BUY_RESERVED_MINE_ANNOUNCEMENT,
-//                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
-//        );
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.BUY_RESERVED_MINE_RESPONSE,
-//                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
-//        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.BUY_RESERVED_MINE_ANNOUNCEMENT,
+                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
+        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.BUY_RESERVED_MINE_RESPONSE,
+                this.buyingReservedCardsController.getBuyReservedCardMessageHandler()
+        );
 
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.LEAVE_ROOM_RESPONSE,
                 this.leavingController.getLeaveRoomResponse()
         );
 
-//        CustomWebSocketClient.getInstance().assignReactionToMessageType(
-//                ServerMessageType.GAME_ENDED,
-//                this.gameEndingController.getGameEndedMessageHandler()
-//        );
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.END_GAME_ANNOUNCEMENT,
+                this.gameEndingController.getGameEndedMessageHandler()
+        );
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NEW_ROOM_OWNER,
                 this.newRoomOwnerController.getNewRoomOwnerResponse()
@@ -174,8 +191,8 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.sideBarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int pointCardVisible = (binding.pointsCardView.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
-                int otherCardsVisible = (binding.pointsCardView.getVisibility() == View.GONE) ? View.GONE : View.VISIBLE;
+                int pointCardVisible = (binding.pointsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
+                int otherCardsVisible = (binding.pointsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
                 TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
                 binding.pointsCardView.setVisibility(pointCardVisible);
                 binding.otherPlayerCardView.setVisibility(otherCardsVisible);
@@ -209,8 +226,8 @@ public class GameActivity extends CustomAppCompatActivity {
 
     //Function swapping right side between take points and cards.
     private void ChangeRightSide() {
-        int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
-        int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == View.GONE) ? View.GONE : View.VISIBLE;
+        int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
+        int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
         TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
         binding.CardsAristocratsCardView.setVisibility(cardsCard);
         binding.takeTokensCardView.setVisibility(takeTokensCard);
@@ -315,6 +332,13 @@ public class GameActivity extends CustomAppCompatActivity {
             }
         });
 
+        binding.takeTokensButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GameActivity.this.tokensController.getTokens(redTokens, blueTokens, greenTokens, blackTokens, whiteTokens);
+            }
+        });
+
     }
 
     public void showCardAlertDialog(UUID cardUuid) {
@@ -411,14 +435,6 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsFirstTierRecyclerView() {
         cardsFirstTierRecyclerView = (RecyclerView) binding.cards1RecyclerView;
         cardsFirstTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 5, 10, 7, 3, 2, 1, TokenType.RUBY);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_1, 3, 16, 58, 3, 2, 1, TokenType.DIAMOND);
-        cardListFirstTier.add(myCard1);
-        cardListFirstTier.add(myCard2);
-        cardListFirstTier.add(myCard3);
-        cardListFirstTier.add(myCard4);
         cardsFirstTierAdapter = new CardsFirstTierAdapter(cardListFirstTier);
         cardsFirstTierRecyclerView.setAdapter(cardsFirstTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
@@ -428,14 +444,6 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsSecondTierRecyclerView() {
         cardsSecondTierRecyclerView = (RecyclerView) binding.cards2RecyclerView;
         cardsSecondTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
-        cardListSecondTier.add(myCard1);
-        cardListSecondTier.add(myCard2);
-        cardListSecondTier.add(myCard3);
-        cardListSecondTier.add(myCard4);
         cardsSecondTierAdapter = new CardsSecondTierAdapter(cardListSecondTier);
         cardsSecondTierRecyclerView.setAdapter(cardsSecondTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
@@ -445,121 +453,218 @@ public class GameActivity extends CustomAppCompatActivity {
     public void setupCardsThirdTierRecyclerView() {
         cardsThirdTierRecyclerView = (RecyclerView) binding.cards3RecyclerView;
         cardsThirdTierRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 5, 10, 7, 3, 2, 1, TokenType.ONYX);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 3, 40, 9, 3, 2, 1, TokenType.EMERALD);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 4, 50, 5, 3, 2, 1, TokenType.DIAMOND);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_3, 3, 16, 58, 3, 2, 1, TokenType.EMERALD);
-        cardListThirdTier.add(myCard1);
-        cardListThirdTier.add(myCard2);
-        cardListThirdTier.add(myCard3);
-        cardListThirdTier.add(myCard4);
+
         cardsThirdTierAdapter = new CardsThirdTierAdapter(cardListThirdTier);
         cardsThirdTierRecyclerView.setAdapter(cardsThirdTierAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         cardsFirstTierAdapter.notifyDataSetChanged();
     }
+    public void updateCards(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cardListFirstTier = Model.getInstance().getRoom().getGame().getFirstTierCards();
+                cardListSecondTier = Model.getInstance().getRoom().getGame().getSecondTierCards();
+                cardListThirdTier = Model.getInstance().getRoom().getGame().getThirdTierCards();
+                cardsFirstTierAdapter.setCardList(cardListFirstTier);
+                cardsSecondTierAdapter.setCardList(cardListSecondTier);
+                cardsThirdTierAdapter.setCardList(cardListThirdTier);
+                cardsFirstTierAdapter.notifyDataSetChanged();
+                cardsSecondTierAdapter.notifyDataSetChanged();
+                cardsThirdTierAdapter.notifyDataSetChanged();
+            }});
+    }
     public void setupNobleCardsRecyclerView() {
+
         cardsNobleCardsRecyclerView = (RecyclerView) binding.nobleCardsRecyclerView;
         cardsNobleCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        /* Testing purposes
-        Noble noble1 = new Noble(UUID.randomUUID(), 3, 3, 3, 0, 0);
-        Noble noble2 = new Noble(UUID.randomUUID(), 0, 4, 4, 4, 0);
-        Noble noble3 = new Noble(UUID.randomUUID(), 4, 4, 0, 4, 0);
-        cardListNobleCards.add(noble1);
-        cardListNobleCards.add(noble2);
-        cardListNobleCards.add(noble3);
-        cardListNobleCards.add(noble1);
-        cardListNobleCards.add(noble2);
-        */
         cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
+        nobleCardsAdapter = new nobleCardsAdapter(cardListNobleCards);
         nobleCardsAdapter.setCardList(cardListNobleCards);
         cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         nobleCardsAdapter.notifyDataSetChanged();
+
     }
     public void updateNobleCardsRecyclerView(){
-        cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
-        nobleCardsAdapter.setCardList(cardListNobleCards);
-        nobleCardsAdapter.notifyDataSetChanged();
+        runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+            cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
+            nobleCardsAdapter.setCardList(cardListNobleCards);
+            nobleCardsAdapter.notifyDataSetChanged();
+        }});
     }
     //Numbers don't need to be localized
     @SuppressLint("SetTextI18n")
     public void updateScoreBoard(){
-        ArrayList<User> users = Model.getInstance().getRoom().getUsers();
-        int userCount = Model.getInstance().getRoom().getPlayerCount();
-        if(userCount>0){
-            HashMap<TokenType, Integer> tokens =  users.get(0).getTokens();
-            binding.Player1NameTV.setText(users.get(0).getName());
-            binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player1PointsTV.setText(users.get(0).getPoints());
-        }
-        if(userCount>1){
-            HashMap<TokenType, Integer> tokens =  users.get(1).getTokens();
-            binding.Player2NameTV.setText(users.get(1).getName());
-            binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player2PointsTV.setText(users.get(1).getPoints());
-        }
-        if(userCount>2){
-            HashMap<TokenType, Integer> tokens =  users.get(2).getTokens();
-            binding.Player3NameTV.setText(users.get(2).getName());
-            binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player3PointsTV.setText(users.get(2).getPoints());
-        }
-        if(userCount>3){
-            HashMap<TokenType, Integer> tokens =  users.get(3).getTokens();
-            binding.Player3NameTV.setText(users.get(3).getName());
-            binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-            binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-            binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-            binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-            binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-            binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-            binding.Player3PointsTV.setText(users.get(3).getPoints());
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<User> users = Model.getInstance().getRoom().getUsers();
+                int userCount = Model.getInstance().getRoom().getPlayerCount();
+                hideScoreBoard();
+
+                if (userCount > 0) {
+                    HashMap<TokenType, Integer> tokens = users.get(0).getTokens();
+                    mainPlayerScoreBoard();
+                    binding.mainPlayerNameTV.setText(users.get(0).getName());
+                    binding.mainPlayerBlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+                    binding.mainPlayerBluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+                    binding.mainPlayerRedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+                    binding.mainPlayerWhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+                    binding.mainPlayerGreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+                    binding.mainPlayerYellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.mainPlayerPointsTV.setText(Integer.toString(users.get(0).getPoints()));
+
+                }
+                if (userCount > 1) {
+                    HashMap<TokenType, Integer> tokens = users.get(1).getTokens();
+                    show3PlayerScoreBoard();
+                    binding.Player3NameTV.setText(users.get(1).getName());
+                    binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+                    binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+                    binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+                    binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+                    binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+                    binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.Player3PointsTV.setText(Integer.toString(users.get(1).getPoints()));
+                }
+                if (userCount > 2) {
+                    HashMap<TokenType, Integer> tokens = users.get(2).getTokens();
+                    show2PlayerScoreBoard();
+                    binding.Player2NameTV.setText(users.get(2).getName());
+                    binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+                    binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+                    binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+                    binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+                    binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+                    binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.Player2PointsTV.setText(Integer.toString(users.get(2).getPoints()));
+                }
+                if (userCount > 3) {
+                    HashMap<TokenType, Integer> tokens = users.get(3).getTokens();
+                    show1PlayerScoreBoard();
+                    binding.Player1NameTV.setText(users.get(3).getName());
+                    binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
+                    binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
+                    binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
+                    binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
+                    binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
+                    binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.Player1PointsTV.setText(Integer.toString(users.get(3).getPoints()));
+
+
+                }
+            }});
+    }
+    private void hideScoreBoard(){
+        binding.Player1NameTV.setVisibility(GONE);
+        binding.Player1BlackPointsTV.setVisibility(GONE);
+        binding.Player1BluePointsTV.setVisibility(GONE);
+        binding.Player1RedPointsTV.setVisibility(GONE);
+        binding.Player1WhitePointsTV.setVisibility(GONE);
+        binding.Player1GreenPointsTV.setVisibility(GONE);
+        binding.Player1YellowPointsTV.setVisibility(GONE);
+        binding.Player2NameTV.setVisibility(GONE);
+        binding.Player2BlackPointsTV.setVisibility(GONE);
+        binding.Player2BluePointsTV.setVisibility(GONE);
+        binding.Player2RedPointsTV.setVisibility(GONE);
+        binding.Player2WhitePointsTV.setVisibility(GONE);
+        binding.Player2GreenPointsTV.setVisibility(GONE);
+        binding.Player2YellowPointsTV.setVisibility(GONE);
+        binding.Player3NameTV.setVisibility(GONE);
+        binding.Player3BlackPointsTV.setVisibility(GONE);
+        binding.Player3BluePointsTV.setVisibility(GONE);
+        binding.Player3RedPointsTV.setVisibility(GONE);
+        binding.Player3WhitePointsTV.setVisibility(GONE);
+        binding.Player3GreenPointsTV.setVisibility(GONE);
+        binding.Player3YellowPointsTV.setVisibility(GONE);
+        binding.mainPlayerNameTV.setVisibility(GONE);
+        binding.mainPlayerBlackPointsTV.setVisibility(GONE);
+        binding.mainPlayerBluePointsTV.setVisibility(GONE);
+        binding.mainPlayerRedPointsTV.setVisibility(GONE);
+        binding.mainPlayerWhitePointsTV.setVisibility(GONE);
+        binding.mainPlayerGreenPointsTV.setVisibility(GONE);
+        binding.mainPlayerYellowPointsTV.setVisibility(GONE);
     }
 
+    private void show1PlayerScoreBoard(){
+        binding.Player1NameTV.setVisibility(VISIBLE);
+        binding.Player1BlackPointsTV.setVisibility(VISIBLE);
+        binding.Player1BluePointsTV.setVisibility(VISIBLE);
+        binding.Player1RedPointsTV.setVisibility(VISIBLE);
+        binding.Player1WhitePointsTV.setVisibility(VISIBLE);
+        binding.Player1GreenPointsTV.setVisibility(VISIBLE);
+        binding.Player1YellowPointsTV.setVisibility(VISIBLE);
+    }
+    private void show2PlayerScoreBoard(){
+        binding.Player2NameTV.setVisibility(VISIBLE);
+        binding.Player2BlackPointsTV.setVisibility(VISIBLE);
+        binding.Player2BluePointsTV.setVisibility(VISIBLE);
+        binding.Player2RedPointsTV.setVisibility(VISIBLE);
+        binding.Player2WhitePointsTV.setVisibility(VISIBLE);
+        binding.Player2GreenPointsTV.setVisibility(VISIBLE);
+        binding.Player2YellowPointsTV.setVisibility(VISIBLE);
+    }
+    private void show3PlayerScoreBoard(){
+        binding.Player3NameTV.setVisibility(VISIBLE);
+        binding.Player3BlackPointsTV.setVisibility(VISIBLE);
+        binding.Player3BluePointsTV.setVisibility(VISIBLE);
+        binding.Player3RedPointsTV.setVisibility(VISIBLE);
+        binding.Player3WhitePointsTV.setVisibility(VISIBLE);
+        binding.Player3GreenPointsTV.setVisibility(VISIBLE);
+        binding.Player3YellowPointsTV.setVisibility(VISIBLE);
+    }
+    private void mainPlayerScoreBoard(){
+        binding.mainPlayerNameTV.setVisibility(VISIBLE);
+        binding.mainPlayerBlackPointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerBluePointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerRedPointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerWhitePointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerGreenPointsTV.setVisibility(VISIBLE);
+        binding.mainPlayerYellowPointsTV.setVisibility(VISIBLE);
+    }
     private void setupBuyingReservedCards(){
         reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.HORIZONTAL, false);
         reservedCardsBuyingRecyclerView.setLayoutManager(HorizontalLayout);
-        Card myCard1 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 5, 10, 7, 3, 2, 1, TokenType.EMERALD);
-        Card myCard2 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 40, 9, 3, 2, 1, TokenType.SAPPHIRE);
-        Card myCard3 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 4, 50, 5, 3, 2, 1, TokenType.RUBY);
-        Card myCard4 = new Card(UUID.randomUUID(), CardTier.LEVEL_2, 3, 16, 58, 3, 2, 1, TokenType.ONYX);
-        //testing
-        cardListReservedCards.add(myCard1);
-        cardListReservedCards.add(myCard2);
-        cardListReservedCards.add(myCard3);
-        cardListReservedCards.add(myCard4);
+        cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
         reservedCardsAdapter = new ReservedCardsAdapter(cardListReservedCards);
         reservedCardsBuyingRecyclerView.setAdapter(reservedCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         reservedCardsAdapter.notifyDataSetChanged();
     }
+    public void updateReservedCards(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
+                nobleCardsAdapter.setCardList(cardListNobleCards);
+                nobleCardsAdapter.notifyDataSetChanged();
+            }});
+    }
 
     public void updateTokenNumber(){
-        binding.blackTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
-        binding.blueTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
-        binding.redTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
-        binding.greenTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
-        binding.whiteTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
-        binding.yellowTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                binding.blackTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
+                binding.blueTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
+                binding.redTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
+                binding.greenTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
+                binding.whiteTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
+                binding.yellowTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
+            }});
 
+    }
+
+    public void endGame(){
+        //Change to end game activity screen
+        Intent myIntent = new Intent(GameActivity.this, CreateRoomActivity.class);
+        GameActivity.this.startActivity(myIntent);
+        //Animation when switching classes
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
