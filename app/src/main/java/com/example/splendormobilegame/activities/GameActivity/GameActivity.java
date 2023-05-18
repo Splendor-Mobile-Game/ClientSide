@@ -80,11 +80,11 @@ public class GameActivity extends CustomAppCompatActivity {
         setContentView(view);
 
         //update lists
-        cardListFirstTier = Model.getRoom().getGame().getFirstTierCards();
-        cardListSecondTier = Model.getRoom().getGame().getSecondTierCards();
-        cardListThirdTier = Model.getRoom().getGame().getThirdTierCards();
-        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
-        cardListNobleCards = Model.getRoom().getGame().getNoble();
+        cardListFirstTier = Model.getInstance().getRoom().getGame().getFirstTierCards();
+        cardListSecondTier = Model.getInstance().getRoom().getGame().getSecondTierCards();
+        cardListThirdTier = Model.getInstance().getRoom().getGame().getThirdTierCards();
+        cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
+        cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
 
         // binding.gameActivityConstraintLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         setupSideBar();
@@ -103,17 +103,17 @@ public class GameActivity extends CustomAppCompatActivity {
         this.updateScoreBoard();
 
         // Create controllers
-        this.endTurnController = new EndTurnController(this);
+        this.endTurnController = new EndTurnController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.deckReservingController = new DeckReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.revealedCardsReservingController = new RevealedCardsReservingController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.tokensController = new TokensController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.buyingReservedCardsController = new BuyingReservedCardsController(this, CustomWebSocketClient.getInstance(), Model.getInstance(), this.endTurnController);
+        this.leavingController = new LeavingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.gameEndingController = new GameEndingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.newRoomOwnerController = new NewRoomOwnerController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
+        this.nobleController = new NobleController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
 
-        this.deckReservingController = new DeckReservingController(this, this.endTurnController);
-        this.revealedCardsReservingController = new RevealedCardsReservingController(this, this.endTurnController);
-        this.tokensController = new TokensController(this, this.endTurnController);
-        this.buyingRevealedCardsController = new BuyingRevealedCardsController(this, this.endTurnController);
-        this.buyingReservedCardsController = new BuyingReservedCardsController(this, this.endTurnController);
-        this.leavingController = new LeavingController(this);
-        this.gameEndingController = new GameEndingController(this);
-        this.newRoomOwnerController = new NewRoomOwnerController(this);
-        this.nobleController = new NobleController(this);
 
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -463,9 +463,9 @@ public class GameActivity extends CustomAppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                cardListFirstTier = Model.getRoom().getGame().getFirstTierCards();
-                cardListSecondTier = Model.getRoom().getGame().getSecondTierCards();
-                cardListThirdTier = Model.getRoom().getGame().getThirdTierCards();
+                cardListFirstTier = Model.getInstance().getRoom().getGame().getFirstTierCards();
+                cardListSecondTier = Model.getInstance().getRoom().getGame().getSecondTierCards();
+                cardListThirdTier = Model.getInstance().getRoom().getGame().getThirdTierCards();
                 cardsFirstTierAdapter.setCardList(cardListFirstTier);
                 cardsSecondTierAdapter.setCardList(cardListSecondTier);
                 cardsThirdTierAdapter.setCardList(cardListThirdTier);
@@ -478,8 +478,9 @@ public class GameActivity extends CustomAppCompatActivity {
 
         cardsNobleCardsRecyclerView = (RecyclerView) binding.nobleCardsRecyclerView;
         cardsNobleCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cardListNobleCards = Model.getRoom().getGame().getNoble();
+        cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
         nobleCardsAdapter = new nobleCardsAdapter(cardListNobleCards);
+        nobleCardsAdapter.setCardList(cardListNobleCards);
         cardsNobleCardsRecyclerView.setAdapter(nobleCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
         nobleCardsAdapter.notifyDataSetChanged();
@@ -489,7 +490,7 @@ public class GameActivity extends CustomAppCompatActivity {
         runOnUiThread(new Runnable() {
         @Override
         public void run() {
-            cardListNobleCards = Model.getRoom().getGame().getNoble();
+            cardListNobleCards = Model.getInstance().getRoom().getGame().getNoble();
             nobleCardsAdapter.setCardList(cardListNobleCards);
             nobleCardsAdapter.notifyDataSetChanged();
         }});
@@ -500,8 +501,8 @@ public class GameActivity extends CustomAppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ArrayList<User> users = Model.getRoom().getUsers();
-                int userCount = Model.getRoom().getPlayerCount();
+                ArrayList<User> users = Model.getInstance().getRoom().getUsers();
+                int userCount = Model.getInstance().getRoom().getPlayerCount();
                 hideScoreBoard();
 
                 if (userCount > 0) {
@@ -628,7 +629,7 @@ public class GameActivity extends CustomAppCompatActivity {
         reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.HORIZONTAL, false);
         reservedCardsBuyingRecyclerView.setLayoutManager(HorizontalLayout);
-        cardListReservedCards = Model.getRoom().getGame().getReservedCards();
+        cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
         reservedCardsAdapter = new ReservedCardsAdapter(cardListReservedCards);
         reservedCardsBuyingRecyclerView.setAdapter(reservedCardsAdapter);
         // The list we passed to the mAdapter was changed so we have to notify it in order to update
@@ -638,7 +639,7 @@ public class GameActivity extends CustomAppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                cardListReservedCards = Model.getRoom().getGame().getReservedCards();
+                cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
                 nobleCardsAdapter.setCardList(cardListNobleCards);
                 nobleCardsAdapter.notifyDataSetChanged();
             }});
@@ -648,12 +649,12 @@ public class GameActivity extends CustomAppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                binding.blackTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
-                binding.blueTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
-                binding.redTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
-                binding.greenTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
-                binding.whiteTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
-                binding.yellowTokenButton.setText(Model.getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
+                binding.blackTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.ONYX).toString());
+                binding.blueTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.SAPPHIRE).toString());
+                binding.redTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.RUBY).toString());
+                binding.greenTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.EMERALD).toString());
+                binding.whiteTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.DIAMOND).toString());
+                binding.yellowTokenButton.setText(Model.getInstance().getRoom().getGame().getTokenValue(TokenType.GOLD_JOKER).toString());
             }});
 
     }
@@ -664,7 +665,6 @@ public class GameActivity extends CustomAppCompatActivity {
         GameActivity.this.startActivity(myIntent);
         //Animation when switching classes
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
     }
 
     @Override

@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.splendormobilegame.Controller;
-import com.example.splendormobilegame.MainActivity;
-import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
+import com.example.splendormobilegame.activities.GameEndingActivity.GameEndingActivity;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
+
+import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
+import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurnTest;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.EndTurn;
 import com.example.splendormobilegame.model.Game;
@@ -22,11 +25,18 @@ public class GameEndingController<T extends GameActivity> extends Controller {
     private T gameActivity;
     private GameEndedMessageHandler gameEndedMessageHandler;
 
-    protected GameEndingController(T activity) {
-        super(activity);
+    protected GameEndingController(T activity, CustomWebSocketClient customWebSocketClient, Model model) {
+        super(activity, customWebSocketClient, model);
         this.gameActivity = activity;
         this.gameEndedMessageHandler = new GameEndedMessageHandler();
     }
+    public void sendRequest() {
+        EndTurnTest.DataDTO dataDTO = new EndTurnTest.DataDTO(model.getUserUuid());
+        UserMessage message = new UserMessage(UUID.randomUUID(), UserRequestType.END_TURN_TEST, dataDTO);
+
+        CustomWebSocketClient.getInstance().send(message);
+    }
+
 
 
     public GameEndedMessageHandler getGameEndedMessageHandler() {
@@ -41,10 +51,9 @@ public class GameEndingController<T extends GameActivity> extends Controller {
 
 
             EndTurn.ResponseDataEndGame responseDataEndGame = (EndTurn.ResponseDataEndGame) ReactionUtils.getResponseData(serverMessage, EndTurn.ResponseDataEndGame.class);
-            Model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
+            model.getRoom().getGame().setPlayerRanking(responseDataEndGame.playerRanking);
 
-
-            // TODO Update the view via `gameActivity` or other objects given in constructor
+            activity.changeActivity(GameEndingActivity.class);
 
             return null;
         }

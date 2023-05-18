@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import android.util.DisplayMetrics;
 
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -45,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         //Make app fullscreen + delete toolbar
         getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
         sharedPreferences = getApplication().getApplicationContext().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -59,7 +60,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
 
         createUserUUID();
-        Model.setUserUuid(UUID.fromString(userUUID));
+
+        Model.initialize();
+        Model.getInstance().setUserUuid(UUID.fromString(userUUID));
 
         //taking parameters form config.properties
         Config config = new Config(this);

@@ -6,6 +6,7 @@ import com.example.splendormobilegame.Controller;
 import com.example.splendormobilegame.CustomAppCompatActivity;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.User;
+import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
@@ -20,8 +21,8 @@ public class JoiningController extends Controller {
     private JoinRoomResponse joinRoomResponse;
     private WaitingRoomActivityAdapter usersAdapter;
 
-    protected JoiningController(CustomAppCompatActivity activity, WaitingRoomActivityAdapter usersAdapter) {
-        super(activity);
+    protected JoiningController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model, WaitingRoomActivityAdapter usersAdapter) {
+        super(activity, customWebSocketClient, model);
         this.joinRoomResponse = new JoinRoomResponse();
         this.usersAdapter = usersAdapter;
     }
@@ -39,11 +40,11 @@ public class JoiningController extends Controller {
             JoinRoom.ResponseData responseData = (JoinRoom.ResponseData) ReactionUtils.getResponseData(serverMessage, JoinRoom.ResponseData.class);
 
             JoinRoom.UserDataResponse newUser = responseData.users.get(responseData.users.size() - 1);
-            Model.getRoom().addUser(new User(newUser.uuid, newUser.name));
+            model.getRoom().addUser(new User(newUser.uuid, newUser.name));
 
             //Update recyclerView WaitingRoom
             ArrayList<String> usersList = new ArrayList<>();
-            for (User u : Model.getRoom().getUsers()) {
+            for (User u : model.getRoom().getUsers()) {
                 usersList.add(u.getName());
             }
 

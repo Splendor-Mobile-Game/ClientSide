@@ -25,8 +25,8 @@ public class LeavingController extends Controller {
     public WaitingRoomActivityAdapter usersAdapter;
     private LeaveRoomResponse leaveRoomResponse;
 
-    public LeavingController(CustomAppCompatActivity activity, WaitingRoomActivityAdapter usersAdapter) {
-        super(activity);
+    public LeavingController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model, WaitingRoomActivityAdapter usersAdapter) {
+        super(activity, customWebSocketClient, model);
         this.usersAdapter = usersAdapter;
         this.leaveRoomResponse = new LeaveRoomResponse();
     }
@@ -36,15 +36,15 @@ public class LeavingController extends Controller {
     }
 
     public void sendRequest() {
-        LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(Model.getRoom().getUuid());
-        LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(Model.getUserUuid());
+        LeaveRoom.RoomDTO roomDTO = new LeaveRoom.RoomDTO(model.getRoom().getUuid());
+        LeaveRoom.UserDTO userDTO = new LeaveRoom.UserDTO(model.getUserUuid());
         LeaveRoom.DataDTO dataDTO = new LeaveRoom.DataDTO(roomDTO, userDTO);
 
         UserMessage userMessage = new UserMessage(UUID.randomUUID(), UserRequestType.LEAVE_ROOM, dataDTO);
-        CustomWebSocketClient.getInstance().send(userMessage);
+        customWebSocketClient.send(userMessage);
 
         // Don't bother with what server thinks, we want to leave
-        Model.setRoom(null);
+        model.setRoom(null);
 
         activity.changeActivity(MainActivity.class);
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -58,16 +58,16 @@ public class LeavingController extends Controller {
             Log.i("UserReaction", "Entered LeaveRoomResponse react method");
 
             // TODO: Probably not needed
-            if (Model.getRoom() != null) {
+            if (model.getRoom() != null) {
                 // Case when other player has left the room
 
                 LeaveRoom.ResponseData responseData = (LeaveRoom.ResponseData) ReactionUtils.getResponseData(serverMessage, LeaveRoom.ResponseData.class);
 
-                User userToRemove = Model.getRoom().getUserByUuid(responseData.user.id);
-                Model.getRoom().removeUser(userToRemove);
+                User userToRemove = model.getRoom().getUserByUuid(responseData.user.id);
+                model.getRoom().removeUser(userToRemove);
 
                 ArrayList<String> usersList = new ArrayList<>();
-                for (User u: Model.getRoom().getUsers()) {
+                for (User u: model.getRoom().getUsers()) {
                     usersList.add(u.getName());
                 }
                 activity.runOnUiThread(new Runnable() {
