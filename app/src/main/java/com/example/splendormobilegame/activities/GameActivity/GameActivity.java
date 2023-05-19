@@ -507,53 +507,56 @@ public class GameActivity extends CustomAppCompatActivity {
 
                 if (userCount > 0) {
                     HashMap<TokenType, Integer> tokens = users.get(0).getTokens();
-
+                    HashMap<TokenType, Integer> bonusTokens = users.get(0).getBonusTokens();
                     show1PlayerScoreBoard();
                     binding.Player1NameTV.setText(users.get(0).getName());
-                    binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.Player1PointsTV.setText(Integer.toString(users.get(0).getPoints()));
 
                 }
                 if (userCount > 1) {
                     HashMap<TokenType, Integer> tokens = users.get(1).getTokens();
+                    HashMap<TokenType, Integer> bonusTokens = users.get(1).getBonusTokens();
                     show2PlayerScoreBoard();
                     binding.Player2NameTV.setText(users.get(1).getName());
-                    binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.Player2PointsTV.setText(Integer.toString(users.get(1).getPoints()));
 
                 }
                 if (userCount > 2) {
                     HashMap<TokenType, Integer> tokens = users.get(2).getTokens();
+                    HashMap<TokenType, Integer> bonusTokens = users.get(2).getBonusTokens();
                     show3PlayerScoreBoard();
                     binding.Player3NameTV.setText(users.get(2).getName());
-                    binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.Player3PointsTV.setText(Integer.toString(users.get(2).getPoints()));
                 }
                 if (userCount > 3) {
                     HashMap<TokenType, Integer> tokens = users.get(3).getTokens();
                     mainPlayerScoreBoard();
                     binding.mainPlayerNameTV.setText(users.get(3).getName());
-                    binding.mainPlayerBlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.mainPlayerBluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.mainPlayerRedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.mainPlayerWhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.mainPlayerGreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.mainPlayerYellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
+                    HashMap<TokenType, Integer> bonusTokens = users.get(3).getBonusTokens();
+                    binding.mainPlayerBlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.mainPlayerBluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.mainPlayerRedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.mainPlayerWhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.mainPlayerGreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.mainPlayerYellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.mainPlayerPointsTV.setText(Integer.toString(users.get(3).getPoints()));
 
 

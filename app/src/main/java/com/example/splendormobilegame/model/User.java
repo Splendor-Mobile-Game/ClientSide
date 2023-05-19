@@ -22,7 +22,7 @@ public class User {
     private ArrayList<Noble> nobles;
 
     // Hashmap storing how many bonus points user has
-    private Map<TokenType, Integer> bounusPoints = new HashMap<>();
+    private HashMap<TokenType, Integer> bounusPoints;
 
 
     public User(UUID uuid, String name) {
@@ -31,13 +31,21 @@ public class User {
         this.tokens = new HashMap<>();
         this.cards = new ArrayList<>();
         this.nobles = new ArrayList<>();
-
+        this.bounusPoints = new HashMap<>();
+        this.bounusPoints = new HashMap<>();
         tokens.put(TokenType.DIAMOND, 0);
         tokens.put(TokenType.EMERALD, 0);
         tokens.put(TokenType.GOLD_JOKER, 0);
         tokens.put(TokenType.ONYX, 0);
         tokens.put(TokenType.RUBY, 0);
         tokens.put(TokenType.SAPPHIRE, 0);
+
+        bounusPoints.put(TokenType.DIAMOND, 0);
+        bounusPoints.put(TokenType.EMERALD, 0);
+        bounusPoints.put(TokenType.GOLD_JOKER, 0);
+        bounusPoints.put(TokenType.ONYX, 0);
+        bounusPoints.put(TokenType.RUBY, 0);
+        bounusPoints.put(TokenType.SAPPHIRE, 0);
     }
 
 
@@ -114,6 +122,9 @@ public class User {
 
     public HashMap<TokenType, Integer> getTokens() {
         return tokens;
+    }
+    public HashMap<TokenType, Integer> getBonusTokens() {
+        return bounusPoints;
     }
 
     public ArrayList<Card> getCards() {
