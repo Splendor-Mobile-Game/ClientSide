@@ -225,12 +225,19 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     //Function swapping right side between take points and cards.
-    private void ChangeRightSide() {
-        int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
-        int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
-        TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
-        binding.CardsAristocratsCardView.setVisibility(cardsCard);
-        binding.takeTokensCardView.setVisibility(takeTokensCard);
+    public void ChangeRightSide() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
+                int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
+                TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
+                binding.CardsAristocratsCardView.setVisibility(cardsCard);
+                binding.takeTokensCardView.setVisibility(takeTokensCard);
+            }
+        });
+
     }
 
     private void setupPointsButtons() {

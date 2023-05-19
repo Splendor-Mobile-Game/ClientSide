@@ -107,7 +107,9 @@ public class TokensController<T extends GameActivity> extends Controller {
                 game.addTokens(set.getKey(),set.getValue());
             }
 
-
+            if(Model.getInstance().getUserUuid().equals(user.getUuid())) {
+                gameActivity.ChangeRightSide();
+            }
             // TODO Update the view
             // ...
             // this.gameActivity.updateScoreboard()
