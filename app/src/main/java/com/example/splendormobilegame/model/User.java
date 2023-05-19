@@ -5,6 +5,7 @@ import com.github.splendor_mobile_game.game.enums.TokenType;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,6 +20,9 @@ public class User {
     private ArrayList<Card> cards;
 
     private ArrayList<Noble> nobles;
+
+    // Hashmap storing how many bonus points user has
+    private Map<TokenType, Integer> bounusPoints = new HashMap<>();
 
 
     public User(UUID uuid, String name) {
@@ -71,11 +75,25 @@ public class User {
     public void addCard(Card card) {
         if (cards.contains(card)) return;
         cards.add(card);
+
+        if (card.getBonusToken() == null) return;
+
+        if (bounusPoints.get(card.getBonusToken()) == null)
+            bounusPoints.put(card.getBonusToken(), 1);
+        else
+            bounusPoints.replace(card.getBonusToken(), bounusPoints.get(card.getBonusToken()) + 1);
+
+
     }
 
     public void removeCard(Card card) {
         if (!cards.contains(card)) return;
         cards.remove(card);
+
+        if (card.getBonusToken() == null) return;
+        if (bounusPoints.get(card.getBonusToken()) != null)
+            bounusPoints.replace(card.getBonusToken(), bounusPoints.get(card.getBonusToken()) - 1);
+
     }
 
 
@@ -87,6 +105,10 @@ public class User {
     public void removeNoble(Noble noble) {
         if (!nobles.contains(noble)) return;
         nobles.remove(noble);
+    }
+
+    public int getBonusPoints(TokenType type) {
+        return this.bounusPoints.get(type) == null ? 0 : this.bounusPoints.get(type);
     }
 
 
