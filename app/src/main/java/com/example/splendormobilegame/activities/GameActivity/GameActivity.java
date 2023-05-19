@@ -507,123 +507,80 @@ public class GameActivity extends CustomAppCompatActivity {
 
                 if (userCount > 0) {
                     HashMap<TokenType, Integer> tokens = users.get(0).getTokens();
-                    mainPlayerScoreBoard();
-                    binding.mainPlayerNameTV.setText(users.get(0).getName());
-                    binding.mainPlayerBlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.mainPlayerBluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.mainPlayerRedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.mainPlayerWhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.mainPlayerGreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.mainPlayerYellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-                    binding.mainPlayerPointsTV.setText(Integer.toString(users.get(0).getPoints()));
+                    HashMap<TokenType, Integer> bonusTokens = users.get(0).getBonusTokens();
+                    show1PlayerScoreBoard();
+                    binding.Player1NameTV.setText(users.get(0).getName());
+                    binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
+                    binding.Player1PointsTV.setText(Integer.toString(users.get(0).getPoints()));
 
                 }
                 if (userCount > 1) {
                     HashMap<TokenType, Integer> tokens = users.get(1).getTokens();
-                    show3PlayerScoreBoard();
-                    binding.Player3NameTV.setText(users.get(1).getName());
-                    binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-                    binding.Player3PointsTV.setText(Integer.toString(users.get(1).getPoints()));
+                    HashMap<TokenType, Integer> bonusTokens = users.get(1).getBonusTokens();
+                    show2PlayerScoreBoard();
+                    binding.Player2NameTV.setText(users.get(1).getName());
+                    binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
+                    binding.Player2PointsTV.setText(Integer.toString(users.get(1).getPoints()));
+
                 }
                 if (userCount > 2) {
                     HashMap<TokenType, Integer> tokens = users.get(2).getTokens();
-                    show2PlayerScoreBoard();
-                    binding.Player2NameTV.setText(users.get(2).getName());
-                    binding.Player2BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.Player2BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.Player2RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.Player2WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-                    binding.Player2PointsTV.setText(Integer.toString(users.get(2).getPoints()));
+                    HashMap<TokenType, Integer> bonusTokens = users.get(2).getBonusTokens();
+                    show3PlayerScoreBoard();
+                    binding.Player3NameTV.setText(users.get(2).getName());
+                    binding.Player3BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.Player3BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.Player3RedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.Player3WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
+                    binding.Player3PointsTV.setText(Integer.toString(users.get(2).getPoints()));
                 }
                 if (userCount > 3) {
                     HashMap<TokenType, Integer> tokens = users.get(3).getTokens();
-                    show1PlayerScoreBoard();
-                    binding.Player1NameTV.setText(users.get(3).getName());
-                    binding.Player1BlackPointsTV.setText(tokens.get(TokenType.ONYX).toString());
-                    binding.Player1BluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString());
-                    binding.Player1RedPointsTV.setText(tokens.get(TokenType.RUBY).toString());
-                    binding.Player1WhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString());
-                    binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString());
-                    binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString());
-                    binding.Player1PointsTV.setText(Integer.toString(users.get(3).getPoints()));
+                    mainPlayerScoreBoard();
+                    binding.mainPlayerNameTV.setText(users.get(3).getName());
+                    HashMap<TokenType, Integer> bonusTokens = users.get(3).getBonusTokens();
+                    binding.mainPlayerBlackPointsTV.setText(tokens.get(TokenType.ONYX).toString()+"("+bonusTokens.get(TokenType.ONYX)+")");
+                    binding.mainPlayerBluePointsTV.setText(tokens.get(TokenType.SAPPHIRE).toString()+"("+bonusTokens.get(TokenType.SAPPHIRE)+")");
+                    binding.mainPlayerRedPointsTV.setText(tokens.get(TokenType.RUBY).toString()+"("+bonusTokens.get(TokenType.RUBY)+")");
+                    binding.mainPlayerWhitePointsTV.setText(tokens.get(TokenType.DIAMOND).toString()+"("+bonusTokens.get(TokenType.DIAMOND)+")");
+                    binding.mainPlayerGreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
+                    binding.mainPlayerYellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
+                    binding.mainPlayerPointsTV.setText(Integer.toString(users.get(3).getPoints()));
 
 
                 }
             }});
     }
     private void hideScoreBoard(){
-        binding.Player1NameTV.setVisibility(GONE);
-        binding.Player1BlackPointsTV.setVisibility(GONE);
-        binding.Player1BluePointsTV.setVisibility(GONE);
-        binding.Player1RedPointsTV.setVisibility(GONE);
-        binding.Player1WhitePointsTV.setVisibility(GONE);
-        binding.Player1GreenPointsTV.setVisibility(GONE);
-        binding.Player1YellowPointsTV.setVisibility(GONE);
-        binding.Player2NameTV.setVisibility(GONE);
-        binding.Player2BlackPointsTV.setVisibility(GONE);
-        binding.Player2BluePointsTV.setVisibility(GONE);
-        binding.Player2RedPointsTV.setVisibility(GONE);
-        binding.Player2WhitePointsTV.setVisibility(GONE);
-        binding.Player2GreenPointsTV.setVisibility(GONE);
-        binding.Player2YellowPointsTV.setVisibility(GONE);
-        binding.Player3NameTV.setVisibility(GONE);
-        binding.Player3BlackPointsTV.setVisibility(GONE);
-        binding.Player3BluePointsTV.setVisibility(GONE);
-        binding.Player3RedPointsTV.setVisibility(GONE);
-        binding.Player3WhitePointsTV.setVisibility(GONE);
-        binding.Player3GreenPointsTV.setVisibility(GONE);
-        binding.Player3YellowPointsTV.setVisibility(GONE);
-        binding.mainPlayerNameTV.setVisibility(GONE);
-        binding.mainPlayerBlackPointsTV.setVisibility(GONE);
-        binding.mainPlayerBluePointsTV.setVisibility(GONE);
-        binding.mainPlayerRedPointsTV.setVisibility(GONE);
-        binding.mainPlayerWhitePointsTV.setVisibility(GONE);
-        binding.mainPlayerGreenPointsTV.setVisibility(GONE);
-        binding.mainPlayerYellowPointsTV.setVisibility(GONE);
+        binding.Player1CardView.setVisibility(GONE);
+        binding.Player2CardView.setVisibility(GONE);
+        binding.Player3CardView.setVisibility(GONE);
+        binding.Player4CardView.setVisibility(GONE);
     }
 
     private void show1PlayerScoreBoard(){
-        binding.Player1NameTV.setVisibility(VISIBLE);
-        binding.Player1BlackPointsTV.setVisibility(VISIBLE);
-        binding.Player1BluePointsTV.setVisibility(VISIBLE);
-        binding.Player1RedPointsTV.setVisibility(VISIBLE);
-        binding.Player1WhitePointsTV.setVisibility(VISIBLE);
-        binding.Player1GreenPointsTV.setVisibility(VISIBLE);
-        binding.Player1YellowPointsTV.setVisibility(VISIBLE);
+        binding.Player1CardView.setVisibility(VISIBLE);
     }
     private void show2PlayerScoreBoard(){
-        binding.Player2NameTV.setVisibility(VISIBLE);
-        binding.Player2BlackPointsTV.setVisibility(VISIBLE);
-        binding.Player2BluePointsTV.setVisibility(VISIBLE);
-        binding.Player2RedPointsTV.setVisibility(VISIBLE);
-        binding.Player2WhitePointsTV.setVisibility(VISIBLE);
-        binding.Player2GreenPointsTV.setVisibility(VISIBLE);
-        binding.Player2YellowPointsTV.setVisibility(VISIBLE);
+        binding.Player2CardView.setVisibility(VISIBLE);
     }
     private void show3PlayerScoreBoard(){
-        binding.Player3NameTV.setVisibility(VISIBLE);
-        binding.Player3BlackPointsTV.setVisibility(VISIBLE);
-        binding.Player3BluePointsTV.setVisibility(VISIBLE);
-        binding.Player3RedPointsTV.setVisibility(VISIBLE);
-        binding.Player3WhitePointsTV.setVisibility(VISIBLE);
-        binding.Player3GreenPointsTV.setVisibility(VISIBLE);
-        binding.Player3YellowPointsTV.setVisibility(VISIBLE);
+        binding.Player3CardView.setVisibility(VISIBLE);
     }
     private void mainPlayerScoreBoard(){
-        binding.mainPlayerNameTV.setVisibility(VISIBLE);
-        binding.mainPlayerBlackPointsTV.setVisibility(VISIBLE);
-        binding.mainPlayerBluePointsTV.setVisibility(VISIBLE);
-        binding.mainPlayerRedPointsTV.setVisibility(VISIBLE);
-        binding.mainPlayerWhitePointsTV.setVisibility(VISIBLE);
-        binding.mainPlayerGreenPointsTV.setVisibility(VISIBLE);
-        binding.mainPlayerYellowPointsTV.setVisibility(VISIBLE);
+        binding.Player4CardView.setVisibility(VISIBLE);
     }
     private void setupBuyingReservedCards(){
         reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
