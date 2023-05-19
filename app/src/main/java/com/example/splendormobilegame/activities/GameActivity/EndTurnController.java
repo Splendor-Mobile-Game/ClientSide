@@ -77,10 +77,11 @@ public class EndTurnController<T extends GameActivity> extends Controller {
             gameActivity.updateReservedCards();
             gameActivity.updateCards();
 
+
+            EndTurnController.this.gameActivity.updateTurnIndicator();
+
             // TODO Update the view
             // ...
-            // this.gameActivity.updateTurnIndicator()
-
             /*if (game.getWhosTurn().getUuid().equals(Model.getUserUuid()))
                 this.gameActivity.unblockButtons();
             else
