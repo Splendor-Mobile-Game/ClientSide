@@ -498,15 +498,20 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     public void updateTurnIndicator() {
-        User currentUser = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getRoom().getGame().getWhosTurn());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                User currentUser = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getRoom().getGame().getWhosTurn());
 
-        binding.playerNameTurnTextView.setText(currentUser.getName());
+                binding.playerNameTurnTextView.setText(currentUser.getName());
 
-        if(currentUser.getUuid().compareTo(Model.getInstance().getUserUuid()) == 0) {
-            binding.progressBar.setVisibility(VISIBLE);
-        } else {
-            binding.progressBar.setVisibility(GONE);
-        }
+                if (currentUser.getUuid().equals(Model.getInstance().getUserUuid())) {
+                    binding.progressBar.setVisibility(VISIBLE);
+                } else {
+                    binding.progressBar.setVisibility(GONE);
+                }
+            }
+        });
     }
 
     //Numbers don't need to be localized
