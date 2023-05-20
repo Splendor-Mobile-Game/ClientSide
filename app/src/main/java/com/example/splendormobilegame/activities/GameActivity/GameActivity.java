@@ -101,6 +101,7 @@ public class GameActivity extends CustomAppCompatActivity {
         this.updateTokenNumber();
         this.updateReservedCards();
         this.updateScoreBoard();
+        this.updateTurnIndicator();
 
         // Create controllers
         this.endTurnController = new EndTurnController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
@@ -526,6 +527,24 @@ public class GameActivity extends CustomAppCompatActivity {
             nobleCardsAdapter.notifyDataSetChanged();
         }});
     }
+
+    public void updateTurnIndicator() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                User currentUser = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getRoom().getGame().getWhosTurn());
+
+                binding.playerNameTurnTextView.setText(currentUser.getName());
+
+                if (currentUser.getUuid().equals(Model.getInstance().getUserUuid())) {
+                    binding.progressBar.setVisibility(VISIBLE);
+                } else {
+                    binding.progressBar.setVisibility(GONE);
+                }
+            }
+        });
+    }
+
     //Numbers don't need to be localized
     @SuppressLint("SetTextI18n")
     public void updateScoreBoard(){
