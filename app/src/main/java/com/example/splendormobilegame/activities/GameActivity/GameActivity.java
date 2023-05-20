@@ -240,6 +240,30 @@ public class GameActivity extends CustomAppCompatActivity {
 
     }
 
+    //Used in controller for setting all token numbers to 0 after success
+    public void ClearTokenPointsView() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                binding.blackTokenNumberTextView.setText("0");
+                blackTokens=0;
+
+                binding.redTokenNumberTextView.setText("0");
+                redTokens=0;
+
+                binding.whiteTokenNumberTextView.setText("0");
+                whiteTokens=0;
+
+                binding.greenTokenNumberTextView.setText("0");
+                greenTokens=0;
+
+                binding.blueTokenNumberTextView.setText("0");
+                blueTokens=0;
+            }
+        }
+        );
+    }
+
     private void setupPointsButtons() {
         binding.addBlackTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override

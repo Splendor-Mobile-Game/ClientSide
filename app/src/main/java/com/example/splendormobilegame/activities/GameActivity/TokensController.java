@@ -109,6 +109,7 @@ public class TokensController<T extends GameActivity> extends Controller {
 
             if(Model.getInstance().getUserUuid().equals(user.getUuid())) {
                 gameActivity.ChangeRightSide();
+                gameActivity.ClearTokenPointsView();
             }
             // TODO Update the view
             // ...
