@@ -49,24 +49,30 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         neededPoints[0] = cardView.findViewById(R.id.neededPoints1);
         neededPoints[1] = cardView.findViewById(R.id.neededPoints2);
         neededPoints[2] = cardView.findViewById(R.id.neededPoints3);
+        neededPoints[0].setVisibility(View.GONE);
+        neededPoints[1].setVisibility(View.GONE);
+        neededPoints[2].setVisibility(View.GONE);
 
         int whichCard = 0;
 
         if (cardData.getEmeraldCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getEmeraldCost()));
             neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.green));
+            neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
         if (cardData.getSapphireCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getSapphireCost()));
             neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.blue));
+            neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
         if (cardData.getRubyCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getRubyCost()));
             neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.poppy));
+            neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
@@ -74,13 +80,14 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
             neededPoints[whichCard].setText(String.valueOf(cardData.getDiamondCost()));
             neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.white));
             neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
+            neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
         if (cardData.getOnyxCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getOnyxCost()));
             neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.black));
-
+            neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
     }
