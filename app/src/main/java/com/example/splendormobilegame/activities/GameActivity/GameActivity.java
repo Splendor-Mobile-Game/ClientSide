@@ -225,12 +225,43 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     //Function swapping right side between take points and cards.
-    private void ChangeRightSide() {
-        int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
-        int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
-        TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
-        binding.CardsAristocratsCardView.setVisibility(cardsCard);
-        binding.takeTokensCardView.setVisibility(takeTokensCard);
+    public void ChangeRightSide() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                int cardsCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
+                int takeTokensCard = (binding.CardsAristocratsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
+                TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
+                binding.CardsAristocratsCardView.setVisibility(cardsCard);
+                binding.takeTokensCardView.setVisibility(takeTokensCard);
+            }
+        });
+
+    }
+
+    //Used in controller for setting all token numbers to 0 after success
+    public void ClearTokenPointsView() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                binding.blackTokenNumberTextView.setText("0");
+                blackTokens=0;
+
+                binding.redTokenNumberTextView.setText("0");
+                redTokens=0;
+
+                binding.whiteTokenNumberTextView.setText("0");
+                whiteTokens=0;
+
+                binding.greenTokenNumberTextView.setText("0");
+                greenTokens=0;
+
+                binding.blueTokenNumberTextView.setText("0");
+                blueTokens=0;
+            }
+        }
+        );
     }
 
     private void setupPointsButtons() {
