@@ -44,6 +44,12 @@ public class GameActivity extends CustomAppCompatActivity {
     private int blackTokens = 0;
     private int whiteTokens = 0;
     private int greenTokens = 0;
+    //used for returning tokens
+    private int blueTokens2 = 0;
+    private int redTokens2 = 0;
+    private int blackTokens2 = 0;
+    private int whiteTokens2 = 0;
+    private int greenTokens2 = 0;
 
     private DeckReservingController deckReservingController;
     private RevealedCardsReservingController revealedCardsReservingController;
@@ -269,7 +275,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addBlackTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (blackTokens < 2) {
+                if (blackTokens < 2 && blackTokens >= 0) {
                     blackTokens++;
                     binding.blackTokenNumberTextView.setText(String.valueOf(blackTokens));
                 }
@@ -278,7 +284,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addRedTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (redTokens < 2) {
+                if (redTokens < 2 && redTokens >= 0) {
                     redTokens++;
                     binding.redTokenNumberTextView.setText(String.valueOf(redTokens));
                 }
@@ -287,7 +293,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addWhiteTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (whiteTokens < 2) {
+                if (whiteTokens < 2 && whiteTokens >= 0) {
                     whiteTokens++;
                     binding.whiteTokenNumberTextView.setText(String.valueOf(whiteTokens));
                 }
@@ -296,7 +302,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addGreenTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (greenTokens < 2) {
+                if (greenTokens < 2 && greenTokens >= 0) {
                     greenTokens++;
                     binding.greenTokenNumberTextView.setText(String.valueOf(greenTokens));
                 }
@@ -305,7 +311,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.addBlueTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (blueTokens < 2) {
+                if (blueTokens < 2 ){
                     blueTokens++;
                     binding.blueTokenNumberTextView.setText(String.valueOf(blueTokens));
                 }
@@ -314,7 +320,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeBlackTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (blackTokens > -3) {
+                if (blackTokens > 0) {
                     blackTokens--;
                     binding.blackTokenNumberTextView.setText(String.valueOf(blackTokens));
                 }
@@ -323,7 +329,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeRedTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (redTokens > -3) {
+                if (redTokens > 0) {
                     redTokens--;
                     binding.redTokenNumberTextView.setText(String.valueOf(redTokens));
                 }
@@ -332,7 +338,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeWhiteTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (whiteTokens > -3) {
+                if (whiteTokens > 0) {
                     whiteTokens--;
                     binding.whiteTokenNumberTextView.setText(String.valueOf(whiteTokens));
                 }
@@ -341,7 +347,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeGreenTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (greenTokens > -3) {
+                if (greenTokens > 0) {
                     greenTokens--;
                     binding.greenTokenNumberTextView.setText(String.valueOf(greenTokens));
                 }
@@ -350,12 +356,105 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.removeBlueTokenImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (blueTokens > -3) {
+                if (blueTokens > 0) {
                     blueTokens--;
                     binding.blueTokenNumberTextView.setText(String.valueOf(blueTokens));
                 }
             }
         });
+
+        binding.addBlackTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (blackTokens2 < 0) {
+                    blackTokens2++;
+                    binding.blackTokenNumberTextView2.setText(String.valueOf(blackTokens2));
+                }
+            }
+        });
+        binding.addRedTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (redTokens2 < 0) {
+                    redTokens2++;
+                    binding.redTokenNumberTextView2.setText(String.valueOf(redTokens2));
+                }
+            }
+        });
+        binding.addWhiteTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (whiteTokens2 < 0) {
+                    whiteTokens2++;
+                    binding.whiteTokenNumberTextView2.setText(String.valueOf(whiteTokens2));
+                }
+            }
+        });
+        binding.addGreenTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (greenTokens2 < 0) {
+                    greenTokens2++;
+                    binding.greenTokenNumberTextView2.setText(String.valueOf(greenTokens2));
+                }
+            }
+        });
+        binding.addBlueTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (blueTokens2 < 0 ){
+                    blueTokens2++;
+                    binding.blueTokenNumberTextView2.setText(String.valueOf(blueTokens2));
+                }
+            }
+        });
+        binding.removeBlackTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (blackTokens2 <=0 && blackTokens2 > -3) {
+                    blackTokens2--;
+                    binding.blackTokenNumberTextView2.setText(String.valueOf(blackTokens2));
+                }
+            }
+        });
+        binding.removeRedTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (redTokens2 <=0 && redTokens2 > -3) {
+                    redTokens2--;
+                    binding.redTokenNumberTextView2.setText(String.valueOf(redTokens2));
+                }
+            }
+        });
+        binding.removeWhiteTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (whiteTokens2 <=0 && whiteTokens2 > -3) {
+                    whiteTokens2--;
+                    binding.whiteTokenNumberTextView2.setText(String.valueOf(whiteTokens2));
+                }
+            }
+        });
+        binding.removeGreenTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (greenTokens2 <=0 && greenTokens2 > -3) {
+                    greenTokens2--;
+                    binding.greenTokenNumberTextView2.setText(String.valueOf(greenTokens2));
+                }
+            }
+        });
+        binding.removeBlueTokenImage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (blueTokens2 <=0 && blueTokens2 > -3) {
+                    blueTokens2--;
+                    binding.blueTokenNumberTextView2.setText(String.valueOf(blueTokens2));
+                }
+            }
+        });
+
+
 
         binding.tokenButtonsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
