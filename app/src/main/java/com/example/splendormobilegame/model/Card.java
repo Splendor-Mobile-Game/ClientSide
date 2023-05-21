@@ -21,9 +21,10 @@ public class Card {
     private final int rubyCost;
     private final int diamondCost;
     private final int onyxCost;
+    private final int graphicsID;
 
 
-    public Card(UUID uuid, CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token) {
+    public Card(UUID uuid, CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token, int graphicsID) {
         this.uuid = uuid;
         this.cardTier = cardTier;
         this.points = points;
@@ -33,6 +34,7 @@ public class Card {
         this.diamondCost = diamondCost;
         this.onyxCost = onyxCost;
         this.bonusToken = token;
+        this.graphicsID = graphicsID;
     }
 
     public UUID getUuid() {
@@ -70,6 +72,8 @@ public class Card {
     public int getOnyxCost() {
         return onyxCost;
     }
+
+    public int getGraphicsID() { return graphicsID; }
 
 
     @SuppressLint("DefaultLocale")

@@ -90,7 +90,8 @@ public class StartGameController extends Controller {
                         noble.sapphireMinesRequired,
                         noble.rubyMinesRequired,
                         noble.diamondMinesRequired,
-                        noble.onyxMinesRequired
+                        noble.onyxMinesRequired,
+                        noble.graphicsID
                 ));
             }
 
@@ -121,8 +122,9 @@ public class StartGameController extends Controller {
                                     .stream()
                                     .filter(tokenType -> tokenType.color == mine.color)
                                     .findFirst()
-                                    .orElse(null)
-                    ));
+                                    .orElse(null),
+                            mine.graphicsID
+                            ));
                 }
             }
 

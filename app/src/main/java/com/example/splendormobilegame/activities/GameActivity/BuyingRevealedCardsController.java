@@ -85,7 +85,8 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
                         cardDataResponse.rubyCost,
                         cardDataResponse.diamondCost,
                         cardDataResponse.onyxCost,
-                        cardDataResponse.additionalToken
+                        cardDataResponse.additionalToken,
+                        cardDataResponse.graphicsID
                 );
             }
 

@@ -13,15 +13,17 @@ public class Noble {
     private final int rubyCost;  // Red
     private final int diamondCost;  // White
     private final int onyxCost;  // Black
+    private final int graphicsID;
 
 
-    public Noble(UUID uuid, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost) {
+    public Noble(UUID uuid, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, int graphicsID) {
         this.uuid = uuid;
         this.emeraldCost = emeraldCost;
         this.sapphireCost = sapphireCost;
         this.rubyCost = rubyCost;
         this.diamondCost = diamondCost;
         this.onyxCost = onyxCost;
+        this.graphicsID = graphicsID;
     }
 
     public UUID getUuid() {
@@ -51,6 +53,8 @@ public class Noble {
     public int getOnyxCost() {
         return onyxCost;
     }
+
+    public int getGraphicsID() { return graphicsID; }
 
 
     @Override
