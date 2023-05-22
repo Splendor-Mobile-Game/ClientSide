@@ -51,6 +51,11 @@ public class CardsFirstTierAdapter extends RecyclerView.Adapter<CardsFirstTierAd
         Card cardData = cardList.get(position);
         CardView cardView = holder.cardView;
 
+        View image = cardView.findViewById(R.id.cardConstraintLayout);
+        String resourceName = "cards_bg" + (cardData.getGraphicsID() + 1);
+        int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+        image.setBackgroundResource(drawableResourceId);
+
         whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
         whitePointsTextView.setText(String.valueOf(cardData.getDiamondCost()));
         greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
