@@ -1,7 +1,16 @@
 package com.example.splendormobilegame.model;
 
+import com.example.splendormobilegame.R;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Noble {
 
@@ -16,14 +25,15 @@ public class Noble {
     private final int graphicsID;
 
 
-    public Noble(UUID uuid, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, int graphicsID) {
+    public Noble(UUID uuid, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, int nobleID) {
         this.uuid = uuid;
         this.emeraldCost = emeraldCost;
         this.sapphireCost = sapphireCost;
         this.rubyCost = rubyCost;
         this.diamondCost = diamondCost;
         this.onyxCost = onyxCost;
-        this.graphicsID = graphicsID;
+        int numberOfNobleImages = Arrays.stream(R.drawable.class.getFields()).map(Field::getName).filter(name -> name.contains("noble")).collect(Collectors.toList()).size();
+        this.graphicsID = nobleID % numberOfNobleImages + 1;
     }
 
     public UUID getUuid() {

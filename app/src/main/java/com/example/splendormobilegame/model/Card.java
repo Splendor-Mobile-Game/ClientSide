@@ -4,11 +4,15 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
+import com.example.splendormobilegame.R;
 import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Card {
 
@@ -24,7 +28,7 @@ public class Card {
     private final int graphicsID;
 
 
-    public Card(UUID uuid, CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token, int graphicsID) {
+    public Card(UUID uuid, CardTier cardTier, int points, int emeraldCost, int sapphireCost, int rubyCost, int diamondCost, int onyxCost, TokenType token, int cardID) {
         this.uuid = uuid;
         this.cardTier = cardTier;
         this.points = points;
@@ -34,7 +38,8 @@ public class Card {
         this.diamondCost = diamondCost;
         this.onyxCost = onyxCost;
         this.bonusToken = token;
-        this.graphicsID = graphicsID;
+        int numberOfCardImages = Arrays.stream(R.drawable.class.getFields()).map(Field::getName).filter(name -> name.contains("cards_bg")).collect(Collectors.toList()).size();
+        this.graphicsID = cardID % numberOfCardImages + 1;
     }
 
     public UUID getUuid() {

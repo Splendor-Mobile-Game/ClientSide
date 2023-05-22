@@ -63,7 +63,7 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
             User user=model.getRoom().getUserByUuid(responseData.userUuid);
 
 
-            Card card=new Card(responseData.card.uuid,responseData.card.cardTier,responseData.card.prestige,responseData.card.tokensRequired.emerald,responseData.card.tokensRequired.sapphire, responseData.card.tokensRequired.ruby,responseData.card.tokensRequired.diamond,responseData.card.tokensRequired.onyx, responseData.card.bonusColor, responseData.card.graphicsID);
+            Card card=new Card(responseData.card.uuid,responseData.card.cardTier,responseData.card.prestige,responseData.card.tokensRequired.emerald,responseData.card.tokensRequired.sapphire, responseData.card.tokensRequired.ruby,responseData.card.tokensRequired.diamond,responseData.card.tokensRequired.onyx, responseData.card.bonusColor, responseData.card.cardID);
 
 
             ReservedCard reservedCard= new ReservedCard(card,user,false );

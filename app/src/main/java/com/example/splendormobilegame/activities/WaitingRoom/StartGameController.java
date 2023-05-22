@@ -91,7 +91,7 @@ public class StartGameController extends Controller {
                         noble.rubyMinesRequired,
                         noble.diamondMinesRequired,
                         noble.onyxMinesRequired,
-                        noble.graphicsID
+                        noble.nobleID
                 ));
             }
 
@@ -123,7 +123,7 @@ public class StartGameController extends Controller {
                                     .filter(tokenType -> tokenType.color == mine.color)
                                     .findFirst()
                                     .orElse(null),
-                            mine.graphicsID
+                            mine.cardID
                             ));
                 }
             }

@@ -92,7 +92,7 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
                         cardDataResponse.diamondCost,
                         cardDataResponse.onyxCost,
                         cardDataResponse.additionalToken,
-                        cardDataResponse.graphicsID
+                        cardDataResponse.cardID
                 );
             }
             if(newCard != null){

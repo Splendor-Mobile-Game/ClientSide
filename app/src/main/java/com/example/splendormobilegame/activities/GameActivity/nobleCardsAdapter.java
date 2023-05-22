@@ -47,7 +47,7 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         CardView cardView = holder.cardView;
 
         View image = cardView.findViewById(R.id.nobleConstraintLayout);
-        String resourceName = "noble" + (cardData.getGraphicsID() + 1);
+        String resourceName = "noble" + (cardData.getGraphicsID());
         int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
         image.setBackgroundResource(drawableResourceId);
 

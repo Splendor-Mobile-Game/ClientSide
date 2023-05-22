@@ -52,7 +52,7 @@ public class CardsFirstTierAdapter extends RecyclerView.Adapter<CardsFirstTierAd
         CardView cardView = holder.cardView;
 
         View image = cardView.findViewById(R.id.cardConstraintLayout);
-        String resourceName = "cards_bg" + (cardData.getGraphicsID() + 1);
+        String resourceName = "cards_bg" + (cardData.getGraphicsID());
         int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
         image.setBackgroundResource(drawableResourceId);
 

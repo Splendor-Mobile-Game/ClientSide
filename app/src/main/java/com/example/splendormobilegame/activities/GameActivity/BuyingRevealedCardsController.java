@@ -86,7 +86,7 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
                         cardDataResponse.diamondCost,
                         cardDataResponse.onyxCost,
                         cardDataResponse.additionalToken,
-                        cardDataResponse.graphicsID
+                        cardDataResponse.cardID
                 );
             }
 
