@@ -105,6 +105,7 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
 
             gameActivity.updateScoreBoard();
             gameActivity.updateTokenNumber();
+            gameActivity.updateReservedCards();
 
             return null;
         }
