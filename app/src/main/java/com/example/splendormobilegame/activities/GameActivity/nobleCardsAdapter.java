@@ -1,22 +1,19 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.R;
-import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.Noble;
-import com.github.splendor_mobile_game.game.enums.TokenType;
 
 import java.util.List;
 
@@ -63,28 +60,31 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
 
         if (cardData.getEmeraldCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getEmeraldCost()));
-            neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.green));
+            neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_emerald));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
         if (cardData.getSapphireCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getSapphireCost()));
-            neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.blue));
+            neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_sapphire));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
         if (cardData.getRubyCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getRubyCost()));
-            neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.poppy));
+            neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_ruby));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
 
         if (cardData.getDiamondCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getDiamondCost()));
-            neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.white));
+            neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_diamond));
             neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
@@ -92,7 +92,8 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
 
         if (cardData.getOnyxCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getOnyxCost()));
-            neededPoints[whichCard].setBackgroundColor(context.getColor(R.color.black));
+            neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_onyx));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.white));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
