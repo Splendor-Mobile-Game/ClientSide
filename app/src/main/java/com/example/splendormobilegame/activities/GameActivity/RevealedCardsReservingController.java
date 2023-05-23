@@ -91,7 +91,8 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
                         cardDataResponse.rubyCost,
                         cardDataResponse.diamondCost,
                         cardDataResponse.onyxCost,
-                        cardDataResponse.additionalToken
+                        cardDataResponse.additionalToken,
+                        cardDataResponse.cardID
                 );
             }
             if(newCard != null){

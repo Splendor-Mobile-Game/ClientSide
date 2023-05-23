@@ -2,6 +2,7 @@ package com.example.splendormobilegame.activities.GameActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,11 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         GameActivity activity = (GameActivity) context;
         Noble cardData = cardList.get(position);
         CardView cardView = holder.cardView;
+
+        View image = cardView.findViewById(R.id.nobleConstraintLayout);
+        String resourceName = "noble" + (cardData.getGraphicsID());
+        int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+        image.setBackgroundResource(drawableResourceId);
 
         TextView[] neededPoints = new TextView[3];
         neededPoints[0] = cardView.findViewById(R.id.neededPoints1);
