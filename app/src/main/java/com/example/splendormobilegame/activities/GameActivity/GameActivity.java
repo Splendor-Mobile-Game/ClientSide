@@ -532,7 +532,7 @@ public class GameActivity extends CustomAppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Respond to positive button press (right button)
-                        buyingRevealedCardsController.buyRevealedCard(cardUuid);
+                        buyingReservedCardsController.buyReservedCard(cardUuid);
                     }
                 })
                 .show();
