@@ -95,6 +95,11 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
             Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);
 
+            //Return tokens to main stack
+            for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
+                game.addTokens(tokenType, buyer.getTokensCount(tokenType)-tokens.get(tokenType));
+            }
+
             // Firstly the purchased card
             buyer.addCard(boughtCard);
             game.removeCardFromTable(boughtCard);
