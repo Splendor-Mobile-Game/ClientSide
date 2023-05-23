@@ -6,6 +6,7 @@ import com.example.splendormobilegame.Controller;
 import com.example.splendormobilegame.model.Card;
 import com.example.splendormobilegame.model.Game;
 import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.model.Room;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
@@ -18,6 +19,7 @@ import com.github.splendor_mobile_game.websocket.handlers.UserRequestType;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
 import com.github.splendor_mobile_game.websocket.handlers.reactions.BuyReservedMine;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.UUID;
@@ -78,15 +80,19 @@ public class BuyingReservedCardsController<T extends GameActivity> extends Contr
             Room room = model.getRoom();
             Game game = room.getGame();
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
-            Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);
+
+            ReservedCard boughtCard = game.getReservedCards().stream()
+                    .filter(element->element.getCard().getUuid().equals(responseData.buyer.cardUuid))
+                    .findFirst()
+                    .orElse(null);
 
             //Return tokens to main stack
             for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
                 game.addTokens(tokenType, buyer.getTokensCount(tokenType)-tokens.get(tokenType));
             }
 
-            buyer.addCard(boughtCard);
-            game.removeReservedCard(buyer.getUuid(), boughtCard.getUuid());
+            buyer.addCard(boughtCard.getCard());
+            game.removeReservedCard(buyer.getUuid(), boughtCard.getCard().getUuid());
 
             for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
                 buyer.setTokens(tokenType, tokens.get(tokenType));
