@@ -143,6 +143,9 @@ public class User {
         this.nobles = nobles;
     }
 
+    public int getTokensCount(TokenType tokenType){
+        return tokens.get(tokenType);
+    }
 
     public int getAllTokensCount() {
         int suma = 0;
