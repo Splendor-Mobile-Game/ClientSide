@@ -61,7 +61,7 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         if (cardData.getEmeraldCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getEmeraldCost()));
             neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_emerald));
-            neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.white));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
@@ -69,7 +69,7 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         if (cardData.getSapphireCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getSapphireCost()));
             neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_sapphire));
-            neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.white));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
@@ -77,7 +77,7 @@ public class nobleCardsAdapter extends RecyclerView.Adapter<nobleCardsAdapter.Vi
         if (cardData.getRubyCost() != 0) {
             neededPoints[whichCard].setText(String.valueOf(cardData.getRubyCost()));
             neededPoints[whichCard].setBackground(ContextCompat.getDrawable(context,R.drawable.round_corner_shape_ruby));
-            neededPoints[whichCard].setTextColor(context.getColor(R.color.black));
+            neededPoints[whichCard].setTextColor(context.getColor(R.color.white));
             neededPoints[whichCard].setVisibility(View.VISIBLE);
             whichCard++;
         }
