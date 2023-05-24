@@ -39,8 +39,8 @@ public class WaitingRoomActivityAdapter extends RecyclerView.Adapter<WaitingRoom
     @Override
     public void onBindViewHolder(@NonNull WaitingRoomActivityAdapter.ViewHolder holder, int position) {
         holder.userName.setText(usersList.get(position));
-        String userTest = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getUserUuid()).getName();
-        if(usersList.get(position)==userTest){
+        String currentPlayerName = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getUserUuid()).getName();
+        if(usersList.get(position)==currentPlayerName){
             holder.userName.setTypeface(null, Typeface.BOLD);
         }
     }
