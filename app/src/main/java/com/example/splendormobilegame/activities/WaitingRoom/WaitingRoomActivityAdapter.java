@@ -1,5 +1,6 @@
 package com.example.splendormobilegame.activities.WaitingRoom;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.R;
+import com.example.splendormobilegame.model.Model;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,10 @@ public class WaitingRoomActivityAdapter extends RecyclerView.Adapter<WaitingRoom
     @Override
     public void onBindViewHolder(@NonNull WaitingRoomActivityAdapter.ViewHolder holder, int position) {
         holder.userName.setText(usersList.get(position));
+        String userTest = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getUserUuid()).getName();
+        if(usersList.get(position)==userTest){
+            holder.userName.setTypeface(null, Typeface.BOLD);
+        }
     }
 
     @Override
