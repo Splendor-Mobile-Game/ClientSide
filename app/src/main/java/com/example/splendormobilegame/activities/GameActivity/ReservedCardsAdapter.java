@@ -54,6 +54,11 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
         ReservedCard cardData = cardList.get(position);
         CardView cardView = holder.cardView;
 
+        View image = cardView.findViewById(R.id.cardConstraintLayout);
+        String resourceName = "cards_bg" + (cardData.getCard().getGraphicsID());
+        int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+        image.setBackgroundResource(drawableResourceId);
+
         whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
         whitePointsTextView.setText(String.valueOf(cardData.getCard().getDiamondCost()));
         greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
