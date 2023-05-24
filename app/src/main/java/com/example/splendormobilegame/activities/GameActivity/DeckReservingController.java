@@ -56,34 +56,22 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
         public UserMessage react(ServerMessage serverMessage) {
             System.out.println("Entered ReservationFromDeckMessageHandler react method");
 
-
             MakeReservationFromDeck.ResponseData responseData = (MakeReservationFromDeck.ResponseData) ReactionUtils.getResponseData(serverMessage, MakeReservationFromDeck.ResponseData.class);
 
-
             User user=model.getRoom().getUserByUuid(responseData.userUuid);
-
-
             Card card=new Card(responseData.card.uuid,responseData.card.cardTier,responseData.card.prestige,responseData.card.tokensRequired.emerald,responseData.card.tokensRequired.sapphire, responseData.card.tokensRequired.ruby,responseData.card.tokensRequired.diamond,responseData.card.tokensRequired.onyx, responseData.card.bonusColor, responseData.card.cardID);
 
-
-            ReservedCard reservedCard= new ReservedCard(card,user,false );
+            boolean visible = user.getUuid().equals(model.getUserUuid());
+            ReservedCard reservedCard= new ReservedCard(card, user, visible);
             model.getRoom().getGame().reserveCard(user, reservedCard);
-
-
-
 
 
             // If this message pertains to me, it means I requested it, indicating that I have taken my action during my turn.
             // Therefore, I need to end my turn.
-            
-            // TODO Update the view via `gameActivity` or other objects given in constructor
-
-            activity.showToast("User "+user.getName()+"reserved card from deck "+card.getCardTier());
-
-            // Perhaps it was not the best decision to require the user to manually end their turn.
-            // The server should handle this automatically.
             DeckReservingController.this.endTurnController.endTurn();
 
+            // Update the view
+            activity.showToast("User "+user.getName()+"reserved card from deck "+card.getCardTier());
             gameActivity.updateScoreBoard();
             gameActivity.updateTokenNumber();
             gameActivity.updateReservedCards();
