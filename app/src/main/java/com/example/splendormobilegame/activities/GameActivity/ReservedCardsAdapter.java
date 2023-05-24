@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     private TextView bluePointsTextView;
     private TextView blackPointsTextView;
     private TextView pointsTextView;
+    private TextView playerName;
     private ImageView cardType;
     private Context context;
     private android.app.Activity activity;
@@ -44,7 +46,7 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     @Override
     public ReservedCardsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_card_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reserved_card_view, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,8 +54,9 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     public void onBindViewHolder(@NonNull ReservedCardsAdapter.ViewHolder holder, int position) {
         GameActivity activity = (GameActivity) context;
         ReservedCard cardData = cardList.get(position);
-        CardView cardView = holder.cardView;
-
+        LinearLayout linearLayout = holder.linearLayout;
+        CardView cardView = linearLayout.findViewById(R.id.cardLayout);
+        playerName = linearLayout.findViewById(R.id.playerName);
         View image = cardView.findViewById(R.id.cardConstraintLayout);
         String resourceName = "cards_bg" + (cardData.getCard().getGraphicsID());
         int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
@@ -72,6 +75,7 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
         pointsTextView = cardView.findViewById(R.id.pointsTextView);
         pointsTextView.setText(String.valueOf(cardData.getCard().getPoints()));
         cardType = cardView.findViewById(R.id.cardTypeImageView);
+        playerName.setText(cardData.getUser().getName());
         if(cardData.getCard().getBonusToken() == TokenType.EMERALD){
             cardType.setImageResource(R.drawable.diamond_shape_green);
         }
@@ -102,12 +106,11 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
-
+        LinearLayout linearLayout;
         public ViewHolder(View v){
             super(v);
             // Each ViewHolder only has a CardView (even though that CardView has child TextViews
-            cardView = (CardView) v;
+            linearLayout = (LinearLayout) v;
         }
     }
 

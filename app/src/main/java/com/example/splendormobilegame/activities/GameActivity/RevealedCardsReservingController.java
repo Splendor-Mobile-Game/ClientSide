@@ -104,11 +104,11 @@ public class RevealedCardsReservingController<T extends GameActivity> extends Co
             // Therefore, I need to end my turn.
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
-            RevealedCardsReservingController.this.endTurnController.endTurn();
             gameActivity.updateScoreBoard();
             gameActivity.updateTokenNumber();
             gameActivity.updateReservedCards();
             gameActivity.updateCards();
+            RevealedCardsReservingController.this.endTurnController.endTurn();
             return null;
         }
 

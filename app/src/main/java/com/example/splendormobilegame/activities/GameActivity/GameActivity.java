@@ -748,8 +748,8 @@ public class GameActivity extends CustomAppCompatActivity {
     }
     private void setupBuyingReservedCards(){
         reservedCardsBuyingRecyclerView = (RecyclerView) binding.reservedCardsRecyclerView;
-        LinearLayoutManager HorizontalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        reservedCardsBuyingRecyclerView.setLayoutManager(HorizontalLayout);
+        LinearLayoutManager VerticalLayout = new LinearLayoutManager(GameActivity.this, LinearLayoutManager.VERTICAL, false);
+        reservedCardsBuyingRecyclerView.setLayoutManager(VerticalLayout);
         cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
         reservedCardsAdapter = new ReservedCardsAdapter(cardListReservedCards);
         reservedCardsBuyingRecyclerView.setAdapter(reservedCardsAdapter);
@@ -763,6 +763,7 @@ public class GameActivity extends CustomAppCompatActivity {
                 cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
                 nobleCardsAdapter.setCardList(cardListNobleCards);
                 nobleCardsAdapter.notifyDataSetChanged();
+
             }});
     }
 
