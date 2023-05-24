@@ -199,6 +199,9 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.sideBarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int sideBarButtonText = binding.pointsCardView.getVisibility() == GONE ? R.string.reserved : R.string.score;
+                binding.sideBarButton.setText(sideBarButtonText);
+
                 int pointCardVisible = (binding.pointsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
                 int otherCardsVisible = (binding.pointsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
                 TransitionManager.beginDelayedTransition(binding.gameActivityConstraintLayout, new AutoTransition());
