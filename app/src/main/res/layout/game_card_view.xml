@@ -26,7 +26,7 @@
                 android:background="@drawable/round_corner_shape_diamond"
                 android:textColor="@color/black"
                 android:text="0"
-
+                android:fontFamily="monospace"
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,9 +38,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/round_corner_shape_emerald"
-                android:text="1"
-                android:textColor="@color/white"
                 android:includeFontPadding="false"
+                android:text="1"
+                android:fontFamily="monospace"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/whitePointsTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,6 +53,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@drawable/round_corner_shape_onyx"
                 android:text="2"
+                android:fontFamily="monospace"
                 android:textColor="@color/white"
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@drawable/round_corner_shape_sapphire"
                 android:text="3"
+                android:fontFamily="monospace"
                 android:textColor="@color/white"
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toEndOf="@+id/blackPointsTextView"
@@ -78,6 +81,7 @@
                 android:layout_marginStart="5dp"
                 android:background="@drawable/round_corner_shape_ruby"
                 android:text="5"
+                android:fontFamily="monospace"
                 android:textColor="@color/white"
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toEndOf="@+id/greenPointsTextView"
@@ -91,6 +95,7 @@
                 android:background="@drawable/round_corner_points_mine"
                 android:text="4"
                 android:textColor="@color/black"
+                android:fontFamily="monospace"
                 android:paddingLeft="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
