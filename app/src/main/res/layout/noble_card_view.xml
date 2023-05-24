@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corner_points"
-            android:fontFamily="@font/lora_regular"
+            android:fontFamily="monospace"
             android:paddingLeft="2dp"
             android:includeFontPadding="false"
 
@@ -41,7 +41,7 @@
             android:layout_marginBottom="1dp"
             android:text="3"
             android:includeFontPadding="false"
-            android:fontFamily="@font/lora_regular"
+            android:fontFamily="monospace"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/neededPoints2"
             app:layout_constraintStart_toStartOf="parent" />
@@ -53,7 +53,7 @@
             android:layout_marginBottom="1dp"
             android:text="3"
             android:includeFontPadding="false"
-            android:fontFamily="@font/lora_regular"
+            android:fontFamily="monospace"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -65,7 +65,7 @@
             android:layout_marginBottom="1dp"
             android:text="4"
             android:includeFontPadding="false"
-            android:fontFamily="@font/lora_regular"
+            android:fontFamily="monospace"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/neededPoints2" />

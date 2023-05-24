@@ -6,6 +6,7 @@ import static android.view.View.VISIBLE;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -650,6 +651,7 @@ public class GameActivity extends CustomAppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                String currentPlayerName = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getUserUuid()).getName();
                 ArrayList<User> users = Model.getInstance().getRoom().getUsers();
                 int userCount = Model.getInstance().getRoom().getPlayerCount();
                 hideScoreBoard();
@@ -666,6 +668,9 @@ public class GameActivity extends CustomAppCompatActivity {
                     binding.Player1GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
                     binding.Player1YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.Player1PointsTV.setText(Integer.toString(users.get(0).getPoints()));
+                    if(binding.Player1NameTV.getText().toString()==currentPlayerName){
+                        binding.Player1NameTV.setTypeface(null, Typeface.BOLD);
+                    }
 
                 }
                 if (userCount > 1) {
@@ -680,7 +685,9 @@ public class GameActivity extends CustomAppCompatActivity {
                     binding.Player2GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
                     binding.Player2YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.Player2PointsTV.setText(Integer.toString(users.get(1).getPoints()));
-
+                    if(binding.Player2NameTV.getText().toString()==currentPlayerName){
+                        binding.Player2NameTV.setTypeface(null, Typeface.BOLD);
+                    }
                 }
                 if (userCount > 2) {
                     HashMap<TokenType, Integer> tokens = users.get(2).getTokens();
@@ -694,6 +701,9 @@ public class GameActivity extends CustomAppCompatActivity {
                     binding.Player3GreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
                     binding.Player3YellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.Player3PointsTV.setText(Integer.toString(users.get(2).getPoints()));
+                    if(binding.Player3NameTV.getText().toString()==currentPlayerName){
+                        binding.Player3NameTV.setTypeface(null, Typeface.BOLD);
+                    }
                 }
                 if (userCount > 3) {
                     HashMap<TokenType, Integer> tokens = users.get(3).getTokens();
@@ -707,7 +717,9 @@ public class GameActivity extends CustomAppCompatActivity {
                     binding.mainPlayerGreenPointsTV.setText(tokens.get(TokenType.EMERALD).toString()+"("+bonusTokens.get(TokenType.EMERALD)+")");
                     binding.mainPlayerYellowPointsTV.setText(tokens.get(TokenType.GOLD_JOKER).toString()+"("+bonusTokens.get(TokenType.GOLD_JOKER)+")");
                     binding.mainPlayerPointsTV.setText(Integer.toString(users.get(3).getPoints()));
-
+                    if(binding.mainPlayerNameTV.getText().toString()==currentPlayerName){
+                        binding.mainPlayerNameTV.setTypeface(null, Typeface.BOLD);
+                    }
 
                 }
             }});
