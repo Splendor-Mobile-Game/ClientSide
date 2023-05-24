@@ -12,7 +12,6 @@ import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -200,8 +199,8 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.sideBarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int sideBarButtonTest = binding.pointsCardView.getVisibility() == GONE ? R.string.reserved : R.string.score;
-                binding.sideBarButton.setText(sideBarButtonTest);
+                int sideBarButtonText = binding.pointsCardView.getVisibility() == GONE ? R.string.reserved : R.string.score;
+                binding.sideBarButton.setText(sideBarButtonText);
 
                 int pointCardVisible = (binding.pointsCardView.getVisibility() == GONE) ? VISIBLE : GONE;
                 int otherCardsVisible = (binding.pointsCardView.getVisibility() == GONE) ? GONE : VISIBLE;
