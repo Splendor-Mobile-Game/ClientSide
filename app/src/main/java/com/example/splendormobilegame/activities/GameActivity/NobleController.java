@@ -25,8 +25,9 @@ public class NobleController<T extends GameActivity>  extends Controller {
 
 
 
-    public NobleController(CustomAppCompatActivity activity, CustomWebSocketClient customWebSocketClient, Model model) {
+    public NobleController(T activity, CustomWebSocketClient customWebSocketClient, Model model) {
         super(activity, customWebSocketClient, model);
+        this.gameActivity = activity;
         this.nobleReceivedResponse = new NobleReceivedMessageHandler();
     }
 
@@ -51,7 +52,12 @@ public class NobleController<T extends GameActivity>  extends Controller {
 
             game.transferNobleToUser(noble, user);
 
-gameActivity.updateNobleCardsRecyclerView();
+            activity.showToast("INFO: " + user.getName() + "received noble");
+
+            gameActivity.updateNobleCardsRecyclerView();
+            gameActivity.updateScoreBoard();
+
+
             return null;
         }
 
