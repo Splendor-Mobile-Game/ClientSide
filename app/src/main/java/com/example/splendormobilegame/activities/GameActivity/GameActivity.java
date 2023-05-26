@@ -761,8 +761,8 @@ public class GameActivity extends CustomAppCompatActivity {
             @Override
             public void run() {
                 cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
-                nobleCardsAdapter.setCardList(cardListNobleCards);
-                nobleCardsAdapter.notifyDataSetChanged();
+                reservedCardsAdapter.setCardList(cardListReservedCards);
+                reservedCardsAdapter.notifyDataSetChanged();
 
             }});
     }
