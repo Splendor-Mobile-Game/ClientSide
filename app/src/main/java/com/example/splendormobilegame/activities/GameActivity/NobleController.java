@@ -56,7 +56,7 @@ public class NobleController<T extends GameActivity>  extends Controller {
 
             gameActivity.updateNobleCardsRecyclerView();
             gameActivity.updateScoreBoard();
-
+            gameActivity.updateReservedCards();
 
             return null;
         }

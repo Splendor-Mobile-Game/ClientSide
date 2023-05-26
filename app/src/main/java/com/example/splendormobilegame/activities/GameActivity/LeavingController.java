@@ -8,6 +8,7 @@ import com.example.splendormobilegame.MainActivity;
 import com.example.splendormobilegame.activities.WaitingRoom.WaitingRoomActivityAdapter;
 import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Noble;
+import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
 import com.example.splendormobilegame.websocket.ReactionUtils;
@@ -80,11 +81,19 @@ public class LeavingController<T extends GameActivity> extends Controller {
                     model.getRoom().getGame().transferTokensFromUser(tokenType, amount, userToRemove);
                 });
 
-                model.getRoom().removeUser(userToRemove);
+                ArrayList<ReservedCard>reservedCards = model.getRoom().getGame().getReservedCards();
 
+                for(ReservedCard card : reservedCards) {
+                    if (card.getUser().equals(userToRemove)) {
+                        model.getRoom().getGame().removeReservedCard(userToRemove.getUuid(),card.getCard().getUuid());
+                    }
+                }
+
+                model.getRoom().removeUser(userToRemove);
 
                 gameActivity.updateScoreBoard();
                 gameActivity.updateTokenNumber();
+                gameActivity.updateReservedCards();
 
 
                 activity.showToast("User: " + responseData.user.name + " has left the room.");
