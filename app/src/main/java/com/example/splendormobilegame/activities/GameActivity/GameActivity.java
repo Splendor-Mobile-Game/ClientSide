@@ -28,7 +28,6 @@ import com.example.splendormobilegame.model.Noble;
 import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.model.User;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
-import com.github.splendor_mobile_game.game.enums.CardTier;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.handlers.ServerMessageType;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -62,6 +61,7 @@ public class GameActivity extends CustomAppCompatActivity {
     private GameEndingController gameEndingController;
     private NewRoomOwnerController newRoomOwnerController;
     private NobleController nobleController;
+    private ErrorController errorController;
     CardsFirstTierAdapter cardsFirstTierAdapter;
     CardsSecondTierAdapter cardsSecondTierAdapter;
     CardsThirdTierAdapter cardsThirdTierAdapter;
@@ -121,7 +121,7 @@ public class GameActivity extends CustomAppCompatActivity {
         this.gameEndingController = new GameEndingController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
         this.newRoomOwnerController = new NewRoomOwnerController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
         this.nobleController = new NobleController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
-
+        this.errorController = new ErrorController(this, CustomWebSocketClient.getInstance(), Model.getInstance());
 
         // Set reactions
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
@@ -192,6 +192,11 @@ public class GameActivity extends CustomAppCompatActivity {
         CustomWebSocketClient.getInstance().assignReactionToMessageType(
                 ServerMessageType.NOBLE_RECEIVED_ANNOUNCEMENT,
                 this.nobleController.getNobleReceivedResponse()
+        );
+
+        CustomWebSocketClient.getInstance().assignReactionToMessageType(
+                ServerMessageType.ERROR,
+                this.errorController.getErrorMessageHandler()
         );
     }
 
