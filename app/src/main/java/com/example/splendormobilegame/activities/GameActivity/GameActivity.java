@@ -477,7 +477,7 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     public void showCardAlertDialog(UUID cardUuid) {
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this,R.style.AlertDialogCustom)
                 .setTitle(getResources().getString(R.string.card_title))
                 .setMessage(getResources().getString(R.string.card_message))
                 .setNeutralButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -504,7 +504,7 @@ public class GameActivity extends CustomAppCompatActivity {
     }
 
     public void showDeckReserveDialog(int cardTier) {
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this,R.style.AlertDialogCustom)
                 .setTitle(getResources().getString(R.string.card_title))
                 .setMessage(getResources().getString(R.string.card_message))
                 .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -523,7 +523,7 @@ public class GameActivity extends CustomAppCompatActivity {
                 .show();
     }
     public void showBuyingReservedCardDialog(UUID cardUuid) {
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this,R.style.AlertDialogCustom)
                 .setTitle(getResources().getString(R.string.card_title))
                 .setMessage(getResources().getString(R.string.card_message))
                 .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -761,8 +761,8 @@ public class GameActivity extends CustomAppCompatActivity {
             @Override
             public void run() {
                 cardListReservedCards = Model.getInstance().getRoom().getGame().getReservedCards();
-                nobleCardsAdapter.setCardList(cardListNobleCards);
-                nobleCardsAdapter.notifyDataSetChanged();
+                reservedCardsAdapter.setCardList(cardListReservedCards);
+                reservedCardsAdapter.notifyDataSetChanged();
 
             }});
     }
@@ -791,6 +791,6 @@ public class GameActivity extends CustomAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 }
