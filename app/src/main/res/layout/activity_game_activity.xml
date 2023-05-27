@@ -168,7 +168,14 @@
                         android:text="10(10)"
                         app:layout_constraintStart_toEndOf="@+id/blackPointsImageView3"
                         app:layout_constraintTop_toBottomOf="@+id/Player1WhitePointsTV" />
-
+                    <ImageView
+                        android:id="@+id/greenPointsImageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/Player1GreenPointsTV"
+                        app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                        app:layout_constraintTop_toTopOf="@+id/Player1GreenPointsTV"
+                        app:srcCompat="@drawable/diamond_shape_green" />
                     <ImageView
                         android:id="@+id/whitePointsImageView3"
                         android:layout_width="wrap_content"
@@ -206,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="10(10)"
-                        app:layout_constraintStart_toEndOf="@+id/greenPointsImageView1"
+                        app:layout_constraintStart_toEndOf="@+id/greenPointsImageView3"
                         app:layout_constraintTop_toBottomOf="@+id/Player1BluePointsTV"
                         tools:ignore="NotSibling" />
 
