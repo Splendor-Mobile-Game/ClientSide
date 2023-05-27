@@ -1,7 +1,10 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import static android.view.View.GONE;
+
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.model.Card;
+import com.example.splendormobilegame.model.Model;
 import com.example.splendormobilegame.model.Noble;
 import com.example.splendormobilegame.model.ReservedCard;
+import com.example.splendormobilegame.model.User;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 
 import java.util.List;
@@ -58,24 +63,53 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
         CardView cardView = linearLayout.findViewById(R.id.cardLayout);
         playerName = linearLayout.findViewById(R.id.playerName);
         View image = cardView.findViewById(R.id.cardConstraintLayout);
+        playerName.setText(cardData.getUser().getName());
+
+        cardType = cardView.findViewById(R.id.cardTypeImageView);
+        pointsTextView = cardView.findViewById(R.id.pointsTextView);
+        blackPointsTextView = cardView.findViewById(R.id.blackPointsTextView);
+        bluePointsTextView = cardView.findViewById(R.id.bluePointsTextView);
+        redPointsTextView = cardView.findViewById(R.id.redPointsTextView);
+        greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
+        whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
+
+        String userTest = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getUserUuid()).getName();
+        if(!cardData.isVisible()&&(userTest!=cardData.getUser().getName())){
+            String resourceName = "cards_back1";
+            if(cardData.getCard().getCardTier().toString()=="LEVEL_1")
+            {
+                resourceName = "cards_back1";
+            }
+            else if(cardData.getCard().getCardTier().toString()=="LEVEL_2")
+            {
+                resourceName = "cards_back2";
+            }
+            if(cardData.getCard().getCardTier().toString()=="LEVEL_3")
+            {
+                resourceName = "cards_back3";
+            }
+
+            int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+            image.setBackgroundResource(drawableResourceId);
+            whitePointsTextView.setVisibility(GONE);
+            greenPointsTextView.setVisibility(GONE);
+            redPointsTextView.setVisibility(GONE);
+            bluePointsTextView.setVisibility(GONE);
+            blackPointsTextView.setVisibility(GONE);
+            pointsTextView.setVisibility(GONE);
+            cardType.setVisibility(GONE);
+        }else{
         String resourceName = "cards_bg" + (cardData.getCard().getGraphicsID());
         int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
         image.setBackgroundResource(drawableResourceId);
 
-        whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
         whitePointsTextView.setText(String.valueOf(cardData.getCard().getDiamondCost()));
-        greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
         greenPointsTextView.setText(String.valueOf(cardData.getCard().getEmeraldCost()));
-        redPointsTextView = cardView.findViewById(R.id.redPointsTextView);
         redPointsTextView.setText(String.valueOf(cardData.getCard().getRubyCost()));
-        bluePointsTextView = cardView.findViewById(R.id.bluePointsTextView);
         bluePointsTextView.setText(String.valueOf(cardData.getCard().getSapphireCost()));
-        blackPointsTextView = cardView.findViewById(R.id.blackPointsTextView);
         blackPointsTextView.setText(String.valueOf(cardData.getCard().getOnyxCost()));
-        pointsTextView = cardView.findViewById(R.id.pointsTextView);
         pointsTextView.setText(String.valueOf(cardData.getCard().getPoints()));
-        cardType = cardView.findViewById(R.id.cardTypeImageView);
-        playerName.setText(cardData.getUser().getName());
+
         if(cardData.getCard().getBonusToken() == TokenType.EMERALD){
             cardType.setImageResource(R.drawable.diamond_shape_green);
         }
@@ -97,7 +131,7 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
                 activity.showBuyingReservedCardDialog(cardData.getCard().getUuid());
             }
         });
-
+        }
     }
 
     @Override
