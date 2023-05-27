@@ -74,6 +74,7 @@ public class CustomWebSocketClient extends WebSocketClient {
         if (reactionInstance == null) {
             Log.e("ReceivedMessage", "Message of type `" + serverMessageType + "` has been received," +
                     " but no instance has been assign to react to it!");
+            return;
         }
 
         UserMessage userMessage = null;
