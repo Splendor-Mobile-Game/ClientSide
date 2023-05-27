@@ -50,6 +50,7 @@ public class Card {
         return cardTier;
     }
 
+
     public TokenType getBonusToken() {
         return bonusToken;
     }
