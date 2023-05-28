@@ -78,15 +78,15 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
             String resourceName = "cards_back1";
             if(cardData.getCard().getCardTier().toString()=="LEVEL_1")
             {
-                resourceName = "cards_back1";
+                resourceName = "closed_card_green";
             }
             else if(cardData.getCard().getCardTier().toString()=="LEVEL_2")
             {
-                resourceName = "cards_back2";
+                resourceName = "closed_card_yellow";
             }
             if(cardData.getCard().getCardTier().toString()=="LEVEL_3")
             {
-                resourceName = "cards_back3";
+                resourceName = "closed_card_blue";
             }
 
             int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
