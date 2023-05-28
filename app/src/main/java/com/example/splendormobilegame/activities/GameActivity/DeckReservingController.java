@@ -65,17 +65,17 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
             ReservedCard reservedCard= new ReservedCard(card, user, visible);
             model.getRoom().getGame().reserveCard(user, reservedCard);
 
-
+            gameActivity.updateScoreBoard();
+            gameActivity.updateTokenNumber();
+            gameActivity.updateReservedCards();
+            gameActivity.updateCards();
             // If this message pertains to me, it means I requested it, indicating that I have taken my action during my turn.
             // Therefore, I need to end my turn.
             DeckReservingController.this.endTurnController.endTurn();
 
             // Update the view
             activity.showToast("User "+user.getName()+"reserved card from deck "+card.getCardTier());
-            gameActivity.updateScoreBoard();
-            gameActivity.updateTokenNumber();
-            gameActivity.updateReservedCards();
-            gameActivity.updateCards();
+
 
             return null;
         }

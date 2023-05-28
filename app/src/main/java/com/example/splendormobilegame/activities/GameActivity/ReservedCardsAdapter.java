@@ -102,7 +102,13 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
         String resourceName = "cards_bg" + (cardData.getCard().getGraphicsID());
         int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
         image.setBackgroundResource(drawableResourceId);
-
+            whitePointsTextView.setVisibility(View.VISIBLE);
+            greenPointsTextView.setVisibility(View.VISIBLE);
+            redPointsTextView.setVisibility(View.VISIBLE);
+            bluePointsTextView.setVisibility(View.VISIBLE);
+            blackPointsTextView.setVisibility(View.VISIBLE);
+            pointsTextView.setVisibility(View.VISIBLE);
+            cardType.setVisibility(View.VISIBLE);
         whitePointsTextView.setText(String.valueOf(cardData.getCard().getDiamondCost()));
         greenPointsTextView.setText(String.valueOf(cardData.getCard().getEmeraldCost()));
         redPointsTextView.setText(String.valueOf(cardData.getCard().getRubyCost()));
