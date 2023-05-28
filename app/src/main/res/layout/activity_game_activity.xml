@@ -215,7 +215,7 @@
                         android:text="10(10)"
                         app:layout_constraintStart_toEndOf="@+id/greenPointsImageView3"
                         app:layout_constraintTop_toBottomOf="@+id/Player1BluePointsTV"
-                        tools:ignore="NotSibling" />
+                        />
 
                     <ImageView
                         android:id="@+id/PointsImageView"
