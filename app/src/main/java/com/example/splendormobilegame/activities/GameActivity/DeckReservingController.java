@@ -10,6 +10,7 @@ import com.example.splendormobilegame.model.ReservedCard;
 import com.example.splendormobilegame.websocket.UserReaction;
 import com.example.splendormobilegame.websocket.ReactionUtils;
 import com.example.splendormobilegame.websocket.CustomWebSocketClient;
+import com.github.splendor_mobile_game.game.enums.TokenType;
 import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.communication.UserMessage;
 import com.github.splendor_mobile_game.websocket.response.ErrorResponse;
@@ -64,6 +65,9 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
             boolean visible = user.getUuid().equals(model.getUserUuid());
             ReservedCard reservedCard= new ReservedCard(card, user, visible);
             model.getRoom().getGame().reserveCard(user, reservedCard);
+            if(responseData.goldenToken){
+                model.getRoom().getGame().transferTokensToUser(TokenType.GOLD_JOKER ,1,user);
+            }
 
             gameActivity.updateScoreBoard();
             gameActivity.updateTokenNumber();
