@@ -133,5 +133,4 @@
     <style name="AlertDialogCustom" parent="Theme.Material3.Dark.Dialog.Alert">
         <item name="android:textColor">@color/white</item>
     </style>
-
 </resources>

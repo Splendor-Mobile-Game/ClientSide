@@ -31,8 +31,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/nobleCardsRecyclerView"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toTopOf="parent" >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/closed_card_blue"
+                    />
+        </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardPile2CardView"
                 android:layout_width="80dp"
@@ -40,7 +45,13 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/CardPile3CardView"
                 app:layout_constraintEnd_toStartOf="@+id/CardPile3CardView"
-                app:layout_constraintTop_toTopOf="@+id/CardPile3CardView" />
+                app:layout_constraintTop_toTopOf="@+id/CardPile3CardView">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/closed_card_yellow"
+                />
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardPile1CardView"
@@ -51,7 +62,15 @@
                 app:layout_constraintBottom_toBottomOf="@+id/CardPile2CardView"
                 app:layout_constraintEnd_toStartOf="@+id/CardPile2CardView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/CardPile2CardView" />
+                app:layout_constraintTop_toTopOf="@+id/CardPile2CardView"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/closed_card_green"
+                        />
+            </com.google.android.material.card.MaterialCardView>
+
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -91,6 +110,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,7 +168,14 @@
                         android:text="10(10)"
                         app:layout_constraintStart_toEndOf="@+id/blackPointsImageView3"
                         app:layout_constraintTop_toBottomOf="@+id/Player1WhitePointsTV" />
-
+                    <ImageView
+                        android:id="@+id/greenPointsImageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/Player1GreenPointsTV"
+                        app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
+                        app:layout_constraintTop_toTopOf="@+id/Player1GreenPointsTV"
+                        app:srcCompat="@drawable/diamond_shape_green" />
                     <ImageView
                         android:id="@+id/whitePointsImageView3"
                         android:layout_width="wrap_content"
@@ -166,14 +194,7 @@
                         app:layout_constraintTop_toTopOf="@+id/Player1BluePointsTV"
                         app:srcCompat="@drawable/diamond_shape_blue" />
 
-                    <ImageView
-                        android:id="@+id/greenPointsImageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="@+id/Player1GreenPointsTV"
-                        app:layout_constraintStart_toStartOf="@+id/Player1NameTV"
-                        app:layout_constraintTop_toTopOf="@+id/Player1GreenPointsTV"
-                        app:srcCompat="@drawable/diamond_shape_green" />
+
 
                     <TextView
                         android:id="@+id/Player1YellowPointsTV"
@@ -193,7 +214,8 @@
                         android:layout_marginTop="5dp"
                         android:text="10(10)"
                         app:layout_constraintStart_toEndOf="@+id/greenPointsImageView3"
-                        app:layout_constraintTop_toBottomOf="@+id/Player1BluePointsTV" />
+                        app:layout_constraintTop_toBottomOf="@+id/Player1BluePointsTV"
+                        />
 
                     <ImageView
                         android:id="@+id/PointsImageView"
