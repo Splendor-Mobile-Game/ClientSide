@@ -38,4 +38,8 @@
     <string name="leave_confirmation_title">Opuszczanie pokoju?</string>
     <string name="skip_turn">Pomiń turę</string>
     <string name="score">Punkty</string>
+    <string name="card_title">Opcje karty</string>
+    <string name="card_message">Co chcesz zrobić z tą kartą?</string>
+    <string name="reserved_cards">Zarezerwowane karty</string>
+    <string name="scoreboard">" tablica wyników"</string>
 </resources>
