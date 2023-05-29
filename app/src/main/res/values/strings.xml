@@ -7,7 +7,7 @@
     <string name="logo_description" translatable="false">Logo</string>
     <string name="cancel">Cancel</string>
     <!--CreateRoomActivity-->
-    <string name="createRoom">Create game</string>
+    <string name="createRoom">Create room</string>
     <string name="room_nickname">Enter your nickname</string>
     <string name="room_nickname2">Enter your nickname:</string>
     <string name="room_name">Enter room name</string>
