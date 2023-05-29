@@ -78,7 +78,7 @@ public class DeckReservingController<T extends GameActivity> extends Controller 
             DeckReservingController.this.endTurnController.endTurn();
 
             // Update the view
-            activity.showToast("User "+user.getName()+"reserved card from deck "+card.getCardTier());
+            activity.showToast("User "+user.getName()+" reserved card from deck "+card.getCardTier());
 
 
             return null;
