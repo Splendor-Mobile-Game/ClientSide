@@ -52,7 +52,7 @@ public class NobleController<T extends GameActivity>  extends Controller {
 
             game.transferNobleToUser(noble, user);
 
-            activity.showToast("INFO: " + user.getName() + "received noble");
+            activity.showToast("INFO: " + user.getName() + " received noble");
 
             gameActivity.updateNobleCardsRecyclerView();
             gameActivity.updateScoreBoard();
