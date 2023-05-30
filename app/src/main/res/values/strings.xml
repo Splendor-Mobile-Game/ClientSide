@@ -68,5 +68,10 @@ Buy one development card: When you buy a development card, first select which ca
 Buying developments can be confusing at first, but we’ll make sure you get it right with an example.
 
 Say that you want to buy a development card with a cost of two blue gems and one black gem. You use the buy action and choose the card in question. Then, you reduce the card’s price by the number of black and blue development cards you bought in the previous rounds. This means that if you’ve already built a blue development and a green one, but zero black ones, the price of this new development card is reduced by one blue. You still have to pay two gems, one blue and one black. If you want, you can use gold tokens to pay for one or both gems.</string>
+
     <string name="onboarding_title" translatable="false">Onboarding</string>
+    <string name="ob_createRoom">In order to create room click the "Create Room" button and enter room\'s name, your nickname and create a password. You\'ll be given a special code. Remember to share the code and the password with your friends! After you\'ll be directed to the waiting room. You can start the game or leave the room. Once you leave, the room will be deleted. </string>
+    <string name="ob_joinRoom">You can join an existing room as well. Just click the "Join Room" button and enter room\'s name, your nickname, password and the code. In that case you\'ll also be directed to the waiting room, but you couldn't manage the room.</string>
+    <string name="ob_gameplay">So this is an example of how the gameplay might look. If you want to buy or reserve a card, click on it and choose the right option. You can replace some required chips with gold ones if you don\'t have enough for buying. You\'ll also be given gold chips while reserving a card. While taking chips, remember that you cam have maximum 10 of them. You can check the score on the left side. Points are shown as yellow circles. Nobles will be automatically given to you if you have enough cards required for the noble. The game ends when someone gets 15 piont and over.</string>
+    <string name="ob_enjoy" translatable="false">Enjoy the game!</string>
 </resources>

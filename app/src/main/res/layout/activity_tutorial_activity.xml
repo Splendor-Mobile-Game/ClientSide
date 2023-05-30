@@ -38,14 +38,13 @@
             android:layout_width="480dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="0dp"
             android:text="@string/splendor_description"
             android:textColor="@color/light_yellow"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/TitleSplendorGame" />
 
         <TextView
             android:id="@+id/actions_title"
@@ -68,7 +67,6 @@
             android:text="@string/actions_description"
             android:textColor="@color/light_yellow"
             android:textSize="24sp"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actions_title" />
@@ -86,16 +84,80 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actions" />
 
-        <ImageView
-            android:id="@+id/createRoomStepOne"
-            android:layout_width="560dp"
+        <TextView
+            android:id="@+id/Onboarding_createRoom"
+            android:layout_width="480dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/screen1"
-            tools:layout_editor_absoluteX="31dp"
-            tools:layout_editor_absoluteY="2431dp"
+            android:text="@string/ob_createRoom"
+            android:textColor="@color/light_yellow"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/onboarding_title"/>
+            app:layout_constraintTop_toBottomOf="@id/onboarding_title" />
+
+        <ImageView
+            android:id="@+id/createRoomExample"
+            android:layout_width="480dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/create"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Onboarding_createRoom" />
+
+        <TextView
+            android:id="@+id/onboarding_joinRoom"
+            android:layout_width="480dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ob_joinRoom"
+            android:textColor="@color/light_yellow"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createRoomExample" />
+
+        <ImageView
+            android:id="@+id/joinRoomExample"
+            android:layout_width="480dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/join"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/onboarding_joinRoom" />
+
+        <ImageView
+            android:id="@+id/gameplayExample"
+            android:layout_width="480dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/joinRoomExample"/>
+        <TextView
+            android:id="@+id/onboarding_gameplay"
+            android:layout_width="480dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ob_gameplay"
+            android:textColor="@color/light_yellow"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gameplayExample" />
+
+        <TextView
+            android:id="@+id/onboarding_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ob_enjoy"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/onboarding_gameplay"
+            android:layout_marginBottom="48dp"
+            android:layout_marginTop="32dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

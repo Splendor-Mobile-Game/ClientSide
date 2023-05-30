@@ -53,4 +53,7 @@ Kupowanie zmian może początkowo być mylące, ale upewnimy się, że dobrze to
 Załóżmy, że chcesz kupić kartę rozwoju w cenie dwóch niebieskich klejnotów i jednego czarnego. Korzystasz z akcji kupna i wybierasz odpowiednią kartę. Następnie obniżasz cenę karty o liczbę czarnych i niebieskich kart rozwoju, które kupiłeś w poprzednich rundach. Oznacza to, że jeśli zbudowałeś już niebieską i zieloną zabudowę, ale zero czarnych, cena tej nowej karty rozwoju jest obniżona o jedną niebieską. Nadal musisz zapłacić dwa klejnoty, jeden niebieski i jeden czarny. Jeśli chcesz, możesz użyć złotych żetonów, aby zapłacić za jeden lub oba klejnoty.
 
 </string>
+    <string name="ob_createRoom">Żeby stworzyć pokój, kliknij przycisk "Stwórz" i wpisz nazwę pokoju, swój nick i hasło. Dostaniesz specjalny kod do pokoju. Pamiętaj aby się podzielić nim i hasłem z kolegami!</string>
+    <string name="ob_joinRoom">Tak że możesz dołączyć do już istniejącego pokoju. Kliknij przycisk "Dołącz i wpisz nazwę pokoju, swój nickname, hasło i kod.</string>
+    <string name="ob_gameplay">Tak przykładowo wygląda rozgrywka. Jeżeli chcesz kupić bądź zarezerwować kartę, kliknij i wybierz odpowiednią opcję. Możesz zastąpić brakujące znaczniki złotymi. Złote znaczniki dostamiesz podczas rezerwcji. Pamiętaj że możesz mieć maksymalnie 10 znaczników. Arystokraty przechodzą automatycznie do graczy mających odpowiednie karty. Gra się kończy kiedy ktoś ma 15 punktów i więcej.</string>
 </resources>
