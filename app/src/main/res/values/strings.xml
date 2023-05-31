@@ -7,7 +7,7 @@
     <string name="logo_description" translatable="false">Logo</string>
     <string name="cancel">Cancel</string>
     <!--CreateRoomActivity-->
-    <string name="createRoom">Create game</string>
+    <string name="createRoom">Create room</string>
     <string name="room_nickname">Enter your nickname</string>
     <string name="room_nickname2">Enter your nickname:</string>
     <string name="room_name">Enter room name</string>
@@ -42,6 +42,7 @@
     <!--GameActivity-->
     <string name="reserve_card">Reserve card</string>
     <string name="reserved_cards">Reserved cards</string>
+    <string name="reserved">Reserved</string>
     <string name="buy_card">Buy card</string>
     <string name="take_points">Take points</string>
     <string name="take_tokens">Take tokens</string>

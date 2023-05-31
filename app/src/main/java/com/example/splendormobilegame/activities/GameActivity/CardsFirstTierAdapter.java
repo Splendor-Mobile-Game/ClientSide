@@ -30,6 +30,9 @@ public class CardsFirstTierAdapter extends RecyclerView.Adapter<CardsFirstTierAd
     private Context context;
     private android.app.Activity activity;
 
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
 
     public CardsFirstTierAdapter(List<Card> assetDataList){
         this.cardList = assetDataList;
@@ -47,6 +50,11 @@ public class CardsFirstTierAdapter extends RecyclerView.Adapter<CardsFirstTierAd
         GameActivity activity = (GameActivity) context;
         Card cardData = cardList.get(position);
         CardView cardView = holder.cardView;
+
+        View image = cardView.findViewById(R.id.cardConstraintLayout);
+        String resourceName = "cards_bg" + (cardData.getGraphicsID());
+        int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+        image.setBackgroundResource(drawableResourceId);
 
         whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
         whitePointsTextView.setText(String.valueOf(cardData.getDiamondCost()));

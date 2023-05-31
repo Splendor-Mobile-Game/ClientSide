@@ -30,6 +30,7 @@
     <string name="rooms_code">Kod pokoju</string>
     <string name="current_players">Gracze</string>
     <string name="reserve_card">Zarezerwuj kartę</string>
+    <string name="reserved">Zarezerwowane</string>
     <string name="buy_card">Kup kartę</string>
     <string name="take_points">Weź tokeny</string>
     <string name="take_tokens">Weź tokeny</string>
@@ -37,6 +38,7 @@
     <string name="leave_confirmation_title">Opuszczanie pokoju?</string>
     <string name="skip_turn">Pomiń turę</string>
     <string name="score">Punkty</string>
+
     <string name="title_splendor">Czym jest Splendor?</string>
     <string name="card_title">Opcje karty</string>
     <string name="card_message">Co chcesz zrobić z kartą?</string>
@@ -56,4 +58,9 @@ Załóżmy, że chcesz kupić kartę rozwoju w cenie dwóch niebieskich klejnot�
     <string name="ob_createRoom">Żeby stworzyć pokój, kliknij przycisk "Stwórz" i wpisz nazwę pokoju, swój nick i hasło. Dostaniesz specjalny kod do pokoju. Pamiętaj aby się podzielić nim i hasłem z kolegami!</string>
     <string name="ob_joinRoom">Tak że możesz dołączyć do już istniejącego pokoju. Kliknij przycisk "Dołącz i wpisz nazwę pokoju, swój nickname, hasło i kod.</string>
     <string name="ob_gameplay">Tak przykładowo wygląda rozgrywka. Jeżeli chcesz kupić bądź zarezerwować kartę, kliknij i wybierz odpowiednią opcję. Możesz zastąpić brakujące znaczniki złotymi. Złote znaczniki dostamiesz podczas rezerwcji. Pamiętaj że możesz mieć maksymalnie 10 znaczników. Arystokraty przechodzą automatycznie do graczy mających odpowiednie karty. Gra się kończy kiedy ktoś ma 15 punktów i więcej.</string>
+    <string name="card_title">Opcje karty</string>
+    <string name="card_message">Co chcesz zrobić z tą kartą?</string>
+    <string name="reserved_cards">Zarezerwowane karty</string>
+    <string name="scoreboard">" tablica wyników"</string>
+
 </resources>

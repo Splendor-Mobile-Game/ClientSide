@@ -85,7 +85,8 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
                         cardDataResponse.rubyCost,
                         cardDataResponse.diamondCost,
                         cardDataResponse.onyxCost,
-                        cardDataResponse.additionalToken
+                        cardDataResponse.additionalToken,
+                        cardDataResponse.cardID
                 );
             }
 
@@ -94,6 +95,11 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             Game game = room.getGame();
             User buyer = room.getUserByUuid(responseData.buyer.userUuid);
             Card boughtCard = game.getCardByUuid(responseData.buyer.cardUuid);
+
+            //Return tokens to main stack
+            for(TokenType tokenType : EnumSet.allOf(TokenType.class)){
+                game.addTokens(tokenType, buyer.getTokensCount(tokenType)-tokens.get(tokenType));
+            }
 
             // Firstly the purchased card
             buyer.addCard(boughtCard);
@@ -115,6 +121,10 @@ public class BuyingRevealedCardsController<T extends GameActivity> extends Contr
             // Perhaps it was not the best decision to require the user to manually end their turn.
             // The server should handle this automatically.
             BuyingRevealedCardsController.this.endTurnController.endTurn();
+
+            gameActivity.updateScoreBoard();
+            gameActivity.updateTokenNumber();
+            gameActivity.updateCards();
 
             return null;
         }

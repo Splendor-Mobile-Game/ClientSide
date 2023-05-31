@@ -1,11 +1,15 @@
 package com.example.splendormobilegame.activities.GameActivity;
 
+import static android.view.View.GONE;
+
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,75 +18,126 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splendormobilegame.R;
 import com.example.splendormobilegame.model.Card;
+import com.example.splendormobilegame.model.Model;
+import com.example.splendormobilegame.model.Noble;
+import com.example.splendormobilegame.model.ReservedCard;
+import com.example.splendormobilegame.model.User;
 import com.github.splendor_mobile_game.game.enums.TokenType;
 
 import java.util.List;
 
 public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdapter.ViewHolder> {
-    private List<Card> cardList;
+    private List<ReservedCard> cardList;
     private TextView whitePointsTextView;
     private TextView greenPointsTextView;
     private TextView redPointsTextView;
     private TextView bluePointsTextView;
     private TextView blackPointsTextView;
     private TextView pointsTextView;
+    private TextView playerName;
     private ImageView cardType;
     private Context context;
     private android.app.Activity activity;
 
+    public void setCardList(List<ReservedCard> cardList) {
+        this.cardList = cardList;
+    }
 
-    public ReservedCardsAdapter(List<Card> assetDataList){
+
+    public ReservedCardsAdapter(List<ReservedCard> assetDataList){
         this.cardList = assetDataList;
     }
     @NonNull
     @Override
     public ReservedCardsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_card_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reserved_card_view, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReservedCardsAdapter.ViewHolder holder, int position) {
         GameActivity activity = (GameActivity) context;
-        Card cardData = cardList.get(position);
-        CardView cardView = holder.cardView;
+        ReservedCard cardData = cardList.get(position);
+        LinearLayout linearLayout = holder.linearLayout;
+        CardView cardView = linearLayout.findViewById(R.id.cardLayout);
+        playerName = linearLayout.findViewById(R.id.playerName);
+        View image = cardView.findViewById(R.id.cardConstraintLayout);
+        playerName.setText(cardData.getUser().getName());
 
-        whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
-        whitePointsTextView.setText(String.valueOf(cardData.getDiamondCost()));
-        greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
-        greenPointsTextView.setText(String.valueOf(cardData.getEmeraldCost()));
-        redPointsTextView = cardView.findViewById(R.id.redPointsTextView);
-        redPointsTextView.setText(String.valueOf(cardData.getRubyCost()));
-        bluePointsTextView = cardView.findViewById(R.id.bluePointsTextView);
-        bluePointsTextView.setText(String.valueOf(cardData.getSapphireCost()));
-        blackPointsTextView = cardView.findViewById(R.id.blackPointsTextView);
-        blackPointsTextView.setText(String.valueOf(cardData.getOnyxCost()));
-        pointsTextView = cardView.findViewById(R.id.pointsTextView);
-        pointsTextView.setText(String.valueOf(cardData.getPoints()));
         cardType = cardView.findViewById(R.id.cardTypeImageView);
-        if(cardData.getBonusToken() == TokenType.EMERALD){
+        pointsTextView = cardView.findViewById(R.id.pointsTextView);
+        blackPointsTextView = cardView.findViewById(R.id.blackPointsTextView);
+        bluePointsTextView = cardView.findViewById(R.id.bluePointsTextView);
+        redPointsTextView = cardView.findViewById(R.id.redPointsTextView);
+        greenPointsTextView = cardView.findViewById(R.id.greenPointsTextView);
+        whitePointsTextView = cardView.findViewById(R.id.whitePointsTextView);
+
+        String userTest = Model.getInstance().getRoom().getUserByUuid(Model.getInstance().getUserUuid()).getName();
+        if(!cardData.isVisible()&&(userTest!=cardData.getUser().getName())){
+            String resourceName = "cards_back1";
+            if(cardData.getCard().getCardTier().toString()=="LEVEL_1")
+            {
+                resourceName = "closed_card_green";
+            }
+            else if(cardData.getCard().getCardTier().toString()=="LEVEL_2")
+            {
+                resourceName = "closed_card_yellow";
+            }
+            if(cardData.getCard().getCardTier().toString()=="LEVEL_3")
+            {
+                resourceName = "closed_card_blue";
+            }
+
+            int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+            image.setBackgroundResource(drawableResourceId);
+            whitePointsTextView.setVisibility(GONE);
+            greenPointsTextView.setVisibility(GONE);
+            redPointsTextView.setVisibility(GONE);
+            bluePointsTextView.setVisibility(GONE);
+            blackPointsTextView.setVisibility(GONE);
+            pointsTextView.setVisibility(GONE);
+            cardType.setVisibility(GONE);
+        }else{
+        String resourceName = "cards_bg" + (cardData.getCard().getGraphicsID());
+        int drawableResourceId = context.getResources().getIdentifier(resourceName, "drawable", context.getPackageName());
+        image.setBackgroundResource(drawableResourceId);
+            whitePointsTextView.setVisibility(View.VISIBLE);
+            greenPointsTextView.setVisibility(View.VISIBLE);
+            redPointsTextView.setVisibility(View.VISIBLE);
+            bluePointsTextView.setVisibility(View.VISIBLE);
+            blackPointsTextView.setVisibility(View.VISIBLE);
+            pointsTextView.setVisibility(View.VISIBLE);
+            cardType.setVisibility(View.VISIBLE);
+        whitePointsTextView.setText(String.valueOf(cardData.getCard().getDiamondCost()));
+        greenPointsTextView.setText(String.valueOf(cardData.getCard().getEmeraldCost()));
+        redPointsTextView.setText(String.valueOf(cardData.getCard().getRubyCost()));
+        bluePointsTextView.setText(String.valueOf(cardData.getCard().getSapphireCost()));
+        blackPointsTextView.setText(String.valueOf(cardData.getCard().getOnyxCost()));
+        pointsTextView.setText(String.valueOf(cardData.getCard().getPoints()));
+
+        if(cardData.getCard().getBonusToken() == TokenType.EMERALD){
             cardType.setImageResource(R.drawable.diamond_shape_green);
         }
-        if(cardData.getBonusToken() == TokenType.SAPPHIRE){
+        if(cardData.getCard().getBonusToken() == TokenType.SAPPHIRE){
             cardType.setImageResource(R.drawable.diamond_shape_blue);
         }
-        if(cardData.getBonusToken() == TokenType.RUBY){
+        if(cardData.getCard().getBonusToken() == TokenType.RUBY){
             cardType.setImageResource(R.drawable.diamond_shape_red);
         }
-        if(cardData.getBonusToken() == TokenType.ONYX){
+        if(cardData.getCard().getBonusToken() == TokenType.ONYX){
             cardType.setImageResource(R.drawable.diamond_shape_black);
         }
-        if(cardData.getBonusToken() == TokenType.DIAMOND){
+        if(cardData.getCard().getBonusToken() == TokenType.DIAMOND){
             cardType.setImageResource(R.drawable.diamond_shape_white);
         }
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.showBuyingReservedCardDialog(cardData.getUuid());
+                activity.showBuyingReservedCardDialog(cardData.getCard().getUuid());
             }
         });
-
+        }
     }
 
     @Override
@@ -91,12 +146,11 @@ public class ReservedCardsAdapter extends RecyclerView.Adapter<ReservedCardsAdap
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
-
+        LinearLayout linearLayout;
         public ViewHolder(View v){
             super(v);
             // Each ViewHolder only has a CardView (even though that CardView has child TextViews
-            cardView = (CardView) v;
+            linearLayout = (LinearLayout) v;
         }
     }
 

@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/cardLayout"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/yellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+    android:layout_width="80dp"
+    android:layout_height="68dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:backgroundTint="@color/yellow"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/playerName"
+        android:height="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        style="@style/LightTextView20sp"
+        android:textSize="12sp"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardLayout"
+    android:layout_width="80dp"
+    android:layout_height="48dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginEnd="20dp"
+    android:backgroundTint="@color/yellow"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardConstraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/whitePointsTextView"
@@ -24,10 +49,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/round_corner_shape_diamond"
-                android:textColor="@color/black"
-                android:text="0"
                 android:fontFamily="monospace"
                 android:includeFontPadding="false"
+                android:text="0"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,9 +63,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/round_corner_shape_emerald"
+                android:fontFamily="monospace"
                 android:includeFontPadding="false"
                 android:text="1"
-                android:fontFamily="monospace"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/whitePointsTextView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,10 +77,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/round_corner_shape_onyx"
-                android:text="2"
                 android:fontFamily="monospace"
-                android:textColor="@color/white"
                 android:includeFontPadding="false"
+                android:text="2"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whitePointsTextView" />
 
@@ -66,10 +91,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/round_corner_shape_sapphire"
-                android:text="3"
                 android:fontFamily="monospace"
-                android:textColor="@color/white"
                 android:includeFontPadding="false"
+                android:text="3"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/blackPointsTextView"
                 app:layout_constraintTop_toBottomOf="@+id/greenPointsTextView" />
 
@@ -77,13 +102,13 @@
                 android:id="@+id/redPointsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/round_corner_shape_ruby"
-                android:text="5"
                 android:fontFamily="monospace"
-                android:textColor="@color/white"
                 android:includeFontPadding="false"
+                android:text="5"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/greenPointsTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,10 +118,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_corner_points_mine"
-                android:text="4"
-                android:textColor="@color/black"
                 android:fontFamily="monospace"
                 android:paddingLeft="1dp"
+                android:text="4"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -111,5 +136,8 @@
                 app:srcCompat="@drawable/diamond_shape_red" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
