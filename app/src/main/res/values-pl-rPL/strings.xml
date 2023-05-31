@@ -40,8 +40,6 @@
     <string name="score">Punkty</string>
 
     <string name="title_splendor">Czym jest Splendor?</string>
-    <string name="card_title">Opcje karty</string>
-    <string name="card_message">Co chcesz zrobić z kartą?</string>
     <string name="splendor_description">Splendor jest dynamiczną i niemal uzależniającą grą w zbieranie żetonów i kart, które tworzą zasoby gracza, umożliwiające mu dalszy rozwój. Gracze wcielają się w renesansowych kupców, którzy próbują nabyć kopalnie klejnotów, środki transportu, sklepy - wszystko to w celu zdobycia jak największego prestiżu. Gdy będziesz już dostatecznie bogaty, być może zaszczyci Cię swą wizytą przedstawiciel szlachty, co jeszcze podniesie Twój prestiż w oczach konkurencji. </string>
     <string name="actions_title">Działania w grze Splendor</string>
     <string name="actions_description"> Zbieranie klejnotów: Podczas zbierania klejnotów wybierz, czy chcesz wziąć dwa klejnoty tego samego koloru, czy trzy klejnoty w różnych kolorach. Możesz wybrać tylko dwa klejnoty jednego koloru, jeśli w puli znajdują się co najmniej cztery klejnoty tego koloru. Jeśli zakończysz swoją turę z więcej niż 10 żetonami na ręce (licząc zarówno klejnoty, jak i złoto), odłóż pewną liczbę żetonów do puli, dopóki nie wrócisz na 10. Za pomocą tej akcji nie możesz zbierać żetonów złota, ponieważ nie są to klejnoty.
