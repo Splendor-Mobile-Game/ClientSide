@@ -44,4 +44,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.Splendor-Mobile-Game:ServerSide:develop-SNAPSHOT'
     implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
