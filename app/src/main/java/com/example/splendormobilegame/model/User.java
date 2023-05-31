@@ -69,14 +69,14 @@ public class User {
     public void addTokens(TokenType tokenType, int amount) {
         if (tokens.get(tokenType) == null) return;
         int val = tokens.get(tokenType);
-        tokens.replace(tokenType, val + amount);
+        tokens.replace(tokenType, val + Math.abs(amount));
     }
 
     public void removeTokens(TokenType tokenType, int amount) {
         if (tokens.get(tokenType) == null) return;
         int val = tokens.get(tokenType);
         if (amount > val) return; // Not enough tokens in user's inventory
-        tokens.replace(tokenType, val - amount);
+        tokens.replace(tokenType, val - Math.abs(amount));
     }
 
 

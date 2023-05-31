@@ -52,13 +52,13 @@ public class Game {
         if (tokensOnTable.get(tokenType) == null) return;
         int onTable = tokensOnTable.get(tokenType);
         if (amount > onTable) return; // Not enough tokens on table
-        tokensOnTable.replace(tokenType, onTable - amount);
+        tokensOnTable.replace(tokenType, onTable - Math.abs(amount));
     }
 
 
     public void addTokens(TokenType tokenType, int amount) {
         int onTable = tokensOnTable.get(tokenType);
-        tokensOnTable.replace(tokenType, onTable + amount);
+        tokensOnTable.replace(tokenType, onTable + Math.abs(amount));
     }
 
 

@@ -34,20 +34,26 @@ public class TokensController<T extends GameActivity> extends Controller {
         this.getTokensMessageHandler = new GetTokensMessageHandler();
     }
 
-    public void getTokens(int red, int blue, int green, int black, int white) {
+    public void getTokens(int red, int blue, int green, int black, int white, int redReturned, int blueReturned, int greenReturned, int blackReturned, int whiteReturned) {
         // Maybe you want to check something here
         // and then call the method to send the request
-        this.sendRequest(red, blue, green, black, white);
+        this.sendRequest(red, blue, green, black, white, redReturned, blueReturned, greenReturned, blackReturned, whiteReturned);
     }
 
-    private void sendRequest(int red, int blue, int green, int black, int white) {
+    private void sendRequest(int red, int blue, int green, int black, int white, int redReturned, int blueReturned, int greenReturned, int blackReturned, int whiteReturned) {
         GetTokens.TokensChangeDTO tokensTakenDTO = new GetTokens.TokensChangeDTO(0,0,0,0,0);
         GetTokens.TokensChangeDTO tokensReturnedDTO = new GetTokens.TokensChangeDTO(0,0,0,0,0);
-        if(red>0){tokensTakenDTO.ruby=red;}else{tokensReturnedDTO.ruby=red;}
-        if(blue>0){tokensTakenDTO.sapphire=blue;}else{tokensReturnedDTO.sapphire=blue;}
-        if(green>0){tokensTakenDTO.emerald=green;}else{tokensReturnedDTO.emerald=green;}
-        if(black>0){tokensTakenDTO.onyx=black;}else{tokensReturnedDTO.onyx=black;}
-        if(white>0){tokensTakenDTO.diamond=white;}else{tokensReturnedDTO.diamond=white;}
+        tokensTakenDTO.ruby=red;
+        tokensReturnedDTO.ruby=redReturned;
+        tokensTakenDTO.sapphire=blue;
+        tokensReturnedDTO.sapphire=blueReturned;
+        tokensTakenDTO.emerald= green;
+        tokensReturnedDTO.emerald=greenReturned;
+        tokensTakenDTO.onyx=black;
+        tokensReturnedDTO.onyx=blackReturned;
+        tokensTakenDTO.diamond=white;
+        tokensReturnedDTO.diamond=whiteReturned;
+
 
         GetTokens.DataDTO dataDTO = new GetTokens.DataDTO(model.getUserUuid(), tokensTakenDTO, tokensReturnedDTO);
 
@@ -77,6 +83,7 @@ public class TokensController<T extends GameActivity> extends Controller {
 
 
             Map<TokenType, Integer> tokensTaken = new HashMap<TokenType, Integer>();
+
             tokensTaken.put(TokenType.RUBY, tokensTakenDataResponse.ruby);
             tokensTaken.put(TokenType.SAPPHIRE, tokensTakenDataResponse.sapphire);
             tokensTaken.put(TokenType.EMERALD, tokensTakenDataResponse.emerald);
@@ -99,10 +106,12 @@ public class TokensController<T extends GameActivity> extends Controller {
             //add tokens to user and remove tokens from the table
 
             for(Map.Entry<TokenType, Integer> set : tokensTaken.entrySet()) {
+                Log.i("TEST",set.getKey()+": tokenTaken: "+set.getValue());
                 user.addTokens(set.getKey(),set.getValue());
                 game.removeTokens(set.getKey(),set.getValue());
             }
             for(Map.Entry<TokenType, Integer> set : tokensReturned.entrySet()) {
+                Log.i("TEST",set.getKey()+": tokenReturned: "+set.getValue());
                 user.removeTokens(set.getKey(),set.getValue());
                 game.addTokens(set.getKey(),set.getValue());
             }
