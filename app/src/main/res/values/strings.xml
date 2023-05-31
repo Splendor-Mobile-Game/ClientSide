@@ -52,4 +52,27 @@
     <!--Shared preferences-->
     <string name="preference_file_key" translatable="false">SPLENDOR_PREFERENCES</string>
 
+    <!--TutorialActivity-->
+    <string name="title_splendor">What is Splendor?</string>
+    <string name="splendor_description">
+
+Splendor is a game of chip-collecting and card development. Players are merchants of the Renaissance trying to buy gem mines, means of transportation, shops—all in order to acquire the most prestige points.  If you\'re wealthy enough, you might even receive a visit from a noble at some point, which of course will further increase your prestige.
+On your turn, you may collect chips (gems), or buy and build a card, or reserve one card. If you collect chips, you take either three different kinds of chips or two chips of the same kind. If you buy a card, you pay its price in chips and add it to your playing area. To reserve a card—in order to make sure you get it, or, why not, your opponents don\'t get it—you place it in front of you face down for later building; this costs you a round, but you also get gold in the form of a joker chip, which you can use as any gem.All of the cards you buy increase your wealth as they give you a permanent gem bonus for later buys; some of the cards also give you prestige points. In order to win the game, you must reach 15 prestige points before your opponents do.
+</string>
+    <string name="actions_title">Taking an action \n in Splendor</string>
+    <string name="actions_description"> Gather gems: When gathering gems, choose whether to take two gems of the same colour or three gems of different colours. You can only choose to take two gems of one colour if there are at least four gems of that colour in the supply. If you end your turn with more than 10 tokens in hand (counting both gems and gold), return a number of tokens to the supply until you’re back at ten. You cannot gather gold tokens with this action, as they are not gems.
+
+Reserve one development card: When you reserve a development card, first make sure you have fewer than three cards in your hand. If you have three or more cards in your hand, you cannot take this action. Then, draw one gold token from the supply. If there are no gold tokens left you simply don’t draw any, but you can still perform the rest of this action. Finally, take one development card into your hand. You can take any face-up development card or draw the first card of any development deck. While you can never discard a development card, you can reduce your hand size by buying a card from your hand.
+
+Buy one development card: When you buy a development card, first select which card you want to buy. It can be one of the face-up cards on the table or one that you previously reserved and which now sits in your hand. To buy a development card, you have to spend the gem tokens indicated in the bottom-left of the card. While gem tokens are all worth one of their colour, a gold token can replace one gem of another colour. Additionally, each development card you have already bought reduces the cost of subsequent development cards by one gem of its colour.
+
+Buying developments can be confusing at first, but we’ll make sure you get it right with an example.
+
+Say that you want to buy a development card with a cost of two blue gems and one black gem. You use the buy action and choose the card in question. Then, you reduce the card’s price by the number of black and blue development cards you bought in the previous rounds. This means that if you’ve already built a blue development and a green one, but zero black ones, the price of this new development card is reduced by one blue. You still have to pay two gems, one blue and one black. If you want, you can use gold tokens to pay for one or both gems.</string>
+
+    <string name="onboarding_title" translatable="false">Onboarding</string>
+    <string name="ob_createRoom">In order to create room click the "Create Room" button and enter room\'s name, your nickname and create a password. You\'ll be given a special code. Remember to share the code and the password with your friends! After you\'ll be directed to the waiting room. You can start the game or leave the room. Once you leave, the room will be deleted. </string>
+    <string name="ob_joinRoom">You can join an existing room as well. Just click the "Join Room" button and enter room\'s name, your nickname, password and the code. In that case you\'ll also be directed to the waiting room, but you couldn\'t manage the room.</string>
+    <string name="ob_gameplay">So this is an example of how the gameplay might look. If you want to buy or reserve a card, click on it and choose the right option. You can replace some required chips with gold ones if you don\'t have enough for buying. You\'ll also be given gold chips while reserving a card. While taking chips, remember that you cam have maximum 10 of them. You can check the score on the left side. Points are shown as yellow circles. Nobles will be automatically given to you if you have enough cards required for the noble. The game ends when someone gets 15 piont and over.</string>
+    <string name="ob_enjoy" translatable="false">Enjoy the game!</string>
 </resources>
