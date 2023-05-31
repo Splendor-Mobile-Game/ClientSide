@@ -15,7 +15,7 @@
         android:fontFamily="@font/lora_regular"
         android:text="@string/create_room"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/joinGameButton"
         app:layout_constraintTop_toTopOf="@+id/joinGameButton" />
 
     <com.google.android.material.button.MaterialButton
@@ -27,7 +27,7 @@
         android:fontFamily="@font/lora_regular"
         android:text="@string/join_room"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/createGameButton"
+        app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.google.android.material.button.MaterialButton
@@ -38,7 +38,7 @@
         android:fontFamily="@font/lora_regular"
         android:text="@string/exit"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/joinGameButton"
+        app:layout_constraintStart_toEndOf="@+id/tutorialButton"
         app:layout_constraintTop_toTopOf="@+id/joinGameButton" />
 
     <ImageView
@@ -71,4 +71,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/polishFlagImageView"
         app:srcCompat="@drawable/ukflag" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tutorialButton"
+        style="@style/BlueBackgroundButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lora_regular"
+        android:text="Tutorial"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintTop_toTopOf="@+id/joinGameButton" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

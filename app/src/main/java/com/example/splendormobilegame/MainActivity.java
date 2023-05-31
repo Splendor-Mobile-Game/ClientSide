@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.splendormobilegame.activities.CreateRoom.CreateRoomActivity;
 import com.example.splendormobilegame.activities.GameActivity.GameActivity;
 import com.example.splendormobilegame.activities.JoinRoom.JoinRoomActivity;
+
+import com.example.splendormobilegame.activities.TutorialActivity.TutorialActivity;
 import com.example.splendormobilegame.activities.WaitingRoom.WaitingRoomActivity;
 import com.example.splendormobilegame.config.Config;
 import com.example.splendormobilegame.config.exceptions.InvalidConfigException;
@@ -110,6 +112,14 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, JoinRoomActivity.class);
+                MainActivity.this.startActivity(myIntent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+        binding.tutorialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, TutorialActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

@@ -475,7 +475,7 @@ public class GameActivity extends CustomAppCompatActivity {
         binding.takeTokensButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GameActivity.this.tokensController.getTokens(redTokens, blueTokens, greenTokens, blackTokens, whiteTokens);
+                GameActivity.this.tokensController.getTokens(redTokens, blueTokens, greenTokens, blackTokens, whiteTokens, redTokens2, blueTokens2, greenTokens2, blackTokens2, whiteTokens2 );
             }
         });
 
