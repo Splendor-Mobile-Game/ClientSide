@@ -33,10 +33,6 @@ public class EndTurnController<T extends GameActivity> extends Controller {
 
         if (model.getRoom().getGame().getWhosTurn().equals(model.getUserUuid()))
             this.sendRequest();
-        else {
-            Log.i("UserReaction", "TurnController Error: It's not your turn!");
-            activity.showToast("Error: It's not your turn!");
-        }
     }
 
 
