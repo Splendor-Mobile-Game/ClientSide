@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/SplendorDescription"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="0dp"
@@ -61,7 +61,7 @@
 
         <TextView
             android:id="@+id/actions"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/actions_description"
@@ -86,7 +86,7 @@
 
         <TextView
             android:id="@+id/Onboarding_createRoom"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             android:text="@string/ob_createRoom"
             android:textColor="@color/light_yellow"
@@ -97,7 +97,7 @@
 
         <ImageView
             android:id="@+id/createRoomExample"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/create"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +106,7 @@
 
         <TextView
             android:id="@+id/onboarding_joinRoom"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             android:text="@string/ob_joinRoom"
             android:textColor="@color/light_yellow"
@@ -117,7 +117,7 @@
 
         <ImageView
             android:id="@+id/joinRoomExample"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/join"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
 
         <ImageView
             android:id="@+id/gameplayExample"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/img"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@id/joinRoomExample"/>
         <TextView
             android:id="@+id/onboarding_gameplay"
-            android:layout_width="480dp"
+            android:layout_width="560dp"
             android:layout_height="wrap_content"
             android:text="@string/ob_gameplay"
             android:textColor="@color/light_yellow"
