@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue">
 
     <Button
         android:id="@+id/BackToMenuButton"
-        android:layout_width="265dp"
-        android:layout_height="38dp"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        style="@style/RoundedMaroonButtonStyle"
         android:layout_marginBottom="16dp"
         android:text="Back to main menu"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,6 +34,7 @@
         android:gravity="center"
         android:text="ScoreBoard"
         android:textSize="40dp"
+        android:textColor="@color/white_smoke"
         app:layout_constraintBottom_toTopOf="@+id/rankingListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
