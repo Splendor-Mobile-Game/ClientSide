@@ -8,6 +8,7 @@ import com.github.splendor_mobile_game.websocket.communication.ServerMessage;
 import com.github.splendor_mobile_game.websocket.utils.json.JsonParser;
 import com.github.splendor_mobile_game.websocket.utils.json.exceptions.JsonParserException;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class ReactionUtils {
 
@@ -21,7 +22,8 @@ public class ReactionUtils {
 
     public static Object getResponseData(ServerMessage serverMessage, Class<?> responseDataClass) {
         try {
-            return JsonParser.parseJson((new Gson()).toJson(serverMessage.getData()), responseDataClass);
+            Gson gson = new GsonBuilder().serializeNulls().create();
+            return JsonParser.parseJson(gson.toJson(serverMessage.getData()), responseDataClass);
         } catch (JsonParserException e) {
             throw new RuntimeException(e);
         }
